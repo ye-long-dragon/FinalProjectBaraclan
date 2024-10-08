@@ -30,6 +30,8 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -52,9 +54,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            close = new Guna.UI2.WinForms.Guna2ImageButton();
             btnReturn = new Guna.UI2.WinForms.Guna2Button();
             btnSignup = new Guna.UI2.WinForms.Guna2Button();
             pnlStaff = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -77,7 +78,6 @@
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblLogo = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            close = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2CustomGradientPanel2.SuspendLayout();
             pnlStaff.SuspendLayout();
             SuspendLayout();
@@ -115,6 +115,24 @@
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2CustomGradientPanel2.Size = new Size(897, 797);
             guna2CustomGradientPanel2.TabIndex = 1;
+            guna2CustomGradientPanel2.Paint += guna2CustomGradientPanel2_Paint;
+            // 
+            // close
+            // 
+            close.BackColor = Color.Transparent;
+            close.CheckedState.ImageSize = new Size(64, 64);
+            close.HoverState.Image = (Image)resources.GetObject("resource.Image");
+            close.HoverState.ImageSize = new Size(64, 64);
+            close.Image = (Image)resources.GetObject("close.Image");
+            close.ImageOffset = new Point(0, 0);
+            close.ImageRotate = 0F;
+            close.Location = new Point(823, 3);
+            close.Name = "close";
+            close.PressedState.ImageSize = new Size(64, 64);
+            close.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            close.Size = new Size(64, 64);
+            close.TabIndex = 0;
+            close.Click += close_Click;
             // 
             // btnReturn
             // 
@@ -154,6 +172,7 @@
             btnSignup.Size = new Size(477, 56);
             btnSignup.TabIndex = 19;
             btnSignup.Text = "Sign-Up";
+            btnSignup.Click += btnSignup_Click;
             // 
             // pnlStaff
             // 
@@ -467,23 +486,6 @@
             lblLogo.Size = new Size(367, 58);
             lblLogo.TabIndex = 1;
             lblLogo.Text = "AcuHotel Log-in";
-            // 
-            // close
-            // 
-            close.BackColor = Color.Transparent;
-            close.CheckedState.ImageSize = new Size(64, 64);
-            close.HoverState.Image = (Image)resources.GetObject("resource.Image");
-            close.HoverState.ImageSize = new Size(64, 64);
-            close.Image = (Image)resources.GetObject("close.Image");
-            close.ImageOffset = new Point(0, 0);
-            close.ImageRotate = 0F;
-            close.Location = new Point(823, 3);
-            close.Name = "close";
-            close.PressedState.ImageSize = new Size(64, 64);
-            close.ShadowDecoration.CustomizableEdges = customizableEdges1;
-            close.Size = new Size(71, 61);
-            close.TabIndex = 0;
-            close.Click += close_Click;
             // 
             // Signup
             // 

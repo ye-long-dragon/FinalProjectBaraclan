@@ -16,5 +16,15 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
         }
+
+        public MainMenu(String s)
+        {
+            InitializeComponent();
+        }
+
+        private void guna2ImageButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

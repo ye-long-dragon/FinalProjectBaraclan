@@ -32,7 +32,7 @@ namespace FinalProjectBaraclan
         private void btnReturn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 login = new Form1();
+            Login login = new Login();
             login.ShowDialog();
             this.Close();
 
@@ -40,6 +40,19 @@ namespace FinalProjectBaraclan
 
         private void close_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void guna2CustomGradientPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnSignup_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainMenu mainMenu = new MainMenu("Hi");
+            mainMenu.ShowDialog();
             this.Close();
         }
     }
