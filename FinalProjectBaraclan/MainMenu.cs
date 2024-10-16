@@ -8,19 +8,46 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FinalProjectBaraclan.Repository;
+using FinalProjectBaraclan.Models;
 
 namespace FinalProjectBaraclan
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
-        {
-            InitializeComponent();
-        }
 
-        public MainMenu(String s)
+        public MainMenu(char s)
         {
             InitializeComponent();
+
+            ChildBtntoParentPanel(s);
+
+            // Check user role
+            if (s == 'A' || s == 'E')
+            {
+                // Hide btnInventory
+                btnInventory.Enabled = false;
+                btnInventory.Visible = false;
+
+                // Move other buttons
+                btnAccount.Location = new Point(0, 220);
+                btnSettings.Location = new Point(0, 275);
+                btnLogout.Location = new Point(0, 330);
+            }
+            else
+            {
+                // Show btnInventory
+                btnInventory.Enabled = true;
+                btnInventory.Visible = true;
+
+                // Move other buttons
+                btnAccount.Location = new Point(0, 275);
+                btnSettings.Location = new Point(0, 330);
+                btnLogout.Location = new Point(0, 385);
+            }
+
+            // Optionally, refresh the panel
+            pnlTaskbarContainer.Refresh();
         }
 
         //drag topbar
@@ -30,13 +57,38 @@ namespace FinalProjectBaraclan
         private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
 
 
+        private void ChildBtntoParentPanel(char s)
+        {
+            //shop panel
+            pnlShopContainer.Controls.Add(btnShopDrop);
+            pnlShopContainer.Controls.Add(btnAllItems);
+            pnlShopContainer.Controls.Add(btnGrocery);
+            pnlShopContainer.Controls.Add(btnMerchandise);
+
+            //Service Panel
+            pnlServices.Controls.Add(btnReservation);
+            pnlServices.Controls.Add(btnHousekeeping);
+
+            //dashboard
+            pnlTaskbarContainer.Controls.Add(btnAccount);
+            pnlTaskbarContainer.Controls.Add(btnSettings);
+            pnlTaskbarContainer.Controls.Add(pnlShopContainer);
+            pnlTaskbarContainer.Controls.Add(pnlServices);
+            pnlTaskbarContainer.Controls.Add(btnLogout);
+
+            if (!(s == 'A' || s == 'E'))
+            {
+                pnlTaskbarContainer.Controls.Add(btnInventory);
+            }
+        }
+
         private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
-        
+
         //animation
 
         bool taskBarExpand = true;
@@ -50,15 +102,16 @@ namespace FinalProjectBaraclan
 
         private void tmrTaskbarMenu_Tick(object sender, EventArgs e)
         {
-            if (true == shopExpand)
-            {
-                tmrShopDrop.Start();
-            }
+            /* if (true == shopExpand)
+             {
+                 tmrShopDrop.Start();
+                 tmrShopDrop.Stop();
+             }*/
 
             if (taskBarExpand)
             {
-                pnlTaskbarContainer.Width -= 10;
-                pnlMain.Width += 10;
+                pnlTaskbarContainer.Width -= 5;
+                pnlMain.Width += 5;
                 if (pnlTaskbarContainer.Width <= 55 && pnlMain.Width >= 1044)
                 {
                     taskBarExpand = false;
@@ -68,8 +121,8 @@ namespace FinalProjectBaraclan
             }
             else
             {
-                pnlTaskbarContainer.Width += 10;
-                pnlMain.Width -= 10;
+                pnlTaskbarContainer.Width += 5;
+                pnlMain.Width -= 5;
                 if (pnlTaskbarContainer.Width >= 300 && pnlMain.Width <= 799)
                 {
                     taskBarExpand = true;
@@ -89,6 +142,7 @@ namespace FinalProjectBaraclan
                 btnAccount.Top += 5;
                 btnSettings.Top += 5;
                 btnLogout.Top += 5;
+                btnInventory.Top += 5;
 
                 if (pnlServices.Height >= 165)
                 {
@@ -103,6 +157,7 @@ namespace FinalProjectBaraclan
                 btnAccount.Top -= 5;
                 btnSettings.Top -= 5;
                 btnLogout.Top -= 5;
+                btnInventory.Top -= 5;
 
                 pnlServices.Height -= 5;
                 if (pnlServices.Height <= 55)
@@ -131,6 +186,7 @@ namespace FinalProjectBaraclan
                 btnAccount.Top += 5;
                 btnSettings.Top += 5;
                 btnLogout.Top += 5;
+                btnInventory.Top += 5;
 
                 if (pnlShopContainer.Height >= 210)
                 {
@@ -148,6 +204,7 @@ namespace FinalProjectBaraclan
                 btnAccount.Top -= 5;
                 btnSettings.Top -= 5;
                 btnLogout.Top -= 5;
+                btnInventory.Top -= 5;
 
                 if (pnlShopContainer.Height <= 55)
                 {
@@ -182,8 +239,9 @@ namespace FinalProjectBaraclan
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Login().Show();
-            Application.Exit();
+            Login login = new Login();
+            login.Show();
+            
         }
 
 
@@ -260,7 +318,7 @@ namespace FinalProjectBaraclan
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            dbAccount dbAccount = new dbAccount();  
+            dbAccount dbAccount = new dbAccount();
             dbAccount.TopLevel = false;
             pnlMain.Controls.Add(dbAccount);
             dbAccount.Dock = DockStyle.Fill;
@@ -276,6 +334,24 @@ namespace FinalProjectBaraclan
             dbSettings.Dock = DockStyle.Fill;
             dbSettings.BringToFront();
             dbSettings.Show();
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            dbInventory dbInventory = new dbInventory();
+            dbInventory.TopLevel = false;
+            pnlMain.Controls.Add(dbInventory);
+            dbInventory.Dock = DockStyle.Fill;
+            dbInventory.BringToFront();
+            dbInventory.Show();
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.Show();
+            
         }
     }
 }
