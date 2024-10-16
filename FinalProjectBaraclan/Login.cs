@@ -8,6 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FinalProjectBaraclan.Models;
+using  FinalProjectBaraclan.Repository;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace FinalProjectBaraclan
 {
@@ -16,6 +19,16 @@ namespace FinalProjectBaraclan
         public Login()
         {
             InitializeComponent();
+
+            ReadAccounts();
+        }
+
+        public void ReadAccounts()
+        {
+            var repo = new AccountRepository();
+            repo.ReadAccount();
+
+
         }
 
         //drag topbar
@@ -27,9 +40,9 @@ namespace FinalProjectBaraclan
         private void btnIniLogin_Click(object sender, EventArgs e)
         {
             //show
-            txtEmail.Visible = true;
+            txtId.Visible = true;
             txtPassword.Visible = true;
-            lblEmail.Visible = true;
+            lblId.Visible = true;
             lblPassword.Visible = true;
             btnReturn.Visible = true;
             btnFinLogin.Visible = true;
@@ -46,8 +59,8 @@ namespace FinalProjectBaraclan
             btnAsStaff.Visible = true;
             btnAsUser.Visible = true;
             btnReturn.Visible = true;
-            lblEmail.Text = "Signup as:";
-            lblEmail.Visible = true;
+            lblId.Text = "Signup as:";
+            lblId.Visible = true;
 
             //hide
             btnIniLogin.Visible = false;
@@ -57,10 +70,19 @@ namespace FinalProjectBaraclan
 
         private void btnFinLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainMenu mainMenu = new MainMenu("Hi");
-            mainMenu.ShowDialog();
-            this.Close();
+            
+            UserAccount user = new UserAccount();
+            user.finalId = txtId.Text;
+            user.CheckAuthority(user);
+            UserAccount user2 = new UserAccount();
+            user2 = CheckSQLInfo();
+            if (user2.ValidateLogin(txtId.Text, txtPassword.Text))
+            {
+                this.Hide();
+                MainMenu mainMenu = new MainMenu(user.AuthorityPass(user));
+                mainMenu.ShowDialog();
+                this.Close();
+            }
         }
 
         private void btnAsUser_Click(object sender, EventArgs e)
@@ -86,12 +108,12 @@ namespace FinalProjectBaraclan
             btnSignup.Visible = true;
 
             //hide
-            lblEmail.Text = "Enter Email:";
-            lblEmail.Visible = false;
+            lblId.Text = "Enter Email:";
+            lblId.Visible = false;
             lblPassword.Visible = false;
             btnAsStaff.Visible = false;
             btnAsUser.Visible = false;
-            txtEmail.Visible = false;
+            txtId.Visible = false;
             txtPassword.Visible = false;
             btnFinLogin.Visible = false;
             btnReturn.Visible = false;
@@ -106,6 +128,24 @@ namespace FinalProjectBaraclan
         {
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private UserAccount CheckSQLInfo()
+        {
+            var repo = new AccountRepository();
+            var accounts = repo.ReadAccount();
+
+            foreach(var user in accounts)
+            {
+                if(txtId.Text == user.finalId)
+                {
+                    return user;
+                }
+            }
+
+            return null;
+
+
         }
     }
 }

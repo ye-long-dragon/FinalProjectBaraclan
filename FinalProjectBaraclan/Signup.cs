@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualBasic.Logging;
+﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.Repository;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,20 +16,31 @@ namespace FinalProjectBaraclan
 {
     public partial class Signup : Form
     {
-        public Signup()
-        {
-            InitializeComponent();
-        }
+
+        bool isAdmin = false, isEmployee = false, isUser;
         String s;
-        public Signup(String s)
+        public Signup(string s)
         {
             InitializeComponent();
+
+            AccountRepository accountRepository = new AccountRepository();
+            accountRepository.ReadAccount();
+            UserAccount account = new UserAccount();
+            isUser = true;
 
             if ("User" == s)
             {
                 pnlStaff.Visible = false;
+                account.isUser = true;
+
+
             }
-            else if ("Employee" == s) { pnlStaff.Visible = true; }
+            else if ("Employee" == s)
+            {
+                pnlStaff.Visible = true;
+
+
+            }
         }
 
         //drag topbar
@@ -57,16 +70,62 @@ namespace FinalProjectBaraclan
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainMenu mainMenu = new MainMenu("Hi");
-            mainMenu.ShowDialog();
-            this.Close();
+            UserAccount newUser = new UserAccount();
+            var repo = new AccountRepository();
+
+            if (isAdmin == true)
+            {
+                isUser = false;
+                isEmployee = false;
+                newUser.isAdmin = true;
+            }
+            else if (isEmployee == true)
+            {
+                isUser = false;
+                isAdmin = false;
+                newUser.isEmployee = true;
+            }
+            
+
+            
+            newUser.isAdmin = isAdmin;
+            newUser.isEmployee = isEmployee;
+            newUser.isUser = isUser;
+            newUser.finalId = " ";
+            newUser.email = txtEmail.Text;
+            newUser.username = txtUsername.Text;
+            newUser.password = txtPassword.Text;
+            newUser.rePassword = txtRePassword.Text;
+            newUser.birthDate = Convert.ToDateTime(txtBirthdate.Text);
+            newUser.contactNumber = (int)Convert.ToInt64(txtCoNumber.Text);
+            newUser.address = txtAddress.Text;
+            
+            repo.createAccount(newUser);
+            newUser.initailId = repo.ReadAccountInitialId(newUser);
+            newUser.finalId = newUser.GenerateId(newUser.initailId);
+            MessageBox.Show(Convert.ToString(newUser.finalId));
+            repo.UpdateAccountId(newUser);
+
+                this.Hide();
+                Login login = new Login();
+                login.Show();
+            
         }
 
         private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void radbtnAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+            isAdmin = true;
+        }
+
+        private void radbtnEmployee_CheckedChanged_1(object sender, EventArgs e)
+        {
+            isEmployee = true;
         }
     }
 }

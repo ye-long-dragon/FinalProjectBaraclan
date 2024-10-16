@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace FinalProjectBaraclan
 {
-    public partial class dbAllItems : Form
+    public partial class dbInventory : Form
     {
-        public dbAllItems()
+        public dbInventory()
         {
             InitializeComponent();
-        }
-
-        private void guna2vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-            
         }
     }
 }
