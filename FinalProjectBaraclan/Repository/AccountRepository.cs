@@ -16,7 +16,7 @@ namespace FinalProjectBaraclan.Repository
 
 
 
-        public List<UserAccount> ReadAccount()
+        public List<UserAccount> ReadAccounts()
         {
 
             var Account = new List<UserAccount>();
@@ -92,6 +92,53 @@ namespace FinalProjectBaraclan.Repository
 
             return accountInitialId;
         }
+
+       
+        public UserAccount ReadAccount(int initialId)
+        {
+            UserAccount account = new UserAccount();
+
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open ();
+                    string query = "SELECT * FROM [FinalProjectDatabase].[dbo].[dboUserAccounts] WHERE initialId = @initialId";
+
+                    using (SqlCommand find = new SqlCommand(query, connection))
+                    {
+                        find.Parameters.AddWithValue("@initialId", initialId);
+
+                        using (SqlDataReader reader = find.ExecuteReader())
+                        {                       
+
+                            if (reader.Read())
+                            {
+                                account.initailId = reader.GetInt32(0);
+                                account.finalId = reader.GetString(1);
+                                account.username = reader.GetString(2);
+                                account.password = reader.GetString(3);
+                                account.rePassword = reader.GetString(4);
+                                account.email = reader.GetString(5);
+                                account.address = reader.GetString(6);
+                                account.birthDate = reader.GetDateTime(7);
+                                account.contactNumber = reader.GetInt32(8);
+                            }
+                        }
+                    }
+
+
+                }    
+
+
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
+
+
+            return account;
+        }
+
+            
 
         public void createAccount(UserAccount User)
         {

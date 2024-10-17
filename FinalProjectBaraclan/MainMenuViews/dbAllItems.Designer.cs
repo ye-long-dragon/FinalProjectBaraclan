@@ -1,6 +1,6 @@
 ﻿namespace FinalProjectBaraclan
 {
-    partial class dbInventory
+    partial class dbAllItems
     {
         /// <summary>
         /// Required designer variable.
@@ -30,34 +30,34 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            pnlMain = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            pnlAllItems = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             SuspendLayout();
             // 
-            // pnlMain
+            // pnlAllItems
             // 
-            pnlMain.CustomizableEdges = customizableEdges1;
-            pnlMain.Dock = DockStyle.Fill;
-            pnlMain.FillColor4 = Color.DeepPink;
-            pnlMain.Location = new Point(0, 0);
-            pnlMain.Name = "pnlMain";
-            pnlMain.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlMain.Size = new Size(800, 450);
-            pnlMain.TabIndex = 0;
+            pnlAllItems.CustomizableEdges = customizableEdges1;
+            pnlAllItems.Dock = DockStyle.Fill;
+            pnlAllItems.FillColor = Color.IndianRed;
+            pnlAllItems.Location = new Point(0, 0);
+            pnlAllItems.Name = "pnlAllItems";
+            pnlAllItems.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            pnlAllItems.Size = new Size(1400, 850);
+            pnlAllItems.TabIndex = 0;
             // 
-            // dbInventory
+            // dbAllItems
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(pnlMain);
+            ClientSize = new Size(1400, 850);
+            Controls.Add(pnlAllItems);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "dbInventory";
-            Text = "dbInventory";
+            Name = "dbAllItems";
+            Text = "FullShop";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlMain;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlAllItems;
     }
 }

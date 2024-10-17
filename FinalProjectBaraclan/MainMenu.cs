@@ -20,12 +20,25 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
 
-            ChildBtntoParentPanel(s);
+            
 
             // Check user role
             if (s == 'A' || s == 'E')
             {
                 // Hide btnInventory
+                btnInventory.Enabled = true;
+                btnInventory.Visible = true;
+
+
+                // Move other buttons
+                btnAccount.Location = new Point(0, 275);
+                btnSettings.Location = new Point(0, 330);
+                btnLogout.Location = new Point(0, 385);
+                
+            }
+            else
+            {
+                // Show btnInventory
                 btnInventory.Enabled = false;
                 btnInventory.Visible = false;
 
@@ -33,17 +46,6 @@ namespace FinalProjectBaraclan
                 btnAccount.Location = new Point(0, 220);
                 btnSettings.Location = new Point(0, 275);
                 btnLogout.Location = new Point(0, 330);
-            }
-            else
-            {
-                // Show btnInventory
-                btnInventory.Enabled = true;
-                btnInventory.Visible = true;
-
-                // Move other buttons
-                btnAccount.Location = new Point(0, 275);
-                btnSettings.Location = new Point(0, 330);
-                btnLogout.Location = new Point(0, 385);
             }
 
             // Optionally, refresh the panel
@@ -57,31 +59,7 @@ namespace FinalProjectBaraclan
         private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
 
 
-        private void ChildBtntoParentPanel(char s)
-        {
-            //shop panel
-            pnlShopContainer.Controls.Add(btnShopDrop);
-            pnlShopContainer.Controls.Add(btnAllItems);
-            pnlShopContainer.Controls.Add(btnGrocery);
-            pnlShopContainer.Controls.Add(btnMerchandise);
-
-            //Service Panel
-            pnlServices.Controls.Add(btnReservation);
-            pnlServices.Controls.Add(btnHousekeeping);
-
-            //dashboard
-            pnlTaskbarContainer.Controls.Add(btnAccount);
-            pnlTaskbarContainer.Controls.Add(btnSettings);
-            pnlTaskbarContainer.Controls.Add(pnlShopContainer);
-            pnlTaskbarContainer.Controls.Add(pnlServices);
-            pnlTaskbarContainer.Controls.Add(btnLogout);
-
-            if (!(s == 'A' || s == 'E'))
-            {
-                pnlTaskbarContainer.Controls.Add(btnInventory);
-            }
-        }
-
+       
         private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -99,14 +77,10 @@ namespace FinalProjectBaraclan
         {
             this.Close();
         }
-
+    /*
         private void tmrTaskbarMenu_Tick(object sender, EventArgs e)
         {
-            /* if (true == shopExpand)
-             {
-                 tmrShopDrop.Start();
-                 tmrShopDrop.Stop();
-             }*/
+            
 
             if (taskBarExpand)
             {
@@ -130,9 +104,12 @@ namespace FinalProjectBaraclan
                 }
             }
         }
+        */
 
         private void tmrServices_Tick(object sender, EventArgs e)
         {
+
+
             if (false == servicesExpand)
             {
                 pnlServices.Height += 5;
@@ -170,10 +147,7 @@ namespace FinalProjectBaraclan
 
         private void tmrShopDrop_Tick(object sender, EventArgs e)
         {
-            if (false == taskBarExpand)
-            {
-                tmrTaskbarMenu.Start();
-            }
+            
 
 
             if (false == shopExpand)
@@ -216,10 +190,11 @@ namespace FinalProjectBaraclan
 
 
         //button clicks
+        /*
         private void btnTaskbarMenu_Click(object sender, EventArgs e)
         {
             tmrTaskbarMenu.Start();
-        }
+        }*/
 
 
 

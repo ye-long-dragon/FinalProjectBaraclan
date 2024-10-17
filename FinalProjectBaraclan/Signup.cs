@@ -24,7 +24,7 @@ namespace FinalProjectBaraclan
             InitializeComponent();
 
             AccountRepository accountRepository = new AccountRepository();
-            accountRepository.ReadAccount();
+            accountRepository.ReadAccounts();
             UserAccount account = new UserAccount();
             isUser = true;
 

@@ -26,7 +26,7 @@ namespace FinalProjectBaraclan
         public void ReadAccounts()
         {
             var repo = new AccountRepository();
-            repo.ReadAccount();
+            repo.ReadAccounts();
 
 
         }
@@ -70,19 +70,33 @@ namespace FinalProjectBaraclan
 
         private void btnFinLogin_Click(object sender, EventArgs e)
         {
-            
+            bool validated;
             UserAccount user = new UserAccount();
             user.finalId = txtId.Text;
+            user.password = txtPassword.Text;
             user.CheckAuthority(user);
-            UserAccount user2 = new UserAccount();
-            user2 = CheckSQLInfo();
-            if (user2.ValidateLogin(txtId.Text, txtPassword.Text))
+
+            UserAccount findUser = new UserAccount();
+            var repo = new AccountRepository();
+
+
+            findUser = repo.ReadAccount(user.initailId);
+            validated = findUser.ValidateLogin(user.finalId,user.password);
+
+            if (validated)
             {
                 this.Hide();
-                MainMenu mainMenu = new MainMenu(user.AuthorityPass(user));
-                mainMenu.ShowDialog();
-                this.Close();
+                MainMenu mainmenu = new MainMenu(user.authority);
+                mainmenu.Show();
             }
+            else
+            {
+                MessageBox.Show("Invalid Id or Password");
+                this.Hide();
+                Login login = new Login();
+                login.Show();
+            }
+
         }
 
         private void btnAsUser_Click(object sender, EventArgs e)
@@ -130,22 +144,6 @@ namespace FinalProjectBaraclan
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
-        private UserAccount CheckSQLInfo()
-        {
-            var repo = new AccountRepository();
-            var accounts = repo.ReadAccount();
-
-            foreach(var user in accounts)
-            {
-                if(txtId.Text == user.finalId)
-                {
-                    return user;
-                }
-            }
-
-            return null;
-
-
-        }
+        
     }
 }
