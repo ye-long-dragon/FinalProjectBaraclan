@@ -33,8 +33,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+<<<<<<< HEAD
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+=======
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+>>>>>>> Version-0.2.2
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -63,6 +68,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+<<<<<<< HEAD
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -70,7 +76,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tmrTaskbarMenu = new System.Windows.Forms.Timer(components);
+=======
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+>>>>>>> Version-0.2.2
             tmrShopDrop = new System.Windows.Forms.Timer(components);
+            tmrServices = new System.Windows.Forms.Timer(components);
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             pnlTaskbarContainer = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -88,26 +99,22 @@
             btnSettings = new Guna.UI2.WinForms.Guna2Button();
             btnAccount = new Guna.UI2.WinForms.Guna2Button();
             btnShoppingCart = new Guna.UI2.WinForms.Guna2Button();
-            btnDashboardMenu = new Guna.UI2.WinForms.Guna2Button();
             pnlMain = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            pnlForm = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            tmrServices = new System.Windows.Forms.Timer(components);
             pnlTopBar.SuspendLayout();
             pnlTaskbarContainer.SuspendLayout();
             pnlServices.SuspendLayout();
             pnlShopContainer.SuspendLayout();
-            pnlForm.SuspendLayout();
             SuspendLayout();
-            // 
-            // tmrTaskbarMenu
-            // 
-            tmrTaskbarMenu.Interval = 1;
-            tmrTaskbarMenu.Tick += tmrTaskbarMenu_Tick;
             // 
             // tmrShopDrop
             // 
             tmrShopDrop.Interval = 5;
             tmrShopDrop.Tick += tmrShopDrop_Tick;
+            // 
+            // tmrServices
+            // 
+            tmrServices.Interval = 5;
+            tmrServices.Tick += tmrServices_Tick;
             // 
             // pnlTopBar
             // 
@@ -117,7 +124,7 @@
             pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
             pnlTopBar.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            pnlTopBar.Size = new Size(1098, 50);
+            pnlTopBar.Size = new Size(1700, 50);
             pnlTopBar.TabIndex = 1;
             pnlTopBar.MouseDown += pnlTopBar_MouseDown;
             // 
@@ -126,16 +133,17 @@
             guna2ImageButton1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             guna2ImageButton1.BackColor = Color.Transparent;
             guna2ImageButton1.CheckedState.ImageSize = new Size(64, 64);
+            guna2ImageButton1.Dock = DockStyle.Right;
             guna2ImageButton1.HoverState.ImageSize = new Size(64, 64);
             guna2ImageButton1.Image = (Image)resources.GetObject("guna2ImageButton1.Image");
             guna2ImageButton1.ImageOffset = new Point(0, 0);
             guna2ImageButton1.ImageRotate = 0F;
             guna2ImageButton1.ImageSize = new Size(32, 32);
-            guna2ImageButton1.Location = new Point(1060, 12);
+            guna2ImageButton1.Location = new Point(1662, 0);
             guna2ImageButton1.Name = "guna2ImageButton1";
             guna2ImageButton1.PressedState.ImageSize = new Size(64, 64);
             guna2ImageButton1.ShadowDecoration.CustomizableEdges = customizableEdges1;
-            guna2ImageButton1.Size = new Size(26, 31);
+            guna2ImageButton1.Size = new Size(38, 50);
             guna2ImageButton1.TabIndex = 0;
             guna2ImageButton1.Click += guna2ImageButton1_Click;
             // 
@@ -148,6 +156,7 @@
             pnlTaskbarContainer.Controls.Add(btnSettings);
             pnlTaskbarContainer.Controls.Add(btnAccount);
             pnlTaskbarContainer.Controls.Add(btnShoppingCart);
+<<<<<<< HEAD
             pnlTaskbarContainer.Controls.Add(btnDashboardMenu);
             pnlTaskbarContainer.CustomizableEdges = customizableEdges34;
             pnlTaskbarContainer.Dock = DockStyle.Left;
@@ -155,6 +164,14 @@
             pnlTaskbarContainer.Name = "pnlTaskbarContainer";
             pnlTaskbarContainer.ShadowDecoration.CustomizableEdges = customizableEdges35;
             pnlTaskbarContainer.Size = new Size(300, 657);
+=======
+            pnlTaskbarContainer.CustomizableEdges = customizableEdges32;
+            pnlTaskbarContainer.Dock = DockStyle.Left;
+            pnlTaskbarContainer.Location = new Point(0, 50);
+            pnlTaskbarContainer.Name = "pnlTaskbarContainer";
+            pnlTaskbarContainer.ShadowDecoration.CustomizableEdges = customizableEdges33;
+            pnlTaskbarContainer.Size = new Size(300, 850);
+>>>>>>> Version-0.2.2
             pnlTaskbarContainer.TabIndex = 2;
             // 
             // btnInventory
@@ -446,6 +463,7 @@
             btnShoppingCart.Text = "Shopping Cart";
             btnShoppingCart.Click += btnShoppingCart_Click;
             // 
+<<<<<<< HEAD
             // btnDashboardMenu
             // 
             btnDashboardMenu.BackColor = SystemColors.Control;
@@ -468,6 +486,8 @@
             btnDashboardMenu.Text = "Dashboard";
             btnDashboardMenu.Click += btnTaskbarMenu_Click;
             // 
+=======
+>>>>>>> Version-0.2.2
             // pnlMain
             // 
             pnlMain.CustomizableEdges = customizableEdges36;
@@ -475,6 +495,7 @@
             pnlMain.FillColor4 = Color.IndianRed;
             pnlMain.Location = new Point(300, 50);
             pnlMain.Name = "pnlMain";
+<<<<<<< HEAD
             pnlMain.ShadowDecoration.CustomizableEdges = customizableEdges37;
             pnlMain.Size = new Size(798, 657);
             pnlMain.TabIndex = 3;
@@ -497,12 +518,20 @@
             tmrServices.Interval = 5;
             tmrServices.Tick += tmrServices_Tick;
             // 
+=======
+            pnlMain.ShadowDecoration.CustomizableEdges = customizableEdges35;
+            pnlMain.Size = new Size(1400, 850);
+            pnlMain.TabIndex = 3;
+            // 
+>>>>>>> Version-0.2.2
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1098, 707);
-            Controls.Add(pnlForm);
+            ClientSize = new Size(1700, 900);
+            Controls.Add(pnlMain);
+            Controls.Add(pnlTaskbarContainer);
+            Controls.Add(pnlTopBar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MainMenu";
             Text = "MainMenu";
@@ -510,35 +539,35 @@
             pnlTaskbarContainer.ResumeLayout(false);
             pnlServices.ResumeLayout(false);
             pnlShopContainer.ResumeLayout(false);
-            pnlForm.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private System.Windows.Forms.Timer tmrTaskbarMenu;
-        private Guna.UI2.WinForms.Guna2Button btnHousekeeping;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private System.Windows.Forms.Timer tmrShopDrop;
+        private System.Windows.Forms.Timer tmrServices;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlTopBar;
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlTaskbarContainer;
+        private Guna.UI2.WinForms.Guna2Button btnInventory;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlServices;
+        private Guna.UI2.WinForms.Guna2Button btnHousekeeping;
+        private Guna.UI2.WinForms.Guna2Button btnReservation;
+        private Guna.UI2.WinForms.Guna2Button btnServices;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlShopContainer;
         private Guna.UI2.WinForms.Guna2Button btnGrocery;
         private Guna.UI2.WinForms.Guna2Button btnMerchandise;
         private Guna.UI2.WinForms.Guna2Button btnShopDrop;
         private Guna.UI2.WinForms.Guna2Button btnAllItems;
-        private Guna.UI2.WinForms.Guna2Button btnDashboardMenu;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlMain;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlForm;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlServices;
-        private Guna.UI2.WinForms.Guna2Button btnReservation;
-        private Guna.UI2.WinForms.Guna2Button btnServices;
-        private System.Windows.Forms.Timer tmrServices;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
         private Guna.UI2.WinForms.Guna2Button btnSettings;
         private Guna.UI2.WinForms.Guna2Button btnAccount;
         private Guna.UI2.WinForms.Guna2Button btnShoppingCart;
+<<<<<<< HEAD
         private Guna.UI2.WinForms.Guna2Button btnInventory;
+=======
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlMain;
+>>>>>>> Version-0.2.2
     }
 }

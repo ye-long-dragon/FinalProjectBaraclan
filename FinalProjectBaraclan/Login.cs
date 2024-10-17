@@ -26,7 +26,11 @@ namespace FinalProjectBaraclan
         public void ReadAccounts()
         {
             var repo = new AccountRepository();
+<<<<<<< HEAD
             repo.ReadAccount();
+=======
+            repo.ReadAccounts();
+>>>>>>> Version-0.2.2
 
 
         }
@@ -70,6 +74,7 @@ namespace FinalProjectBaraclan
 
         private void btnFinLogin_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             
             UserAccount user = new UserAccount();
             user.finalId = txtId.Text;
@@ -83,6 +88,35 @@ namespace FinalProjectBaraclan
                 mainMenu.ShowDialog();
                 this.Close();
             }
+=======
+            bool validated;
+            UserAccount user = new UserAccount();
+            user.finalId = txtId.Text;
+            user.password = txtPassword.Text;
+            user.CheckAuthority(user);
+
+            UserAccount findUser = new UserAccount();
+            var repo = new AccountRepository();
+
+
+            findUser = repo.ReadAccount(user.initailId);
+            validated = findUser.ValidateLogin(user.finalId,user.password);
+
+            if (validated)
+            {
+                this.Hide();
+                MainMenu mainmenu = new MainMenu(user.authority);
+                mainmenu.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Id or Password");
+                this.Hide();
+                Login login = new Login();
+                login.Show();
+            }
+
+>>>>>>> Version-0.2.2
         }
 
         private void btnAsUser_Click(object sender, EventArgs e)
@@ -130,6 +164,7 @@ namespace FinalProjectBaraclan
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
+<<<<<<< HEAD
         private UserAccount CheckSQLInfo()
         {
             var repo = new AccountRepository();
@@ -147,5 +182,8 @@ namespace FinalProjectBaraclan
 
 
         }
+=======
+        
+>>>>>>> Version-0.2.2
     }
 }

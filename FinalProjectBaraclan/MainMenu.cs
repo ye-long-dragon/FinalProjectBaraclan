@@ -20,12 +20,32 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
 
+<<<<<<< HEAD
             ChildBtntoParentPanel(s);
+=======
+            
+>>>>>>> Version-0.2.2
 
             // Check user role
             if (s == 'A' || s == 'E')
             {
                 // Hide btnInventory
+<<<<<<< HEAD
+=======
+                btnInventory.Enabled = true;
+                btnInventory.Visible = true;
+
+
+                // Move other buttons
+                btnAccount.Location = new Point(0, 275);
+                btnSettings.Location = new Point(0, 330);
+                btnLogout.Location = new Point(0, 385);
+                
+            }
+            else
+            {
+                // Show btnInventory
+>>>>>>> Version-0.2.2
                 btnInventory.Enabled = false;
                 btnInventory.Visible = false;
 
@@ -34,6 +54,7 @@ namespace FinalProjectBaraclan
                 btnSettings.Location = new Point(0, 275);
                 btnLogout.Location = new Point(0, 330);
             }
+<<<<<<< HEAD
             else
             {
                 // Show btnInventory
@@ -45,6 +66,8 @@ namespace FinalProjectBaraclan
                 btnSettings.Location = new Point(0, 330);
                 btnLogout.Location = new Point(0, 385);
             }
+=======
+>>>>>>> Version-0.2.2
 
             // Optionally, refresh the panel
             pnlTaskbarContainer.Refresh();
@@ -57,6 +80,7 @@ namespace FinalProjectBaraclan
         private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
 
 
+<<<<<<< HEAD
         private void ChildBtntoParentPanel(char s)
         {
             //shop panel
@@ -82,6 +106,9 @@ namespace FinalProjectBaraclan
             }
         }
 
+=======
+       
+>>>>>>> Version-0.2.2
         private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -99,14 +126,18 @@ namespace FinalProjectBaraclan
         {
             this.Close();
         }
-
+    /*
         private void tmrTaskbarMenu_Tick(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             /* if (true == shopExpand)
              {
                  tmrShopDrop.Start();
                  tmrShopDrop.Stop();
              }*/
+=======
+            
+>>>>>>> Version-0.2.2
 
             if (taskBarExpand)
             {
@@ -130,9 +161,12 @@ namespace FinalProjectBaraclan
                 }
             }
         }
+        */
 
         private void tmrServices_Tick(object sender, EventArgs e)
         {
+
+
             if (false == servicesExpand)
             {
                 pnlServices.Height += 5;
@@ -170,10 +204,7 @@ namespace FinalProjectBaraclan
 
         private void tmrShopDrop_Tick(object sender, EventArgs e)
         {
-            if (false == taskBarExpand)
-            {
-                tmrTaskbarMenu.Start();
-            }
+            
 
 
             if (false == shopExpand)
@@ -216,10 +247,11 @@ namespace FinalProjectBaraclan
 
 
         //button clicks
+        /*
         private void btnTaskbarMenu_Click(object sender, EventArgs e)
         {
             tmrTaskbarMenu.Start();
-        }
+        }*/
 
 
 

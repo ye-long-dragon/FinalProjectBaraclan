@@ -13,6 +13,7 @@ namespace FinalProjectBaraclan.Models
         public string finalId, username, password, rePassword, email, address;
         public DateTime birthDate;
         public bool isAdmin, isEmployee, isUser;
+        public char authority;
 
 
 
@@ -26,7 +27,7 @@ namespace FinalProjectBaraclan.Models
             {
                 this.isAdmin = true;
                 this.isEmployee = false;
-                this.isUser = false;
+                this.isUser = false;               
             }
             else if (chars[0] == 'E')
             {
@@ -40,6 +41,9 @@ namespace FinalProjectBaraclan.Models
                 this.isAdmin = false;
                 this.isEmployee = false;
             }
+            
+            user.authority = chars[0];
+            user.initailId = Convert.ToInt32(user.finalId.Remove(0, 1));
         }
 
         public char AuthorityPass(UserAccount user)
