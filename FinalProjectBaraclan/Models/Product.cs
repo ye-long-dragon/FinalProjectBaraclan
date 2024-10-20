@@ -8,8 +8,8 @@ namespace FinalProjectBaraclan.Models
 {
     public class Product
     {
-        public int initialIdItem, itemQuantity;
-        public double itemCost, itemPrice;
+        public int initialIdItem, itemQuantity, isAdded,isDropped;
+        public double itemCost, itemPrice,quantitySubracted;
         public string finalIdItem, itemName;
         public Byte[] itemImageArray;
         public bool isGrocery, isRestaurant, isMerchandise;
@@ -46,6 +46,51 @@ namespace FinalProjectBaraclan.Models
             }           
 
         }
+        public string ReturnCategory()
+        {
+            string categoryType = "";
+            char[] categoryArray = new char[9];
+            categoryArray = this.finalIdItem.ToCharArray();
+
+            if (categoryArray[0]=='G')
+            {
+                categoryType = "Grocery";
+            }
+            else if(categoryArray[0]=='M')
+            {
+                categoryType = "Merchandise";
+            }
+            else if(categoryArray[0]=='R')
+            {
+                categoryType = "Restaurant";
+            }
+            
+            return categoryType;
+            
+        }
+
+        public string ReturnStringIndexArray(int arraySize)
+        {
+           
+            string itemName = this.itemName; 
+            int index = itemName.Length;
+
+            
+            int effectiveSize = Math.Min(arraySize, index);
+            char[] searchArray = new char[effectiveSize];
+
+           
+            for (int i = 0; i < effectiveSize; i++)
+            {
+                searchArray[i] = itemName[i];
+            }
+
+            
+            string search = new string(searchArray);
+
+            return search;
+        }
+
 
 
 

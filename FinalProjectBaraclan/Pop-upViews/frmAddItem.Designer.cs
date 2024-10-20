@@ -366,6 +366,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmAddItem";
             Text = "frmAddItem";
+            FormClosed += frmAddItem_FormClosed;
             pnlTopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)imgProduct).EndInit();
             ResumeLayout(false);

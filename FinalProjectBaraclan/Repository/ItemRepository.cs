@@ -1,4 +1,5 @@
-﻿using FinalProjectBaraclan.Models;
+﻿using FinalProjectBaraclan.MainMenuViews;
+using FinalProjectBaraclan.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -148,6 +149,48 @@ namespace FinalProjectBaraclan.Repository
 
             return productInitialId;
 
+
+        }
+
+
+        public List<Product> GetItemDataView()
+        {
+            string query = "SELECT * FROM [FinalProjectDatabase].[dbo].[dboProducts]";
+            List<Product> products = new List<Product>();
+
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                
+                using(SqlCommand read = new SqlCommand(query,connection))
+                {
+                    using(SqlDataReader dataReader = read.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            Product item = new Product();
+                            item.itemName = dataReader.GetString(2);
+                            item.itemQuantity = dataReader.GetInt32(3);
+                            item.itemPrice = dataReader.GetDouble(4);
+
+                            long imageSize = dataReader.GetBytes(6, 0, null, 0, 0);
+                            byte[] imageData = new byte[imageSize];
+                            dataReader.GetBytes(6, 0, imageData, 0, (int)imageSize);
+                            item.itemImageArray = imageData;
+
+                            products.Add(item);
+                            
+
+
+                        }
+                    }
+
+                }
+
+                return products;
+
+            }
 
         }
 

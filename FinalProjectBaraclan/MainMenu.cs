@@ -207,7 +207,12 @@ namespace FinalProjectBaraclan
 
         private void btnShopDrop_Click(object sender, EventArgs e)
         {
-            tmrShopDrop.Start();
+            dbAllItems allItems = new dbAllItems();
+            allItems.TopLevel = false;
+            pnlMain.Controls.Add(allItems);
+            allItems.Dock = DockStyle.Fill;
+            allItems.BringToFront();
+            allItems.Show();
         }
 
 
@@ -233,12 +238,7 @@ namespace FinalProjectBaraclan
         //load panels
         private void btnAllItems_Click(object sender, EventArgs e)
         {
-            dbAllItems allItems = new dbAllItems();
-            allItems.TopLevel = false;
-            pnlMain.Controls.Add(allItems);
-            allItems.Dock = DockStyle.Fill;
-            allItems.BringToFront();
-            allItems.Show();
+            
         }
 
         private void btnMerchandise_Click(object sender, EventArgs e)

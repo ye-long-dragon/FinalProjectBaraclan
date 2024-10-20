@@ -28,15 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dbInventory));
             pnlMain = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            cmbCategoryType = new Guna.UI2.WinForms.Guna2ComboBox();
             btnAddInventory = new Guna.UI2.WinForms.Guna2Button();
             dgvInventoryView = new Guna.UI2.WinForms.Guna2DataGridView();
             imgAdd = new DataGridViewImageColumn();
@@ -47,23 +53,72 @@
             // 
             // pnlMain
             // 
+            pnlMain.BackColor = Color.Transparent;
+            pnlMain.Controls.Add(txtSearch);
+            pnlMain.Controls.Add(cmbCategoryType);
             pnlMain.Controls.Add(btnAddInventory);
             pnlMain.Controls.Add(dgvInventoryView);
-            pnlMain.CustomizableEdges = customizableEdges3;
+            pnlMain.CustomizableEdges = customizableEdges7;
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.FillColor4 = Color.DeepPink;
             pnlMain.Location = new Point(0, 0);
             pnlMain.Name = "pnlMain";
-            pnlMain.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            pnlMain.ShadowDecoration.CustomizableEdges = customizableEdges8;
             pnlMain.Size = new Size(1400, 850);
             pnlMain.TabIndex = 0;
+            // 
+            // txtSearch
+            // 
+            txtSearch.AutoRoundedCorners = true;
+            txtSearch.BorderRadius = 27;
+            txtSearch.CustomizableEdges = customizableEdges1;
+            txtSearch.DefaultText = "";
+            txtSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSearch.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSearch.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSearch.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearch.Font = new Font("Segoe UI", 9F);
+            txtSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearch.Location = new Point(679, 87);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PasswordChar = '\0';
+            txtSearch.PlaceholderText = "Search Item";
+            txtSearch.SelectedText = "";
+            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtSearch.Size = new Size(286, 56);
+            txtSearch.TabIndex = 3;
+            txtSearch.TextOffset = new Point(10, 0);
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // cmbCategoryType
+            // 
+            cmbCategoryType.AutoRoundedCorners = true;
+            cmbCategoryType.BackColor = Color.Transparent;
+            cmbCategoryType.BorderRadius = 27;
+            cmbCategoryType.CustomizableEdges = customizableEdges3;
+            cmbCategoryType.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbCategoryType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCategoryType.FocusedColor = Color.FromArgb(94, 148, 255);
+            cmbCategoryType.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cmbCategoryType.Font = new Font("Segoe UI", 10F);
+            cmbCategoryType.ForeColor = Color.FromArgb(68, 88, 112);
+            cmbCategoryType.ItemHeight = 50;
+            cmbCategoryType.Items.AddRange(new object[] { "All", "Grocery", "Merchandise", "Restaurant" });
+            cmbCategoryType.Location = new Point(345, 87);
+            cmbCategoryType.Name = "cmbCategoryType";
+            cmbCategoryType.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            cmbCategoryType.Size = new Size(235, 56);
+            cmbCategoryType.TabIndex = 2;
+            cmbCategoryType.SelectedIndexChanged += cmbCategoryType_SelectedIndexChanged;
             // 
             // btnAddInventory
             // 
             btnAddInventory.AutoRoundedCorners = true;
             btnAddInventory.BackColor = Color.Transparent;
             btnAddInventory.BorderRadius = 27;
-            btnAddInventory.CustomizableEdges = customizableEdges1;
+            btnAddInventory.CustomizableEdges = customizableEdges5;
             btnAddInventory.DisabledState.BorderColor = Color.DarkGray;
             btnAddInventory.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddInventory.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -72,7 +127,7 @@
             btnAddInventory.ForeColor = Color.White;
             btnAddInventory.Location = new Point(56, 87);
             btnAddInventory.Name = "btnAddInventory";
-            btnAddInventory.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnAddInventory.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnAddInventory.Size = new Size(225, 56);
             btnAddInventory.TabIndex = 1;
             btnAddInventory.Text = "Add Item";
@@ -108,6 +163,8 @@
             dgvInventoryView.Name = "dgvInventoryView";
             dgvInventoryView.RowHeadersVisible = false;
             dgvInventoryView.RowHeadersWidth = 51;
+            dgvInventoryView.RowTemplate.Height = 50;
+            dgvInventoryView.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvInventoryView.Size = new Size(1304, 630);
             dgvInventoryView.TabIndex = 0;
             dgvInventoryView.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
@@ -128,32 +185,27 @@
             dgvInventoryView.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvInventoryView.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             dgvInventoryView.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            dgvInventoryView.ThemeStyle.RowsStyle.Height = 29;
+            dgvInventoryView.ThemeStyle.RowsStyle.Height = 50;
             dgvInventoryView.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvInventoryView.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvInventoryView.CellClick += dgvInventoryView_CellClick;
             // 
             // imgAdd
             // 
-            imgAdd.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            imgAdd.DividerWidth = 50;
             imgAdd.FillWeight = 50F;
             imgAdd.HeaderText = "";
             imgAdd.Image = (Image)resources.GetObject("imgAdd.Image");
             imgAdd.MinimumWidth = 50;
             imgAdd.Name = "imgAdd";
-            imgAdd.Width = 50;
+            imgAdd.Resizable = DataGridViewTriState.False;
             // 
             // imgDelete
             // 
-            imgDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            imgDelete.DividerWidth = 50;
             imgDelete.FillWeight = 50F;
             imgDelete.HeaderText = "";
             imgDelete.Image = (Image)resources.GetObject("imgDelete.Image");
             imgDelete.MinimumWidth = 50;
             imgDelete.Name = "imgDelete";
-            imgDelete.Width = 50;
             // 
             // dbInventory
             // 
@@ -174,6 +226,8 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlMain;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInventoryView;
         private Guna.UI2.WinForms.Guna2Button btnAddInventory;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbCategoryType;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private DataGridViewImageColumn imgAdd;
         private DataGridViewImageColumn imgDelete;
     }
