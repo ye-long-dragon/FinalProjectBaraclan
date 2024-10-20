@@ -116,9 +116,19 @@ namespace FinalProjectBaraclan.Pop_upViews
             MessageBox.Show("Item Successfully Added", "Item State");
 
 
+
+            this.Close();
+
+
         }
 
-        
+        private void frmAddItem_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dbInventory dbInventory = (dbInventory)Application.OpenForms["dbInventory"];
+
+            dbInventory.ReadItems();
+
+        }
     }
 }
 ;

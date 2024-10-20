@@ -1,4 +1,5 @@
-﻿using FinalProjectBaraclan.Pop_upViews;
+﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.Pop_upViews;
 using FinalProjectBaraclan.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,70 +15,188 @@ namespace FinalProjectBaraclan
 {
     public partial class dbInventory : Form
     {
+
+        frmAddItem frmAddItem = new frmAddItem();
         public dbInventory()
         {
             InitializeComponent();
 
             ReadItems();
+
+            
         }
 
         private void btnAddInventory_Click(object sender, EventArgs e)
         {
-            frmAddItem frmAddItem = new frmAddItem();
+
             frmAddItem.ShowDialog();
         }
 
         public void ReadItems()
         {
-            // Create a DataTable to hold the items
+
             DataTable dataTable = new DataTable();
 
-            // Assuming your DataGridView already has the correct columns set up,
-            // we will define the columns in the DataTable to match those in the DataGridView.
-            dataTable.Columns.Add("Image", typeof(Image)); // Assuming you have an Image column
-            dataTable.Columns.Add("ID", typeof(string));      // Assuming you have an ID column
-            dataTable.Columns.Add("Name", typeof(string));  // Assuming you have a Name column
-            dataTable.Columns.Add("Quantity", typeof(int)); // Assuming you have a Quantity column
-            dataTable.Columns.Add("Cost", typeof(decimal));  // Assuming you have a Cost column
+            dataTable.Columns.Add("Image", typeof(Image));
+            dataTable.Columns.Add("Category", typeof(string));
+            dataTable.Columns.Add("ID", typeof(string));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Quantity", typeof(int));
+            dataTable.Columns.Add("Cost", typeof(decimal));
 
             var repo = new ItemRepository();
             var items = repo.ReadItems();
 
             foreach (var item in items)
             {
-                // Create a new DataRow for each item
+
                 DataRow row = dataTable.NewRow();
-                row["Image"] = item.ReturnImage(); // Assuming this returns an Image object
+                row["Image"] = item.ReturnImage();
+                row["Category"] = item.ReturnCategory();
                 row["ID"] = item.finalIdItem;
                 row["Name"] = item.itemName;
                 row["Quantity"] = item.itemQuantity;
                 row["Cost"] = item.itemCost;
 
-                // Add the row to the DataTable
+
                 dataTable.Rows.Add(row);
             }
 
-            // Set the DataSource of the Guna2DataGridView to the DataTable
+
             this.dgvInventoryView.DataSource = dataTable;
 
-            // Optional: Configure DataGridView settings if needed
+
+            dgvInventoryView.Columns["Image"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        public void ReadSpecificItems(string category)
+        {
+
+            DataTable dataTable = new DataTable();
+
+            dataTable.Columns.Add("Image", typeof(Image));
+            dataTable.Columns.Add("Category", typeof(string));
+            dataTable.Columns.Add("ID", typeof(string));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Quantity", typeof(int));
+            dataTable.Columns.Add("Cost", typeof(decimal));
+
+            var repo = new ItemRepository();
+            var items = repo.ReadItems();
+
+            foreach (var item in items)
+            {
+                if (category == item.ReturnCategory())
+                {
+                    DataRow row = dataTable.NewRow();
+                    row["Image"] = item.ReturnImage();
+                    row["Category"] = item.ReturnCategory();
+                    row["ID"] = item.finalIdItem;
+                    row["Name"] = item.itemName;
+                    row["Quantity"] = item.itemQuantity;
+                    row["Cost"] = item.itemCost;
+
+
+                    dataTable.Rows.Add(row);
+                }
+
+            }
+
+
+            this.dgvInventoryView.DataSource = dataTable;
+
+
+            dgvInventoryView.Columns["Image"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        public void SearchSpecificItems(string searchString)
+        {
+
+            DataTable dataTable = new DataTable();
+
+            dataTable.Columns.Add("Image", typeof(Image));
+            dataTable.Columns.Add("Category", typeof(string));
+            dataTable.Columns.Add("ID", typeof(string));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Quantity", typeof(int));
+            dataTable.Columns.Add("Cost", typeof(decimal));
+
+            var repo = new ItemRepository();
+            var items = repo.ReadItems();
+            
+
+            foreach (var item in items)
+            {
+                if (searchString == item.ReturnStringIndexArray(searchString.Length))
+                {
+                    DataRow row = dataTable.NewRow();
+                    row["Image"] = item.ReturnImage();
+                    row["Category"] = item.ReturnCategory();
+                    row["ID"] = item.finalIdItem;
+                    row["Name"] = item.itemName;
+                    row["Quantity"] = item.itemQuantity;
+                    row["Cost"] = item.itemCost;
+
+
+                    dataTable.Rows.Add(row);
+                }
+
+            }
+
+
+            this.dgvInventoryView.DataSource = dataTable;
+
+
             dgvInventoryView.Columns["Image"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void dgvInventoryView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //update
-            if(dgvInventoryView.CurrentCell.OwningColumn.Name == "imgAdd")
-            { 
-                
-            }
+            if (dgvInventoryView.CurrentCell.OwningColumn.Name == "imgAdd")
+            {
 
-            if(dgvInventoryView.CurrentCell.OwningColumn.Name == "imgDelete")
+            }
+            //delete
+            if (dgvInventoryView.CurrentCell.OwningColumn.Name == "imgDelete")
             {
                 int id = Convert.ToInt32(dgvInventoryView.CurrentRow.Cells["imgDelete"].Value);
 
             }
 
+        }
+
+        private void cmbCategoryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = cmbCategoryType.SelectedIndex;
+
+
+            if (index == 1)
+            {
+
+                ReadSpecificItems("Grocery");
+            }
+            else if (index == 2)
+            {
+                ReadSpecificItems("Merchandise");
+            }
+            else if (index == 3)
+            {
+                ReadSpecificItems("Restaurant");
+            }
+            else
+            {
+                ReadItems();
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+
+           string searchText = txtSearch.Text;
+
+            SearchSpecificItems(searchText);
         }
     }
 }
