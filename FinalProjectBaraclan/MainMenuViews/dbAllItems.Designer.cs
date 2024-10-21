@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -42,7 +41,6 @@
             dgvInvoicing = new Guna.UI2.WinForms.Guna2DataGridView();
             lblnoTotal = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lbltxtGrandTotal = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            refreshTable = new System.Windows.Forms.Timer(components);
             pnlAllItems.SuspendLayout();
             pnlInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInvoicing).BeginInit();
@@ -151,12 +149,6 @@
             lbltxtGrandTotal.TabIndex = 0;
             lbltxtGrandTotal.Text = "Grand Total:";
             // 
-            // refreshTable
-            // 
-            refreshTable.Enabled = true;
-            refreshTable.Interval = 50;
-            refreshTable.Tick += refreshTable_Tick;
-            // 
             // dbAllItems
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -182,6 +174,5 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lbltxtGrandTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblnoTotal;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInvoicing;
-        private System.Windows.Forms.Timer refreshTable;
     }
 }

@@ -14,7 +14,7 @@ namespace FinalProjectBaraclan.MainMenuViews
     public partial class urclItem : UserControl
     {
         int itemsNumber;
-       public  bool colorSelected = false;
+        public bool colorSelected = false;
 
         Product product = new Product();
 
@@ -26,24 +26,25 @@ namespace FinalProjectBaraclan.MainMenuViews
             lblQuantity.Text = Convert.ToString(item.itemQuantity);
             imgImage.Image = item.ReturnImage();
             imgImage.SizeMode = PictureBoxSizeMode.Zoom;
-            
+
 
             product = item;
-            
+
         }
         public event EventHandler addClicked;
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             itemsNumber++;
-            if (itemsNumber >0)
+            if (itemsNumber > 0)
             {
                 colorSelected = true;
             }
             product.quantitySubracted = itemsNumber;
 
             product.isAdded++;
-
+            addClicked?.Invoke(this, EventArgs.Empty);
 
 
         }
@@ -58,7 +59,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             }
             product.quantitySubracted = itemsNumber;
             product.isDropped++;
-
+            droppedClicked?.Invoke(this, EventArgs.Empty);
         }
 
         public Product ReturnItem()

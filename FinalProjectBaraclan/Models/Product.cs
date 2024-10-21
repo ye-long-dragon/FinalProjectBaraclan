@@ -14,6 +14,19 @@ namespace FinalProjectBaraclan.Models
         public Byte[] itemImageArray;
         public bool isGrocery, isRestaurant, isMerchandise;
 
+        public void CheckStatus()
+        {
+            if(isAdded>0)
+            {
+               this. isDropped = 0;
+            }
+            else if (isDropped>0)
+            {
+                this.isAdded = 0;
+                this.quantitySubracted = -this.quantitySubracted;
+            }
+
+        }
 
         public string GenerateId(int id)
         {
