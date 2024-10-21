@@ -300,22 +300,12 @@ namespace FinalProjectBaraclan
 
         private void btnMerchandise_Click(object sender, EventArgs e)
         {
-            dbMerchandise dbMerchandise = new dbMerchandise();
-            dbMerchandise.TopLevel = false;
-            pnlMain.Controls.Add(dbMerchandise);
-            dbMerchandise.Dock = DockStyle.Fill;
-            dbMerchandise.BringToFront();
-            dbMerchandise.Show();
+            
         }
 
         private void btnGrocery_Click(object sender, EventArgs e)
         {
-            dbGrocery dbGrocery = new dbGrocery();
-            dbGrocery.TopLevel = false;
-            pnlMain.Controls.Add(dbGrocery);
-            dbGrocery.Dock = DockStyle.Fill;
-            dbGrocery.BringToFront();
-            dbGrocery.Show();
+          
         }
 
         private void btnReservation_Click(object sender, EventArgs e)
