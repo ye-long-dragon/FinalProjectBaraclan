@@ -152,6 +152,8 @@ namespace FinalProjectBaraclan
 
         private void dgvInventoryView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+
             //update
             if (dgvInventoryView.CurrentCell.OwningColumn.Name == "imgAdd")
             {

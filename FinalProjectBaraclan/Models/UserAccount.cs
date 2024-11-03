@@ -9,16 +9,24 @@ namespace FinalProjectBaraclan.Models
 {
     public class UserAccount
     {
-        public int initailId, contactNumber;
-        public string finalId, username, password, rePassword, email, address;
-        public DateTime birthDate;
-        public bool isAdmin, isEmployee, isUser;
-        public char authority;
+        public int initailId { get; set; }
+        public int contactNumber {  get; set; }
+        public string finalId { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string rePassword { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
+        public DateTime birthDate { get; set; }
+        public bool isAdmin { get; set; }
+        public bool isEmployee { get; set; }
+        public bool isUser { get; set; }
+        public char authority { get; set; }
 
 
 
 
-        
+
         public void CheckAuthority(UserAccount user)
         {
 
@@ -104,7 +112,15 @@ namespace FinalProjectBaraclan.Models
             return false;
         }
 
-        
+        public int ReturnInitialId()
+        {
+            int result;
+            string temp;
+            temp = this.finalId.Substring(1);
+            temp = temp.TrimStart('0');
+            result = Convert.ToInt32(temp);
+            return result;
+        }
 
         public class Admin : UserAccount
         {

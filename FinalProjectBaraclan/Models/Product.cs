@@ -8,8 +8,8 @@ namespace FinalProjectBaraclan.Models
 {
     public class Product
     {
-        public int initialIdItem, itemQuantity, isAdded,isDropped;
-        public double itemCost, itemPrice,quantitySubracted;
+        public int initialIdItem, itemQuantity, isAdded,isDropped, quantitySubracted;
+        public double itemCost, itemPrice;
         public string finalIdItem, itemName;
         public Byte[] itemImageArray;
         public bool isGrocery, isRestaurant, isMerchandise;

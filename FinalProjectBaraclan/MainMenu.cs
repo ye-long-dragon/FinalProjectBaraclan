@@ -10,17 +10,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FinalProjectBaraclan.Repository;
 using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.MainMenuViews;
 
 namespace FinalProjectBaraclan
 {
     public partial class MainMenu : Form
     {
+        UserAccount userAccount;
 
-        public MainMenu(char s)
+        public MainMenu(char s,UserAccount user)
         {
             InitializeComponent();
 
-            
+            userAccount = user;
 
             // Check user role
             if (s == 'A' || s == 'E')
@@ -32,7 +34,7 @@ namespace FinalProjectBaraclan
 
                 // Move other buttons
                 btnAccount.Location = new Point(0, 275);
-                btnSettings.Location = new Point(0, 330);
+               
                 btnLogout.Location = new Point(0, 385);
                 
             }
@@ -44,7 +46,7 @@ namespace FinalProjectBaraclan
 
                 // Move other buttons
                 btnAccount.Location = new Point(0, 220);
-                btnSettings.Location = new Point(0, 275);
+               
                 btnLogout.Location = new Point(0, 330);
             }
 
@@ -106,95 +108,9 @@ namespace FinalProjectBaraclan
         }
         */
 
-        private void tmrServices_Tick(object sender, EventArgs e)
-        {
+       
 
-
-            if (false == servicesExpand)
-            {
-                pnlServices.Height += 5;
-
-                //below services
-                btnShoppingCart.Top += 5;
-                btnAccount.Top += 5;
-                btnSettings.Top += 5;
-                btnLogout.Top += 5;
-                btnInventory.Top += 5;
-
-                if (pnlServices.Height >= 165)
-                {
-                    tmrServices.Stop();
-                    servicesExpand = true;
-                }
-            }
-            else
-            {
-                //below services
-                btnShoppingCart.Top -= 5;
-                btnAccount.Top -= 5;
-                btnSettings.Top -= 5;
-                btnLogout.Top -= 5;
-                btnInventory.Top -= 5;
-
-                pnlServices.Height -= 5;
-                if (pnlServices.Height <= 55)
-                {
-                    tmrServices.Stop();
-                    servicesExpand = false;
-                }
-            }
-        }
-
-        private void tmrShopDrop_Tick(object sender, EventArgs e)
-        {
-            
-
-
-            if (false == shopExpand)
-            {
-                pnlShopContainer.Height += 5;
-
-                //below shop
-                pnlServices.Top += 5;
-                btnShoppingCart.Top += 5;
-                btnAccount.Top += 5;
-                btnSettings.Top += 5;
-                btnLogout.Top += 5;
-                btnInventory.Top += 5;
-
-                if (pnlShopContainer.Height >= 210)
-                {
-                    tmrShopDrop.Stop();
-                    shopExpand = true;
-                }
-            }
-            else
-            {
-                pnlShopContainer.Height -= 5;
-
-                //below shop
-                pnlServices.Top -= 5;
-                btnShoppingCart.Top -= 5;
-                btnAccount.Top -= 5;
-                btnSettings.Top -= 5;
-                btnLogout.Top -= 5;
-                btnInventory.Top -= 5;
-
-                if (pnlShopContainer.Height <= 55)
-                {
-                    tmrShopDrop.Stop();
-                    shopExpand = false;
-                }
-            }
-        }
-
-
-        //button clicks
-        /*
-        private void btnTaskbarMenu_Click(object sender, EventArgs e)
-        {
-            tmrTaskbarMenu.Start();
-        }*/
+       
 
 
 
@@ -207,7 +123,7 @@ namespace FinalProjectBaraclan
 
         private void btnShopDrop_Click(object sender, EventArgs e)
         {
-            dbAllItems allItems = new dbAllItems();
+            dbAllItems allItems = new dbAllItems(userAccount);
             allItems.TopLevel = false;
             pnlMain.Controls.Add(allItems);
             allItems.Dock = DockStyle.Fill;
@@ -228,22 +144,28 @@ namespace FinalProjectBaraclan
 
 
 
-        private void btnServices_Click(object sender, EventArgs e)
-        {
-            tmrServices.Start();
-        }
-
+        
 
 
         //load panels
         private void btnAllItems_Click(object sender, EventArgs e)
         {
-            
+            dbUserCatalog dbUserCatalog = new dbUserCatalog(userAccount);
+            dbUserCatalog.TopLevel = false;
+            pnlMain.Controls.Add(dbUserCatalog);
+            dbUserCatalog.Dock = DockStyle.Fill;
+            dbUserCatalog.BringToFront();
+            dbUserCatalog.Show();
         }
 
         private void btnMerchandise_Click(object sender, EventArgs e)
         {
-            
+            dbCalendar dbCalendar = new dbCalendar();
+            dbCalendar.TopLevel = false;
+            pnlMain.Controls.Add(dbCalendar);
+            dbCalendar.Dock = DockStyle.Fill;
+            dbCalendar.BringToFront();
+            dbCalendar.Show();
         }
 
         private void btnGrocery_Click(object sender, EventArgs e)
@@ -273,7 +195,7 @@ namespace FinalProjectBaraclan
 
         private void btnShoppingCart_Click(object sender, EventArgs e)
         {
-            dbShoppingCart dbShoppingCart = new dbShoppingCart();
+            dbTransactionHistory dbShoppingCart = new dbTransactionHistory();
             dbShoppingCart.TopLevel = false;
             pnlMain.Controls.Add(dbShoppingCart);
             dbShoppingCart.Dock = DockStyle.Fill;
@@ -291,15 +213,7 @@ namespace FinalProjectBaraclan
             dbAccount.Show();
         }
 
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            dbSettings dbSettings = new dbSettings();
-            dbSettings.TopLevel = false;
-            pnlMain.Controls.Add(dbSettings);
-            dbSettings.Dock = DockStyle.Fill;
-            dbSettings.BringToFront();
-            dbSettings.Show();
-        }
+       
 
         private void btnInventory_Click(object sender, EventArgs e)
         {

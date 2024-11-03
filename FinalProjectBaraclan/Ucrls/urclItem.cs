@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FinalProjectBaraclan.MainMenuViews
+namespace FinalProjectBaraclan.Ucrls
 {
     public partial class urclItem : UserControl
     {
@@ -40,7 +40,14 @@ namespace FinalProjectBaraclan.MainMenuViews
             if (itemsNumber > 0)
             {
                 colorSelected = true;
+                pnlUserControl.FillColor = Color.Violet;
+                pnlUserControl.FillColor2 = Color.Violet;
+                pnlUserControl.FillColor3 = Color.Violet;
+                pnlUserControl.FillColor4 = Color.Violet;
             }
+           
+                
+            
             product.quantitySubracted = itemsNumber;
 
             product.isAdded++;
@@ -56,6 +63,10 @@ namespace FinalProjectBaraclan.MainMenuViews
             if (itemsNumber <= 0)
             {
                 colorSelected = false;
+                pnlUserControl.FillColor = Color.White;
+                pnlUserControl.FillColor2 = Color.White;
+                pnlUserControl.FillColor3 = Color.White;
+                pnlUserControl.FillColor4 = Color.White;
             }
             product.quantitySubracted = itemsNumber;
             product.isDropped++;

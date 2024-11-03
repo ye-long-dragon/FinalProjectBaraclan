@@ -20,16 +20,10 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
 
-            ReadAccounts();
+           
         }
 
-        public void ReadAccounts()
-        {
-            var repo = new AccountRepository();
-            repo.ReadAccounts();
-
-
-        }
+        
 
         //drag topbar
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -86,7 +80,7 @@ namespace FinalProjectBaraclan
             if (validated)
             {
                 this.Hide();
-                MainMenu mainmenu = new MainMenu(user.authority);
+                MainMenu mainmenu = new MainMenu(user.authority,findUser);
                 mainmenu.Show();
             }
             else

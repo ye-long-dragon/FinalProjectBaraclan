@@ -1,6 +1,7 @@
 ﻿using FinalProjectBaraclan.MainMenuViews;
 using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using FinalProjectBaraclan.Ucrls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,21 +16,23 @@ namespace FinalProjectBaraclan
 {
     public partial class dbAllItems : Form
     {
-
+        DataTable temp = new DataTable();
         List<Product> items = new List<Product>();
         double grandTotal;
         int itemLength = 0;
         bool itemLengthPass = false;
-        public dbAllItems()
+
+        UserAccount userAccount;
+        public dbAllItems(UserAccount user)
         {
             InitializeComponent();
             //flow layout size 1269, 616
             pnlInvoice.BringToFront();
 
-           
-            TakeAndReturnUCData();
-            
 
+            TakeAndReturnUCData();
+
+            userAccount = user;
         }
 
 
@@ -99,7 +102,10 @@ namespace FinalProjectBaraclan
 
             // Set the DataSource of the DataGridView after adding all rows
             dgvInvoicing.DataSource = dataTable;
+            temp = dataTable.Copy();
         }
+
+        
 
         public void ReadandReturnTablePrices()
         {
@@ -124,12 +130,18 @@ namespace FinalProjectBaraclan
 
                 // Update the label with the grand total
                 lblnoTotal.Text = Convert.ToString(grandTotal);
+
+                
             }
-            
+
         }
 
+        private void btnConfirmPurchase_Click(object sender, EventArgs e)
+        {
+            frmConfirmPurchaseShop frmConfirmPurchaseShop = new frmConfirmPurchaseShop(temp,userAccount);
+            frmConfirmPurchaseShop.ShowDialog();
 
-
+        }
 
 
     }

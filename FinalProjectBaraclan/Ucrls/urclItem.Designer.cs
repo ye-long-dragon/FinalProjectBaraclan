@@ -1,4 +1,4 @@
-﻿namespace FinalProjectBaraclan.MainMenuViews
+﻿namespace FinalProjectBaraclan.Ucrls
 {
     partial class urclItem
     {
@@ -35,30 +35,30 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            pnlUserControl = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             btnDropped = new Guna.UI2.WinForms.Guna2Button();
             lblQuantity = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnAdd = new Guna.UI2.WinForms.Guna2Button();
             lblItemName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             imgImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            guna2CustomGradientPanel1.SuspendLayout();
+            pnlUserControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).BeginInit();
             SuspendLayout();
             // 
-            // guna2CustomGradientPanel1
+            // pnlUserControl
             // 
-            guna2CustomGradientPanel1.Controls.Add(btnDropped);
-            guna2CustomGradientPanel1.Controls.Add(lblQuantity);
-            guna2CustomGradientPanel1.Controls.Add(btnAdd);
-            guna2CustomGradientPanel1.Controls.Add(lblItemName);
-            guna2CustomGradientPanel1.Controls.Add(imgImage);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges13;
-            guna2CustomGradientPanel1.Dock = DockStyle.Fill;
-            guna2CustomGradientPanel1.Location = new Point(0, 0);
-            guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2CustomGradientPanel1.Size = new Size(229, 338);
-            guna2CustomGradientPanel1.TabIndex = 0;
+            pnlUserControl.Controls.Add(btnDropped);
+            pnlUserControl.Controls.Add(lblQuantity);
+            pnlUserControl.Controls.Add(btnAdd);
+            pnlUserControl.Controls.Add(lblItemName);
+            pnlUserControl.Controls.Add(imgImage);
+            pnlUserControl.CustomizableEdges = customizableEdges13;
+            pnlUserControl.Dock = DockStyle.Fill;
+            pnlUserControl.Location = new Point(0, 0);
+            pnlUserControl.Name = "pnlUserControl";
+            pnlUserControl.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pnlUserControl.Size = new Size(229, 338);
+            pnlUserControl.TabIndex = 0;
             // 
             // btnDropped
             // 
@@ -134,18 +134,18 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(guna2CustomGradientPanel1);
+            Controls.Add(pnlUserControl);
             Name = "urclItem";
             Size = new Size(229, 338);
-            guna2CustomGradientPanel1.ResumeLayout(false);
-            guna2CustomGradientPanel1.PerformLayout();
+            pnlUserControl.ResumeLayout(false);
+            pnlUserControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel pnlUserControl;
         private Guna.UI2.WinForms.Guna2Button btnDropped;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblQuantity;
         private Guna.UI2.WinForms.Guna2Button btnAdd;

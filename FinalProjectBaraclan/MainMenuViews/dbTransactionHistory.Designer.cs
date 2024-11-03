@@ -1,6 +1,6 @@
 ﻿namespace FinalProjectBaraclan
 {
-    partial class dbSettings
+    partial class dbTransactionHistory
     {
         /// <summary>
         /// Required designer variable.
@@ -37,22 +37,22 @@
             // 
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges1;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
-            guna2CustomGradientPanel1.FillColor2 = Color.DeepPink;
+            guna2CustomGradientPanel1.FillColor4 = Color.Aqua;
             guna2CustomGradientPanel1.Location = new Point(0, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2CustomGradientPanel1.Size = new Size(800, 450);
             guna2CustomGradientPanel1.TabIndex = 0;
             // 
-            // dbSettings
+            // dbShoppingCart
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(guna2CustomGradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "dbSettings";
-            Text = "dbSettings";
+            Name = "dbShoppingCart";
+            Text = "dbShoppingCart";
             ResumeLayout(false);
         }
 

@@ -48,6 +48,7 @@ namespace FinalProjectBaraclan.Repository
 
                                 user.CheckAuthority(user);
 
+
                                 Account.Add(user);
 
                             }
@@ -55,7 +56,7 @@ namespace FinalProjectBaraclan.Repository
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message) ; }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             return Account;
         }
@@ -86,23 +87,23 @@ namespace FinalProjectBaraclan.Repository
                     }
                 }
 
-               
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             return accountInitialId;
         }
 
-       
+
         public UserAccount ReadAccount(int initialId)
         {
             UserAccount account = new UserAccount();
 
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open ();
+                    connection.Open();
                     string query = "SELECT * FROM [FinalProjectDatabase].[dbo].[dboUserAccounts] WHERE initialId = @initialId";
 
                     using (SqlCommand find = new SqlCommand(query, connection))
@@ -110,7 +111,7 @@ namespace FinalProjectBaraclan.Repository
                         find.Parameters.AddWithValue("@initialId", initialId);
 
                         using (SqlDataReader reader = find.ExecuteReader())
-                        {                       
+                        {
 
                             if (reader.Read())
                             {
@@ -128,17 +129,17 @@ namespace FinalProjectBaraclan.Repository
                     }
 
 
-                }    
+                }
 
 
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
 
             return account;
         }
 
-            
+
 
         public void createAccount(UserAccount User)
         {
@@ -175,7 +176,7 @@ namespace FinalProjectBaraclan.Repository
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message) ;
+                            MessageBox.Show(ex.Message);
                             transaction.Rollback();
                             throw; // Rethrow the exception to propagate the error
                         }
@@ -199,7 +200,7 @@ namespace FinalProjectBaraclan.Repository
                 {
                     connection.Open();
 
-                    
+
                     using (SqlCommand update = new SqlCommand())
                     {
                         update.Connection = connection;
@@ -214,7 +215,42 @@ namespace FinalProjectBaraclan.Repository
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        public void UpdateAccount(UserAccount User)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE [FinalProjectDatabase].[dbo].[dboUserAccounts] SET finalId = @finalId, username" +
+                    " = @username, password = @password,rePassword = @rePassword, email = @email, contactNumber = @contactNumber" +
+                    ",address = @address,birthDate = @birthDate WHERE initialId = @initialId";
+
+
+                using (SqlCommand update = new SqlCommand(query, connection))
+                {
+                    update.Parameters.AddWithValue("@finalId", User.finalId);
+                    update.Parameters.AddWithValue("@username", User.username);
+                    update.Parameters.AddWithValue("@password", User.password);
+                    update.Parameters.AddWithValue("@email", User.email);
+                    update.Parameters.AddWithValue("@contactNumber", User.contactNumber);
+                    update.Parameters.AddWithValue("@rePassword", User.password);
+                    update.Parameters.AddWithValue("@address", User.address);
+                    update.Parameters.AddWithValue("@birthDate", User.birthDate);
+                    update.Parameters.AddWithValue("@initialId", User.ReturnInitialId());
+                    update.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }
+
 
 

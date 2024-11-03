@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FinalProjectBaraclan
 {
-    public partial class dbSettings : Form
+    public partial class dbTransactionHistory : Form
     {
-        public dbSettings()
+        public dbTransactionHistory()
         {
             InitializeComponent();
         }

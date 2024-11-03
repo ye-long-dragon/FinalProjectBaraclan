@@ -194,6 +194,35 @@ namespace FinalProjectBaraclan.Repository
 
         }
 
+        public void ShopUpdateItemQuantity (Product product)
+        {
+            using(SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                string query = "UPDATE [FinalProjectDatabase].[dbo].[dboProducts] SET itemQuantity = @itemQuantity WHERE itemName = @itemName";
+
+                using(SqlCommand update = new SqlCommand(query,sqlConnection))
+                {
+                    update.Parameters.AddWithValue("@itemQuantity", product.quantitySubracted);
+                    update.Parameters.AddWithValue("@itemName", product.itemName);
+
+                    update.ExecuteNonQuery();
+
+
+                }              
+            }    
+        }
+
+
+
+
+
+
+
+
+
+
+
        
 
      }
