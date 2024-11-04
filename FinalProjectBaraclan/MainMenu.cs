@@ -175,7 +175,7 @@ namespace FinalProjectBaraclan
 
         private void btnReservation_Click(object sender, EventArgs e)
         {
-            dbReservation dbReservation = new dbReservation();
+            dbReservation dbReservation = new dbReservation(userAccount);
             dbReservation.TopLevel = false;
             pnlMain.Controls.Add(dbReservation);
             dbReservation.Dock = DockStyle.Fill;

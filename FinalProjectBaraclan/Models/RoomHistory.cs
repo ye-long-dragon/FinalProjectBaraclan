@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace FinalProjectBaraclan.Models
 {
-    public class Room
+    public class RoomHistory
     {
-        public int id { get; set; }
+        public int roomNumber {  get; set; }
+        public DateTime date { get; set; }
+        public string occupant {  get; set; }
+        public string occupantNumber {  get; set; }
         public string roomStyle { get; set; }
-        public string bedStyle { get; set; }
-        public Byte[] imgRoom { get; set; }
+        public Byte [] image { get; set; }
 
         public Image ReturnImage()
         {
-            using (MemoryStream ms = new MemoryStream(this.imgRoom))
+            using (MemoryStream ms = new MemoryStream(this.image))
             {
                 Image img = Image.FromStream(ms);
                 return img;
@@ -23,5 +25,7 @@ namespace FinalProjectBaraclan.Models
 
 
         }
+
+
     }
 }
