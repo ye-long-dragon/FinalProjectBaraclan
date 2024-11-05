@@ -52,12 +52,46 @@ namespace FinalProjectBaraclan.Repository
 
             }
             return rooms;
-        } 
-        
+        }
 
 
 
+        public void ReserveRoom(RoomHistory room)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
+                string setIdentityInsertOn = "SET IDENTITY_INSERT [FinalProjectDatabase].[dbo].[dboRoomsHistory] ON";
+                using (SqlCommand cmdIdentityInsertOn = new SqlCommand(setIdentityInsertOn, connection))
+                {
+                    cmdIdentityInsertOn.ExecuteNonQuery();
+                }
+
+                string query = "INSERT INTO [FinalProjectDatabase].[dbo].[dboRoomsHistory] " +
+                               "(occupant, occupantNumber, dateOccupied, roomNumber, roomStyle, bedStyle, image) " +
+                               "VALUES (@occupant, @occupantNumber, @dateOccupied, @roomNumber, @roomStyle, @bedStyle, @image)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@occupant", room.occupant);
+                    command.Parameters.AddWithValue("@occupantNumber", room.occupantNumber);
+                    command.Parameters.AddWithValue("@dateOccupied", room.date);
+                    command.Parameters.AddWithValue("@roomNumber", room.roomNumber);
+                    command.Parameters.AddWithValue("@roomStyle", room.roomStyle);
+                    command.Parameters.AddWithValue("@bedStyle", room.bedStyle);
+                    command.Parameters.AddWithValue("@image", room.image);
+
+                    command.ExecuteNonQuery();
+                }
+
+                string setIdentityInsertOff = "SET IDENTITY_INSERT [FinalProjectDatabase].[dbo].[dboRoomsHistory] OFF";
+                using (SqlCommand cmdIdentityInsertOff = new SqlCommand(setIdentityInsertOff, connection))
+                {
+                    cmdIdentityInsertOff.ExecuteNonQuery();
+                }
+            }
+        }
 
 
 

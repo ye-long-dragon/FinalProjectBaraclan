@@ -160,7 +160,7 @@ namespace FinalProjectBaraclan
 
         private void btnMerchandise_Click(object sender, EventArgs e)
         {
-            dbCalendar dbCalendar = new dbCalendar();
+            dbCalendar dbCalendar = new dbCalendar(userAccount);
             dbCalendar.TopLevel = false;
             pnlMain.Controls.Add(dbCalendar);
             dbCalendar.Dock = DockStyle.Fill;

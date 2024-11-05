@@ -1,4 +1,5 @@
-﻿using FinalProjectBaraclan.Ucrls;
+﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.Ucrls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,9 @@ namespace FinalProjectBaraclan.MainMenuViews
     public partial class dbCalendar : Form
     {
         int month, year;
+        UserAccount account;
 
-        public dbCalendar()
+        public dbCalendar(UserAccount user)
         {
             InitializeComponent();
 
@@ -47,7 +49,7 @@ namespace FinalProjectBaraclan.MainMenuViews
 
             for (int i = 1; i <= days; i++)
             {
-                ucrlDay day = new ucrlDay();
+                ucrlDay day = new ucrlDay(account);
                 day.days(i);
                 flpCalendar.Controls.Add(day);
             }
@@ -58,6 +60,10 @@ namespace FinalProjectBaraclan.MainMenuViews
             flpCalendar.Controls.Clear();
 
             month++;
+            if (month > 12)
+            {
+                year++;
+            }
             string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
 
             lblMonthYear.Text = monthName + " " + year;
@@ -73,7 +79,7 @@ namespace FinalProjectBaraclan.MainMenuViews
 
             for (int i = 1; i <= days; i++)
             {
-                ucrlDay day = new ucrlDay();
+                ucrlDay day = new ucrlDay(account);
                 day.days(i);
                 day.reserved += ReserveDay;
                 day.cancelled += CancelDay;
@@ -86,6 +92,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             flpCalendar.Controls.Clear();
 
             month--;
+            if (month <1) { year--; }
             string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
 
             lblMonthYear.Text = monthName + " " + year;
@@ -101,7 +108,7 @@ namespace FinalProjectBaraclan.MainMenuViews
 
             for (int i = 1; i <= days; i++)
             {
-                ucrlDay day = new ucrlDay();
+                ucrlDay day = new ucrlDay(account);
                 day.days(i);
                 flpCalendar.Controls.Add(day);
             }

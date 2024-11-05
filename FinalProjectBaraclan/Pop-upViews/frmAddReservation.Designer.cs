@@ -41,17 +41,21 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
             lblRoomStyle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             cmbRoomStyle = new Guna.UI2.WinForms.Guna2ComboBox();
-            imgImage = new Guna.UI2.WinForms.Guna2PictureBox();
             lblRoomNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblBedStyle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             cmbBedStyle = new Guna.UI2.WinForms.Guna2ComboBox();
             lblId = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnConfirm = new Guna.UI2.WinForms.Guna2Button();
+            txtDate = new Guna.UI2.WinForms.Guna2TextBox();
+            lblDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            imgImage = new Guna.UI2.WinForms.Guna2PictureBox();
             pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).BeginInit();
             SuspendLayout();
@@ -128,17 +132,6 @@
             cmbRoomStyle.TabIndex = 3;
             cmbRoomStyle.SelectedIndexChanged += cmbRoomStyle_SelectedIndexChanged;
             // 
-            // imgImage
-            // 
-            imgImage.CustomizableEdges = customizableEdges7;
-            imgImage.ImageRotate = 0F;
-            imgImage.Location = new Point(45, 86);
-            imgImage.Name = "imgImage";
-            imgImage.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            imgImage.Size = new Size(275, 265);
-            imgImage.TabIndex = 4;
-            imgImage.TabStop = false;
-            // 
             // lblRoomNumber
             // 
             lblRoomNumber.BackColor = Color.Transparent;
@@ -160,7 +153,7 @@
             // cmbBedStyle
             // 
             cmbBedStyle.BackColor = Color.Transparent;
-            cmbBedStyle.CustomizableEdges = customizableEdges9;
+            cmbBedStyle.CustomizableEdges = customizableEdges7;
             cmbBedStyle.DrawMode = DrawMode.OwnerDrawFixed;
             cmbBedStyle.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBedStyle.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -170,7 +163,7 @@
             cmbBedStyle.ItemHeight = 30;
             cmbBedStyle.Location = new Point(470, 184);
             cmbBedStyle.Name = "cmbBedStyle";
-            cmbBedStyle.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            cmbBedStyle.ShadowDecoration.CustomizableEdges = customizableEdges8;
             cmbBedStyle.Size = new Size(305, 36);
             cmbBedStyle.TabIndex = 7;
             cmbBedStyle.SelectedIndexChanged += cmbBedStyle_SelectedIndexChanged;
@@ -188,31 +181,75 @@
             // 
             btnConfirm.AutoRoundedCorners = true;
             btnConfirm.BorderRadius = 27;
-            btnConfirm.CustomizableEdges = customizableEdges11;
+            btnConfirm.CustomizableEdges = customizableEdges9;
             btnConfirm.DisabledState.BorderColor = Color.DarkGray;
             btnConfirm.DisabledState.CustomBorderColor = Color.DarkGray;
             btnConfirm.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnConfirm.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnConfirm.Font = new Font("Segoe UI", 9F);
             btnConfirm.ForeColor = Color.White;
-            btnConfirm.Location = new Point(363, 362);
+            btnConfirm.Location = new Point(363, 415);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnConfirm.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnConfirm.Size = new Size(412, 56);
             btnConfirm.TabIndex = 9;
             btnConfirm.Text = "Confirm";
+            btnConfirm.Click += btnConfirm_Click;
+            // 
+            // txtDate
+            // 
+            txtDate.CustomizableEdges = customizableEdges11;
+            txtDate.DefaultText = "";
+            txtDate.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtDate.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtDate.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtDate.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtDate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDate.Font = new Font("Segoe UI", 9F);
+            txtDate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDate.Location = new Point(470, 325);
+            txtDate.Margin = new Padding(3, 4, 3, 4);
+            txtDate.Name = "txtDate";
+            txtDate.PasswordChar = '\0';
+            txtDate.PlaceholderText = "";
+            txtDate.SelectedText = "";
+            txtDate.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtDate.Size = new Size(305, 38);
+            txtDate.TabIndex = 10;
+            // 
+            // lblDate
+            // 
+            lblDate.BackColor = Color.Transparent;
+            lblDate.Location = new Point(363, 329);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(102, 22);
+            lblDate.TabIndex = 11;
+            lblDate.Text = "Date Reserved:";
+            // 
+            // imgImage
+            // 
+            imgImage.CustomizableEdges = customizableEdges13;
+            imgImage.ImageRotate = 0F;
+            imgImage.Location = new Point(36, 96);
+            imgImage.Name = "imgImage";
+            imgImage.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            imgImage.Size = new Size(305, 250);
+            imgImage.TabIndex = 12;
+            imgImage.TabStop = false;
             // 
             // frmAddReservation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(847, 513);
+            Controls.Add(imgImage);
+            Controls.Add(lblDate);
+            Controls.Add(txtDate);
             Controls.Add(btnConfirm);
             Controls.Add(lblId);
             Controls.Add(cmbBedStyle);
             Controls.Add(lblBedStyle);
             Controls.Add(lblRoomNumber);
-            Controls.Add(imgImage);
             Controls.Add(cmbRoomStyle);
             Controls.Add(lblRoomStyle);
             Controls.Add(pnlTopBar);
@@ -232,11 +269,13 @@
         private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton2;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblRoomStyle;
         private Guna.UI2.WinForms.Guna2ComboBox cmbRoomStyle;
-        private Guna.UI2.WinForms.Guna2PictureBox imgImage;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblRoomNumber;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblBedStyle;
         private Guna.UI2.WinForms.Guna2ComboBox cmbBedStyle;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblId;
         private Guna.UI2.WinForms.Guna2Button btnConfirm;
+        private Guna.UI2.WinForms.Guna2TextBox txtDate;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblDate;
+        private Guna.UI2.WinForms.Guna2PictureBox imgImage;
     }
 }

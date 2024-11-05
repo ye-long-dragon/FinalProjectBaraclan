@@ -1,4 +1,5 @@
 ﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.PDFMaker;
 using FinalProjectBaraclan.Pop_upViews;
 using FinalProjectBaraclan.Repository;
 using System;
@@ -24,8 +25,7 @@ namespace FinalProjectBaraclan.MainMenuViews
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
 
-        string username;
-        string finalId;
+        UserAccount user;
         DataTable finaldataTable;
         public frmConfirmPurchaseShop(DataTable datatable, UserAccount userAccount)
         {
@@ -33,8 +33,7 @@ namespace FinalProjectBaraclan.MainMenuViews
 
             dgvFinalPurchase.DataSource = datatable;
             finaldataTable = datatable;
-            username = userAccount.username;
-            finalId = userAccount.finalId;
+            user = userAccount;
             ReadandReturnTablePrices();
             
         }
@@ -85,83 +84,42 @@ namespace FinalProjectBaraclan.MainMenuViews
 
         private void btnConfirmTransaction_Click(object sender, EventArgs e)
         {
-            List<Product> products = new List<Product>();
+            Receipt receipt = new Receipt();
+            receipt.userAccountName = user.username;
+            receipt.userAccountId = user.finalId;
 
-            foreach(DataRow row in finaldataTable.Rows)
+            double payment = Convert.ToDouble(txtPayment.Text);
+            var invoice = new ShopReceipt();
+            var document = invoice.GetShopInvoice(finaldataTable, user, payment);
+
+            string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            string fileName = $"{user.username}_Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+            string fullPath = Path.Combine(downloadsPath, fileName);
+
+            byte[] pdfBytes;
+            using (MemoryStream stream = new MemoryStream())
             {
-                Product product = new Product();
+                document.Save(stream);
+                pdfBytes = stream.ToArray();
 
-                product.itemName = Convert.ToString(row["Name"]);
-                product.itemPrice = Convert.ToDouble(row["Price"]);
-                product.quantitySubracted = -Convert.ToInt32(row["Quantity"]);
-                double totalPrice = Convert.ToDouble(row["Total Price"]);
-
-                products.Add(product);
-
-               
+                File.WriteAllBytes(fullPath, pdfBytes);
             }
 
-            var Itemrepo = new ItemRepository();
-            List<Receipt> receiptList = new List<Receipt>();
-            
-            
-            foreach (Product product in products)
-            {
-                Itemrepo.ShopUpdateItemQuantity(product);
+            receipt.data = pdfBytes;
 
-                Receipt receipt = new Receipt();
-                receipt.itemName = product.itemName;
-                receipt.itemPrice = product.itemPrice;
-                receipt.itemQuantity = product.quantitySubracted;
-                receipt.itemTotalPrice = product.quantitySubracted*product.itemPrice;
-                receipt.userAccountName  = username;
-                receipt.userAccountId = finalId;
-                receipt.finalReceiptId = "";
-                
+            MessageBox.Show($"PDF Receipt saved successfully to:\n{fullPath}", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                receiptList.Add(receipt);
-
-                //create initialId
-                //generate finalId
-                //receipt repository
-            }
-
-            var ReceiptRepo = new ReceiptRepository();
-
-            Receipt firstReceipt = receiptList[0];
-            ReceiptRepo.ReturnFinalIdIndexZero(firstReceipt);
-            receiptList.RemoveAt(0);
-
-            if (Convert.ToDouble(txtPayment.Text) >= firstReceipt.itemTotalPrice)
-            {
-                ReceiptRepo.CreateReceiptIndexZero(firstReceipt);
-                int initialId = ReceiptRepo.ReadIndexZeroId(firstReceipt);
-                string finalId = firstReceipt.CreateFinalId();
-
-                foreach (Receipt receipt in receiptList)
-                {
-                    
-                    receipt.finalReceiptId = finalId;
-                    ReceiptRepo.CreateReceiptNonZeroIndex(receipt);
-
-                }
-
-               
-                MessageBox.Show("You have paid in full");
-                this.Close();
-
-            }
-            else
-            {
-                MessageBox.Show("Insufficient Payment");
-            }
-
-
-
-
-
-
+            var repo = new ReceiptRepository();
+            repo.StoreShopReceipt(receipt);
+            MessageBox.Show("Receipt Successfully Stored");
         }
+
+
+
+
+
+
 
 
 

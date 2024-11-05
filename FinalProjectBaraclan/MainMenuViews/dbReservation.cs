@@ -100,8 +100,29 @@ namespace FinalProjectBaraclan
         {
 
             //find rooms datasource
-            
-            
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Image", typeof(Byte[]));
+            dataTable.Columns.Add("Room Number", typeof(int));
+            dataTable.Columns.Add("Room Style", typeof(string));
+            dataTable.Columns.Add("Bed Style", typeof(string));
+
+            var repo = new RoomRepository();
+            var rooms = repo.ReadRooms();
+
+            foreach (var room in rooms)
+            {
+                DataRow row = dataTable.NewRow();
+                row["Image"] = room.imgRoom;
+                row["Room Number"] = room.id;
+                row["Room Style"] = room.roomStyle;
+                row["Bed Style"] = room.bedStyle;
+
+
+                dataTable.Rows.Add(row);
+            }
+
+            tableRooms = dataTable;
+
             frmAddReservation frmAddReservation = new frmAddReservation(tableRooms,userAccount);
             frmAddReservation.ShowDialog();
 
