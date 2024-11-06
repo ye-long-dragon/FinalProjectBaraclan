@@ -224,7 +224,7 @@
         AAAAAMAvnPMBZj3hlHJv3BgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnMerchandise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCalendar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAABexJREFUeF7t
         1cEJwDAAxLDsv3T68Qh5FE6aweADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -286,7 +286,7 @@
         AAAAAMAvnPMBZj3hlHJv3BgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnAllItems.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnUserCatalog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAABexJREFUeF7t
         1cEJwDAAxLDsv3T68Qh5FE6aweADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

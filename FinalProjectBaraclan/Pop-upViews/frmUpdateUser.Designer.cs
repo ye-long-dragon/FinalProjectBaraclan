@@ -57,6 +57,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnClose = new Guna.UI2.WinForms.Guna2ImageButton();
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -83,6 +85,7 @@
             btnEdit = new Guna.UI2.WinForms.Guna2Button();
             btnSave = new Guna.UI2.WinForms.Guna2Button();
             lblIdFinal = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnBrowsePic = new Guna.UI2.WinForms.Guna2Button();
             pnlTopBar.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).BeginInit();
@@ -481,11 +484,31 @@
             lblIdFinal.TabIndex = 32;
             lblIdFinal.Text = "Id";
             // 
+            // btnBrowsePic
+            // 
+            btnBrowsePic.AutoRoundedCorners = true;
+            btnBrowsePic.BorderRadius = 18;
+            btnBrowsePic.CustomizableEdges = customizableEdges29;
+            btnBrowsePic.DisabledState.BorderColor = Color.DarkGray;
+            btnBrowsePic.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnBrowsePic.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnBrowsePic.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnBrowsePic.Font = new Font("Segoe UI", 9F);
+            btnBrowsePic.ForeColor = Color.White;
+            btnBrowsePic.Location = new Point(191, 151);
+            btnBrowsePic.Name = "btnBrowsePic";
+            btnBrowsePic.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            btnBrowsePic.Size = new Size(164, 38);
+            btnBrowsePic.TabIndex = 33;
+            btnBrowsePic.Text = "Browse";
+            btnBrowsePic.Click += btnBrowsePic_Click;
+            // 
             // frmUpdateUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(847, 513);
+            Controls.Add(btnBrowsePic);
             Controls.Add(lblIdFinal);
             Controls.Add(btnSave);
             Controls.Add(btnEdit);
@@ -556,5 +579,6 @@
         private Guna.UI2.WinForms.Guna2Button btnEdit;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblIdFinal;
+        private Guna.UI2.WinForms.Guna2Button btnBrowsePic;
     }
 }

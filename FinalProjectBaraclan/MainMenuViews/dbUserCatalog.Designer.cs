@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -35,6 +37,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dbUserCatalog));
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btnAddUser = new Guna.UI2.WinForms.Guna2Button();
             dgvUsersView = new Guna.UI2.WinForms.Guna2DataGridView();
             imgAdd = new DataGridViewImageColumn();
             imgDelete = new DataGridViewImageColumn();
@@ -44,14 +47,34 @@
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.Controls.Add(btnAddUser);
             guna2CustomGradientPanel1.Controls.Add(dgvUsersView);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
             guna2CustomGradientPanel1.Location = new Point(0, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2CustomGradientPanel1.Size = new Size(1400, 850);
             guna2CustomGradientPanel1.TabIndex = 0;
+            // 
+            // btnAddUser
+            // 
+            btnAddUser.AutoRoundedCorners = true;
+            btnAddUser.BorderRadius = 27;
+            btnAddUser.CustomizableEdges = customizableEdges1;
+            btnAddUser.DisabledState.BorderColor = Color.DarkGray;
+            btnAddUser.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddUser.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddUser.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddUser.Font = new Font("Segoe UI", 9F);
+            btnAddUser.ForeColor = Color.White;
+            btnAddUser.Location = new Point(48, 33);
+            btnAddUser.Name = "btnAddUser";
+            btnAddUser.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnAddUser.Size = new Size(225, 56);
+            btnAddUser.TabIndex = 2;
+            btnAddUser.Text = "Add User";
+            btnAddUser.Click += btnAddUser_Click;
             // 
             // dgvUsersView
             // 
@@ -147,5 +170,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvUsersView;
         private DataGridViewImageColumn imgAdd;
         private DataGridViewImageColumn imgDelete;
+        private Guna.UI2.WinForms.Guna2Button btnAddUser;
     }
 }

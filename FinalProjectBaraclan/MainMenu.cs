@@ -23,29 +23,42 @@ namespace FinalProjectBaraclan
             InitializeComponent();
 
             userAccount = user;
+            //imgImage.Image = userAccount.ReturnImage();
+            lblname.Text = userAccount.username;
+            lblAuthority.Text = "Admin";
+            //imgImage.SizeMode = PictureBoxSizeMode.Zoom;
 
             // Check user role
-            if (s == 'A' || s == 'E')
+            if (s == 'E' )
             {
                 // Hide btnInventory
                 btnInventory.Enabled = true;
                 btnInventory.Visible = true;
 
+                btnUserCatalog.Enabled = false;
+                btnUserCatalog.Visible = false;
 
-            
-               
-                btnLogout.Location = new Point(0, 385);
+
+                lblAuthority.Text = "Employee";
+
+                btnLogout.Location = new Point(0, 542);
                 
             }
-            else
+            else if(s=='U')
             {
                 // Show btnInventory
                 btnInventory.Enabled = false;
                 btnInventory.Visible = false;
 
-              
-               
-                btnLogout.Location = new Point(0, 330);
+                btnReservation.Enabled = false;
+                btnReservation.Visible = false;
+                
+                btnUserCatalog.Enabled = false;
+                btnUserCatalog.Visible = false;
+
+                lblAuthority.Text = "User";
+
+                btnLogout.Location = new Point(0, 432);
             }
 
             // Optionally, refresh the panel
@@ -215,7 +228,7 @@ namespace FinalProjectBaraclan
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            dbInventory dbInventory = new dbInventory();
+            dbInventory dbInventory = new dbInventory(userAccount);
             dbInventory.TopLevel = false;
             pnlMain.Controls.Add(dbInventory);
             dbInventory.Dock = DockStyle.Fill;

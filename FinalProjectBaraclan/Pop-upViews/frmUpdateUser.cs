@@ -15,6 +15,8 @@ namespace FinalProjectBaraclan.Pop_upViews
 {
     public partial class frmUpdateUser : Form
     {
+        string filePath = "";
+        public Byte[] image { get; set; }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -46,6 +48,14 @@ namespace FinalProjectBaraclan.Pop_upViews
             {
                 cmbAuthority.SelectedIndex = 2;
             }
+
+            using (MemoryStream ms = new MemoryStream(User.image))
+            {
+                Image img = Image.FromStream(ms);
+                imgImage.Image = img; // Assign the image to the PictureBox
+                imgImage.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+
 
         }
 
@@ -102,10 +112,43 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var repo = new AccountRepository();
-            repo.UpdateAccount(UserAccount);
-            MessageBox.Show("Account Changed");
-            this.Hide();
+            if (txtAddress.Enabled == false)
+            {
+                var repo = new AccountRepository();
+                repo.UpdateAccount(UserAccount);
+                MessageBox.Show("Account Changed");
+                this.Hide();
+            }
+        }
+
+        private void btnBrowsePic_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Filter = "Images(.jpg,.png)|*.jpg;*.png ";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+                filePath = ofd.FileName;
+                imgImage.Image = new Bitmap(filePath);
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                    {
+                        image = binaryReader.ReadBytes((int)fileStream.Length);
+                    }
+                }
+            }
+
+
+            using (MemoryStream ms = new MemoryStream(image))
+            {
+                Image img = Image.FromStream(ms);
+                imgImage.Image = img; // Assign the image to the PictureBox
+                imgImage.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+
         }
     }
 }

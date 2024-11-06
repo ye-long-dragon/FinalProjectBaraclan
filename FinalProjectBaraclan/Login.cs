@@ -20,10 +20,10 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
 
-           
+            txtPassword.UseSystemPasswordChar = true;
         }
 
-        
+
 
         //drag topbar
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -40,6 +40,7 @@ namespace FinalProjectBaraclan
             lblPassword.Visible = true;
             btnReturn.Visible = true;
             btnFinLogin.Visible = true;
+            cbxVisible.Visible = true;
 
 
             //hide
@@ -75,12 +76,12 @@ namespace FinalProjectBaraclan
 
 
             findUser = repo.ReadAccount(user.initailId);
-            validated = findUser.ValidateLogin(user.finalId,user.password);
+            validated = findUser.ValidateLogin(user.finalId, user.password);
 
             if (validated)
             {
                 this.Hide();
-                MainMenu mainmenu = new MainMenu(user.authority,findUser);
+                MainMenu mainmenu = new MainMenu(user.authority, findUser);
                 mainmenu.Show();
             }
             else
@@ -125,6 +126,7 @@ namespace FinalProjectBaraclan
             txtPassword.Visible = false;
             btnFinLogin.Visible = false;
             btnReturn.Visible = false;
+            cbxVisible.Visible = false;
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -139,5 +141,15 @@ namespace FinalProjectBaraclan
         }
 
         
+
+        private void cbxVisible_CheckedChanged(object sender, EventArgs e)
+        {
+           
+                
+                txtPassword.UseSystemPasswordChar = !cbxVisible.Checked;
+                MessageBox.Show(cbxVisible.Checked + " " + txtPassword.UseSystemPasswordChar);
+            
+            
+        }
     }
 }

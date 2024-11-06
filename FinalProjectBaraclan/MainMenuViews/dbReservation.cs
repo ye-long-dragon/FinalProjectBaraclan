@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace FinalProjectBaraclan
             dataTable.Columns.Add("Room Number", typeof(int));
             dataTable.Columns.Add("Room Style", typeof(string));
             dataTable.Columns.Add("Bed Style", typeof(string));
-            dataTable.Columns.Add("Price",typeof(double));
+            dataTable.Columns.Add("Price", typeof(double));
 
             var repo = new RoomRepository();
             var rooms = repo.ReadRooms();
@@ -97,6 +98,9 @@ namespace FinalProjectBaraclan
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
+
+
+
             frmAddRooms frmAddRooms = new frmAddRooms();
             frmAddRooms.ShowDialog();
         }
@@ -130,11 +134,61 @@ namespace FinalProjectBaraclan
 
             tableRooms = dataTable;
 
-            frmAddReservation frmAddReservation = new frmAddReservation(tableRooms,userAccount);
+            frmAddReservation frmAddReservation = new frmAddReservation(tableRooms, userAccount);
             frmAddReservation.ShowDialog();
 
 
 
+        }
+
+        private void dgvRoomView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (((dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd") && ('A' == userAccount.finalId[0])))
+            {
+                DataGridViewRow dataGridViewRow = dgvRoomView.Rows[e.RowIndex];
+                DataRow dataRow = ((DataRowView)dataGridViewRow.DataBoundItem).Row;
+
+                Room room = new Room();
+                room.roomStyle = Convert.ToString(dataRow["Room Number"]);
+                room.roomStyle = Convert.ToString(dataRow["Room Number"]);
+                
+                room.bedStyle = Convert.ToString(dataRow["Bed Style"]);
+                room.price = Convert.ToDouble(dataRow["Price"]);
+
+
+                if (dataRow[0] is Image sourceImage)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        using (var bitmap = new Bitmap(sourceImage.Width, sourceImage.Height))
+                        {
+                            using (var graphics = Graphics.FromImage(bitmap))
+                            {
+                                graphics.DrawImage(sourceImage, 0, 0, sourceImage.Width, sourceImage.Height);
+                            }
+                            bitmap.Save(ms, ImageFormat.Jpeg);
+                            room.imgRoom = ms.ToArray();
+                        }
+                    }
+                }
+
+
+                
+
+            }
+            else if ((dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd"))
+            {
+                MessageBox.Show("You do not have the authority");
+            }
+            else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete" && 'A' == userAccount.finalId[0])
+            {
+
+
+            }
+            else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete")
+            { 
+            
+            }
         }
     }
 }

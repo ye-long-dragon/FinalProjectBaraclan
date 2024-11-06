@@ -3,6 +3,7 @@ using FinalProjectBaraclan.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,21 @@ namespace FinalProjectBaraclan.Repository
     public class ItemRepository
     {
         private readonly string connectionString = "Data Source=LAPTOP-8DI59A6C\\SQLEXPRESS;Initial Catalog=FinalProjectDatabase;Persist Security Info=True;User ID=sa;Password=vinice2004;Encrypt=True;Trust Server Certificate=True";
+
+        public void DeleteAccount(string accountId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "delete from [FinalProjectDatabase].[dbo].[dboProducts] where finalIdItem = @finalIdItem";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@finalId", accountId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public List<Product> ReadItems()
         {
@@ -91,6 +107,37 @@ namespace FinalProjectBaraclan.Repository
             }
         }
 
+        public void UpdateItem(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"UPDATE [FinalProjectDatabase].[dbo].[dboProducts] 
+                         SET itemName = @itemName, 
+                             itemImage = CAST(@itemImage AS image), 
+                             itemQuantity = @itemQuantity, 
+                             itemCost = @itemCost, 
+                             itemPrice = @itemPrice 
+                         WHERE finalIdItem = @finalIdItem";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@finalIdItem", SqlDbType.NVarChar).Value = product.finalIdItem;
+                    cmd.Parameters.Add("@itemName", SqlDbType.NVarChar).Value = product.itemName;
+                    cmd.Parameters.Add("@itemImage", SqlDbType.Image).Value = product.itemImageArray;
+                    cmd.Parameters.Add("@itemQuantity", SqlDbType.Int).Value = product.itemQuantity;
+                    cmd.Parameters.Add("@itemCost", SqlDbType.Decimal).Value = product.itemCost;
+                    cmd.Parameters.Add("@itemPrice", SqlDbType.Decimal).Value = product.itemPrice;
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No rows were updated. The item may not exist.");
+                    }
+                }
+            }
+        }
 
         public void UpdateProductId(Product product)
         {

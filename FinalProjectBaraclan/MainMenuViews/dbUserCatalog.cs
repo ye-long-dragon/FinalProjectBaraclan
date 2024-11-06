@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,15 @@ namespace FinalProjectBaraclan.MainMenuViews
     public partial class dbUserCatalog : Form
     {
         UserAccount useraccount = new UserAccount();
+        public Byte[] image { get; set; }
 
         public dbUserCatalog(UserAccount user)
         {
             InitializeComponent();
 
             useraccount = user;
-            
 
+           
             Readusers();
         }
 
@@ -49,7 +51,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             {
 
                 DataRow row = dataTable.NewRow();
-                // row["Image"] = item.ReturnImage();
+                row["Image"] = account.ReturnImage();
                 row["Category"] = Convert.ToString(account.AuthorityPass(account));
                 row["ID"] = account.finalId;
                 row["Name"] = account.username;
@@ -73,13 +75,13 @@ namespace FinalProjectBaraclan.MainMenuViews
         private void dgvUsersView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //update
-            if ((dgvUsersView.CurrentCell.OwningColumn.Name == "imgAdd") && ('A'==useraccount.finalId[0]))
+            if ((dgvUsersView.CurrentCell.OwningColumn.Name == "imgAdd") && ('A' == useraccount.finalId[0]))
             {
                 DataGridViewRow dataGridViewRow = dgvUsersView.Rows[e.RowIndex];
-
                 DataRow dataRow = ((DataRowView)dataGridViewRow.DataBoundItem).Row;
+
                 UserAccount user = new UserAccount();
-                user.finalId =Convert.ToString( dataRow[2]);
+                user.finalId = Convert.ToString(dataRow[2]);
                 user.username = Convert.ToString(dataRow[3]);
                 user.password = Convert.ToString(dataRow[4]);
                 user.email = Convert.ToString(dataRow[5]);
@@ -87,24 +89,62 @@ namespace FinalProjectBaraclan.MainMenuViews
                 user.birthDate = Convert.ToDateTime(dataRow[7]);
                 user.contactNumber = Convert.ToInt32(dataRow[8]);
 
+                // Handle image
+                if (dataRow[0] is Image sourceImage)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        using (var bitmap = new Bitmap(sourceImage.Width, sourceImage.Height))
+                        {
+                            using (var graphics = Graphics.FromImage(bitmap))
+                            {
+                                graphics.DrawImage(sourceImage, 0, 0, sourceImage.Width, sourceImage.Height);
+                            }
+                            bitmap.Save(ms, ImageFormat.Jpeg);
+                            user.image = ms.ToArray();
+                        }
+                    }
+                }
+
                 frmUpdateUser frmUpdateUser = new frmUpdateUser(user);
                 frmUpdateUser.ShowDialog();
-
             }
-            else
+            else if(dgvUsersView.CurrentCell.OwningColumn.Name == "imgAdd")
             {
                 MessageBox.Show("You do not have the authority");
             }
+
+
             //delete
-            if (dgvUsersView.CurrentCell.OwningColumn.Name == "imgDelete"&& ('A' == useraccount.finalId[0]))
+            else if (dgvUsersView.CurrentCell.OwningColumn.Name == "imgDelete" && 'A' == useraccount.finalId[0])
             {
-                int id = Convert.ToInt32(dgvUsersView.CurrentRow.Cells["imgDelete"].Value);
+                int rowIndex = dgvUsersView.CurrentRow.Index;
+                string id = Convert.ToString(dgvUsersView.Rows[rowIndex].Cells["ID"].Value);  // Replace "ID" with your actual ID column name
+                DialogResult result = MessageBox.Show("Are you sure you would like to delete the Account?", "Delete Account", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MessageBox.Show(id);
 
+                if (result == DialogResult.Yes)
+                {
+                    var repo = new AccountRepository();
+                    repo.DeleteAccount(id);
+                    MessageBox.Show("Account deleted successfully.");
+                }
+                else
+                {
+                    return;
+                }
+                
             }
-            else
+            else if(dgvUsersView.CurrentCell.OwningColumn.Name == "imgDelete")
             {
                 MessageBox.Show("You do not have the authority");
             }
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            frmAddUser frmAddUser = new frmAddUser();
+            frmAddUser.ShowDialog();
         }
     }
 }

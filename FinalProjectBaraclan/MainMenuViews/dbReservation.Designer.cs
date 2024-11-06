@@ -30,6 +30,8 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -41,9 +43,8 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btnReservation = new Guna.UI2.WinForms.Guna2Button();
             dgvRoomView = new Guna.UI2.WinForms.Guna2DataGridView();
             dataGridViewImageColumn1 = new DataGridViewImageColumn();
             dataGridViewImageColumn2 = new DataGridViewImageColumn();
@@ -52,7 +53,6 @@
             dgvRoomHistoryView = new Guna.UI2.WinForms.Guna2DataGridView();
             imgAdd = new DataGridViewImageColumn();
             imgDelete = new DataGridViewImageColumn();
-            btnReservation = new Guna.UI2.WinForms.Guna2Button();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRoomView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRoomHistoryView).BeginInit();
@@ -73,6 +73,26 @@
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2CustomGradientPanel1.Size = new Size(1400, 850);
             guna2CustomGradientPanel1.TabIndex = 0;
+            // 
+            // btnReservation
+            // 
+            btnReservation.AutoRoundedCorners = true;
+            btnReservation.BackColor = Color.Transparent;
+            btnReservation.BorderRadius = 27;
+            btnReservation.CustomizableEdges = customizableEdges1;
+            btnReservation.DisabledState.BorderColor = Color.DarkGray;
+            btnReservation.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnReservation.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnReservation.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnReservation.Font = new Font("Segoe UI", 9F);
+            btnReservation.ForeColor = Color.White;
+            btnReservation.Location = new Point(46, 32);
+            btnReservation.Name = "btnReservation";
+            btnReservation.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnReservation.Size = new Size(225, 56);
+            btnReservation.TabIndex = 5;
+            btnReservation.Text = "Add Reservation";
+            btnReservation.Click += btnReservation_Click;
             // 
             // dgvRoomView
             // 
@@ -129,6 +149,7 @@
             dgvRoomView.ThemeStyle.RowsStyle.Height = 50;
             dgvRoomView.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvRoomView.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvRoomView.CellClick += dgvRoomView_CellClick;
             // 
             // dataGridViewImageColumn1
             // 
@@ -263,26 +284,6 @@
             imgDelete.Image = (Image)resources.GetObject("imgDelete.Image");
             imgDelete.MinimumWidth = 50;
             imgDelete.Name = "imgDelete";
-            // 
-            // btnReservation
-            // 
-            btnReservation.AutoRoundedCorners = true;
-            btnReservation.BackColor = Color.Transparent;
-            btnReservation.BorderRadius = 27;
-            btnReservation.CustomizableEdges = customizableEdges1;
-            btnReservation.DisabledState.BorderColor = Color.DarkGray;
-            btnReservation.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnReservation.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnReservation.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnReservation.Font = new Font("Segoe UI", 9F);
-            btnReservation.ForeColor = Color.White;
-            btnReservation.Location = new Point(46, 32);
-            btnReservation.Name = "btnReservation";
-            btnReservation.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnReservation.Size = new Size(225, 56);
-            btnReservation.TabIndex = 5;
-            btnReservation.Text = "Add Reservation";
-            btnReservation.Click += btnReservation_Click;
             // 
             // dbReservation
             // 
