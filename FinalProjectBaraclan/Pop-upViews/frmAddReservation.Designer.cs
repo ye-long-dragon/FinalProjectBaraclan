@@ -43,6 +43,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -56,6 +58,10 @@
             txtDate = new Guna.UI2.WinForms.Guna2TextBox();
             lblDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             imgImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            lblPriceNo = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblPricelbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblPayment = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtPayment = new Guna.UI2.WinForms.Guna2TextBox();
             pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).BeginInit();
             SuspendLayout();
@@ -71,6 +77,7 @@
             pnlTopBar.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pnlTopBar.Size = new Size(847, 50);
             pnlTopBar.TabIndex = 1;
+            pnlTopBar.MouseDown += pnlTopBar_MouseDown;
             // 
             // guna2ImageButton2
             // 
@@ -135,7 +142,7 @@
             // lblRoomNumber
             // 
             lblRoomNumber.BackColor = Color.Transparent;
-            lblRoomNumber.Location = new Point(363, 267);
+            lblRoomNumber.Location = new Point(363, 234);
             lblRoomNumber.Name = "lblRoomNumber";
             lblRoomNumber.Size = new Size(104, 22);
             lblRoomNumber.TabIndex = 5;
@@ -171,11 +178,11 @@
             // lblId
             // 
             lblId.BackColor = Color.Transparent;
-            lblId.Location = new Point(504, 267);
+            lblId.Location = new Point(504, 234);
             lblId.Name = "lblId";
-            lblId.Size = new Size(104, 22);
+            lblId.Size = new Size(33, 22);
             lblId.TabIndex = 8;
-            lblId.Text = "Room Number:";
+            lblId.Text = "-----";
             // 
             // btnConfirm
             // 
@@ -188,7 +195,7 @@
             btnConfirm.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnConfirm.Font = new Font("Segoe UI", 9F);
             btnConfirm.ForeColor = Color.White;
-            btnConfirm.Location = new Point(363, 415);
+            btnConfirm.Location = new Point(363, 445);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnConfirm.Size = new Size(412, 56);
@@ -207,7 +214,7 @@
             txtDate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDate.Font = new Font("Segoe UI", 9F);
             txtDate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDate.Location = new Point(470, 325);
+            txtDate.Location = new Point(470, 318);
             txtDate.Margin = new Padding(3, 4, 3, 4);
             txtDate.Name = "txtDate";
             txtDate.PasswordChar = '\0';
@@ -220,7 +227,7 @@
             // lblDate
             // 
             lblDate.BackColor = Color.Transparent;
-            lblDate.Location = new Point(363, 329);
+            lblDate.Location = new Point(363, 322);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(102, 22);
             lblDate.TabIndex = 11;
@@ -237,11 +244,63 @@
             imgImage.TabIndex = 12;
             imgImage.TabStop = false;
             // 
+            // lblPriceNo
+            // 
+            lblPriceNo.BackColor = Color.Transparent;
+            lblPriceNo.Location = new Point(502, 278);
+            lblPriceNo.Name = "lblPriceNo";
+            lblPriceNo.Size = new Size(43, 22);
+            lblPriceNo.TabIndex = 14;
+            lblPriceNo.Text = "$$$$$";
+            // 
+            // lblPricelbl
+            // 
+            lblPricelbl.BackColor = Color.Transparent;
+            lblPricelbl.Location = new Point(363, 278);
+            lblPricelbl.Name = "lblPricelbl";
+            lblPricelbl.Size = new Size(38, 22);
+            lblPricelbl.TabIndex = 13;
+            lblPricelbl.Text = "Price:";
+            // 
+            // lblPayment
+            // 
+            lblPayment.BackColor = Color.Transparent;
+            lblPayment.Location = new Point(363, 379);
+            lblPayment.Name = "lblPayment";
+            lblPayment.Size = new Size(63, 22);
+            lblPayment.TabIndex = 16;
+            lblPayment.Text = "Payment:";
+            // 
+            // txtPayment
+            // 
+            txtPayment.CustomizableEdges = customizableEdges15;
+            txtPayment.DefaultText = "";
+            txtPayment.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPayment.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPayment.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPayment.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPayment.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPayment.Font = new Font("Segoe UI", 9F);
+            txtPayment.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPayment.Location = new Point(470, 375);
+            txtPayment.Margin = new Padding(3, 4, 3, 4);
+            txtPayment.Name = "txtPayment";
+            txtPayment.PasswordChar = '\0';
+            txtPayment.PlaceholderText = "";
+            txtPayment.SelectedText = "";
+            txtPayment.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtPayment.Size = new Size(305, 38);
+            txtPayment.TabIndex = 15;
+            // 
             // frmAddReservation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(847, 513);
+            Controls.Add(lblPayment);
+            Controls.Add(txtPayment);
+            Controls.Add(lblPriceNo);
+            Controls.Add(lblPricelbl);
             Controls.Add(imgImage);
             Controls.Add(lblDate);
             Controls.Add(txtDate);
@@ -277,5 +336,9 @@
         private Guna.UI2.WinForms.Guna2TextBox txtDate;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDate;
         private Guna.UI2.WinForms.Guna2PictureBox imgImage;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblPriceNo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblPricelbl;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblPayment;
+        private Guna.UI2.WinForms.Guna2TextBox txtPayment;
     }
 }

@@ -15,12 +15,18 @@ namespace FinalProjectBaraclan.Ucrls
 {
     public partial class ucrlDay : UserControl
     {
-        DataTable tableRooms;
-        UserAccount user;
+        DataTable tableRooms = new DataTable();
+        UserAccount user = new UserAccount();
+        public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+
         public ucrlDay(UserAccount userAccount)
         {
             InitializeComponent();
-
+            user = userAccount;
+            
+            SetUpDataTable();
             lblReservation.Visible = false;
         }
 
@@ -31,6 +37,7 @@ namespace FinalProjectBaraclan.Ucrls
             dataTable.Columns.Add("Room Number", typeof(int));
             dataTable.Columns.Add("Room Style", typeof(string));
             dataTable.Columns.Add("Bed Style", typeof(string));
+            dataTable.Columns.Add("Price", typeof(double));
 
             var repo = new RoomRepository();
             var rooms = repo.ReadRooms();
@@ -42,6 +49,7 @@ namespace FinalProjectBaraclan.Ucrls
                 row["Room Number"] = room.id;
                 row["Room Style"] = room.roomStyle;
                 row["Bed Style"] = room.bedStyle;
+                row["Price"] = room.price;
 
 
                 dataTable.Rows.Add(row);
@@ -50,9 +58,12 @@ namespace FinalProjectBaraclan.Ucrls
             tableRooms = dataTable;
         }
 
-        public void days(int num)
+        public void date(int day,int month, int year)
         {
-            lblNumber.Text = num.ToString() + "";
+            lblNumber.Text = day.ToString() + "";
+            Day = day;
+            Month = month;
+            Year = year;
         }
 
 
@@ -60,8 +71,8 @@ namespace FinalProjectBaraclan.Ucrls
         private void btnReserve_Click(object sender, EventArgs e)
         {
             reserved?.Invoke(this, EventArgs.Empty);
-            frmAddReservation frmAddReservation = new frmAddReservation(tableRooms,user);
-            frmAddReservation.ShowDialog();
+            frmAddReserveCalendar frmAddReserveCalendar = new frmAddReserveCalendar(tableRooms,user,Day,Month,Year);
+            frmAddReserveCalendar.ShowDialog();
         }
 
         public event EventHandler cancelled;

@@ -33,6 +33,7 @@ namespace FinalProjectBaraclan.Repository
                             room.roomStyle = reader.GetString(0);
                             room.id = reader.GetInt32(1);
                             room.bedStyle = reader.GetString(2);
+                            room.price = (float)reader.GetDouble(4);
 
                             long imageSize = reader.GetBytes(reader.GetOrdinal("image"), 0, null, 0, 0);
                             byte[] imageData = new byte[imageSize];
@@ -61,7 +62,7 @@ namespace FinalProjectBaraclan.Repository
             {
                 con.Open();
                 string query = "INSERT INTO [FinalProjectDatabase].[dbo].[dboRooms] " +
-                    "(roomNumber, bedStyle, roomStyle,image) VALUES (@roomNumber, @bedStyle, @roomStyle,@image)";
+                    "(roomNumber, bedStyle, roomStyle,image,price) VALUES (@roomNumber, @bedStyle, @roomStyle,@image,@price)";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -69,6 +70,7 @@ namespace FinalProjectBaraclan.Repository
                     cmd.Parameters.AddWithValue("@bedStyle",room.bedStyle);
                     cmd.Parameters.AddWithValue("@roomStyle",room.roomStyle);
                     cmd.Parameters.AddWithValue("@image", room.imgRoom);
+                    cmd.Parameters.AddWithValue("@price",room.price);
 
                     cmd.ExecuteNonQuery();
                 }

@@ -3,18 +3,20 @@ using FinalProjectBaraclan.PDFMaker;
 using FinalProjectBaraclan.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Reflection;
+using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FinalProjectBaraclan.Pop_upViews
 {
-    public partial class frmAddReservation : Form
+    public partial class frmAddReserveCalendar : Form
     {
-        List<int> roomNumber = new List<int>();
-        List<double> price = new List<double>();
-        public frmAddReservation(DataTable dataTable, UserAccount userAccount)
+        public frmAddReserveCalendar(DataTable dataTable, UserAccount userAccount, int day, int month, int year)
         {
             InitializeComponent();
 
@@ -22,16 +24,18 @@ namespace FinalProjectBaraclan.Pop_upViews
             roomNumber = new List<int>();
             listBedStyle = new List<string>();
             listRoomStyle = new List<string>();
+            price = new List<double>();
             temproomStyle = new List<string>();
             tempbedStyle = new List<string>();
             ImageData = new List<Image>();
-            price = new List<double>();
             user = userAccount;
+
+            
+            lblDateReserved.Text = Convert.ToString(Convert.ToDateTime(month + "-" + day + "-" + year));
 
             //ChangeImageToBytes(table);
             SetupCMB();
             LoadListStyles();
-
         }
 
 
@@ -55,6 +59,8 @@ namespace FinalProjectBaraclan.Pop_upViews
         };
 
         //Unchanged Data
+        List<int> roomNumber = new List<int>();
+        List<double> price = new List<double>();
         public UserAccount user;
         public List<string> listBedStyle;
         public List<string> listRoomStyle;
@@ -192,6 +198,23 @@ namespace FinalProjectBaraclan.Pop_upViews
         string roomStyle;
         string bedStyle;
 
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
+
+        private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void guna2ImageButton3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void cmbRoomStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
             Roomindex = cmbRoomStyle.SelectedIndex;
@@ -216,7 +239,7 @@ namespace FinalProjectBaraclan.Pop_upViews
                     if (roomstyle == listRoomStyle[i] && bedstyle == listBedStyle[i])
                     {
                         lblId.Text = Convert.ToString(roomNumber[i]);
-                        lblPriceNo.Text = Convert.ToString(price[i]);
+                        lblPriceDisp.Text = Convert.ToString(price[i]);
 
                         //display image
                         using (MemoryStream ms = new MemoryStream(ImageBytes[i]))
@@ -230,7 +253,6 @@ namespace FinalProjectBaraclan.Pop_upViews
                 }
 
             }
-
 
         }
 
@@ -260,7 +282,7 @@ namespace FinalProjectBaraclan.Pop_upViews
 
 
                         lblId.Text = Convert.ToString(roomNumber[i]);
-                        lblPriceNo.Text = Convert.ToString(price[i]);
+                        lblPriceDisp.Text = Convert.ToString(price[i]);
 
                         //display image form List<Image> ImageData
                         using (MemoryStream ms = new MemoryStream(ImageBytes[i]))
@@ -275,10 +297,6 @@ namespace FinalProjectBaraclan.Pop_upViews
 
             }
         }
-        private void guna2ImageButton2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -286,7 +304,7 @@ namespace FinalProjectBaraclan.Pop_upViews
             RoomHistory roomHistory = new RoomHistory();
             roomHistory.occupant = user.username;
             roomHistory.occupantNumber = user.finalId;
-            roomHistory.date = Convert.ToDateTime(txtDate.Text);
+            roomHistory.date = Convert.ToDateTime(lblDateReserved.Text);
 
             if (cmbBedStyle.SelectedIndex == -1)
             {
@@ -326,10 +344,11 @@ namespace FinalProjectBaraclan.Pop_upViews
                             roomHistory.roomStyle + "\n" +
                             roomHistory.image + "\n" +
                             roomHistory.date + "\n"
-                            +roomHistory.price);
+                            + roomHistory.price);
 
             var repo = new RoomHistoryRepository();
             repo.ReserveRoom(roomHistory);
+
 
             var invoice = new RoomReceipt();
             var document = invoice.GetRoomInvoice(roomHistory, user, Convert.ToDouble(txtPayment.Text));
@@ -339,19 +358,9 @@ namespace FinalProjectBaraclan.Pop_upViews
             document.Save(fullPath);
             MessageBox.Show($"Invoice saved to: {fullPath}", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+
             MessageBox.Show("Room Reserved!");
             this.Close();
-        }
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private static extern void SendMessage(System.IntPtr one, int two, int three, int four);
-
-        private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

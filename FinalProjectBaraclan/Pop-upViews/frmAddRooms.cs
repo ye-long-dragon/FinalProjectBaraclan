@@ -119,6 +119,7 @@ namespace FinalProjectBaraclan.Pop_upViews
 
             room.id = Convert.ToInt32(txtRoomId.Text);
             room.imgRoom = imageByteArray;
+            room.price = Convert.ToDouble(txtPrice.Text);
             repo.AddRoom(room);
             MessageBox.Show("Room Added");
 

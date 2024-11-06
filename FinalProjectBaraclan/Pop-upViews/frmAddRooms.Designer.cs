@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddRooms));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             btnClose = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -56,6 +58,8 @@
             cmbBedStyle = new Guna.UI2.WinForms.Guna2ComboBox();
             imgRoom = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             btnBrowse = new Guna.UI2.WinForms.Guna2Button();
+            lblPrice = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtPrice = new Guna.UI2.WinForms.Guna2TextBox();
             pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgRoom).BeginInit();
             SuspendLayout();
@@ -64,11 +68,11 @@
             // 
             pnlTopBar.Controls.Add(btnClose);
             pnlTopBar.Controls.Add(guna2ImageButton1);
-            pnlTopBar.CustomizableEdges = customizableEdges18;
+            pnlTopBar.CustomizableEdges = customizableEdges3;
             pnlTopBar.Dock = DockStyle.Top;
             pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
-            pnlTopBar.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            pnlTopBar.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pnlTopBar.Size = new Size(719, 50);
             pnlTopBar.TabIndex = 1;
             pnlTopBar.MouseDown += pnlTopBar_MouseDown;
@@ -85,7 +89,7 @@
             btnClose.Location = new Point(665, 9);
             btnClose.Name = "btnClose";
             btnClose.PressedState.ImageSize = new Size(64, 64);
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges1;
             btnClose.Size = new Size(42, 38);
             btnClose.TabIndex = 2;
             btnClose.Click += btnClose_Click;
@@ -102,14 +106,14 @@
             guna2ImageButton1.Location = new Point(1052, -66);
             guna2ImageButton1.Name = "guna2ImageButton1";
             guna2ImageButton1.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton1.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            guna2ImageButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2ImageButton1.Size = new Size(42, 38);
             guna2ImageButton1.TabIndex = 1;
             // 
             // cmbRoomStyle
             // 
             cmbRoomStyle.BackColor = Color.Transparent;
-            cmbRoomStyle.CustomizableEdges = customizableEdges20;
+            cmbRoomStyle.CustomizableEdges = customizableEdges5;
             cmbRoomStyle.DrawMode = DrawMode.OwnerDrawFixed;
             cmbRoomStyle.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRoomStyle.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -120,7 +124,7 @@
             cmbRoomStyle.Items.AddRange(new object[] { "Standard Room", "Deluxe Room", "Joint Room", "Suite", "Cabana", "Villa" });
             cmbRoomStyle.Location = new Point(427, 177);
             cmbRoomStyle.Name = "cmbRoomStyle";
-            cmbRoomStyle.ShadowDecoration.CustomizableEdges = customizableEdges21;
+            cmbRoomStyle.ShadowDecoration.CustomizableEdges = customizableEdges6;
             cmbRoomStyle.Size = new Size(256, 36);
             cmbRoomStyle.TabIndex = 2;
             cmbRoomStyle.SelectedIndexChanged += guna2ComboBox1_SelectedIndexChanged;
@@ -147,7 +151,7 @@
             // 
             btnConfirm.AutoRoundedCorners = true;
             btnConfirm.BorderRadius = 21;
-            btnConfirm.CustomizableEdges = customizableEdges22;
+            btnConfirm.CustomizableEdges = customizableEdges7;
             btnConfirm.DisabledState.BorderColor = Color.DarkGray;
             btnConfirm.DisabledState.CustomBorderColor = Color.DarkGray;
             btnConfirm.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -156,7 +160,7 @@
             btnConfirm.ForeColor = Color.White;
             btnConfirm.Location = new Point(168, 368);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            btnConfirm.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnConfirm.Size = new Size(385, 44);
             btnConfirm.TabIndex = 5;
             btnConfirm.Text = "Confirm";
@@ -164,7 +168,7 @@
             // 
             // txtRoomId
             // 
-            txtRoomId.CustomizableEdges = customizableEdges24;
+            txtRoomId.CustomizableEdges = customizableEdges9;
             txtRoomId.DefaultText = "";
             txtRoomId.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtRoomId.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -179,7 +183,7 @@
             txtRoomId.PasswordChar = '\0';
             txtRoomId.PlaceholderText = "";
             txtRoomId.SelectedText = "";
-            txtRoomId.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            txtRoomId.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtRoomId.Size = new Size(256, 42);
             txtRoomId.TabIndex = 6;
             // 
@@ -195,7 +199,7 @@
             // cmbBedStyle
             // 
             cmbBedStyle.BackColor = Color.Transparent;
-            cmbBedStyle.CustomizableEdges = customizableEdges26;
+            cmbBedStyle.CustomizableEdges = customizableEdges11;
             cmbBedStyle.DrawMode = DrawMode.OwnerDrawFixed;
             cmbBedStyle.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBedStyle.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -206,7 +210,7 @@
             cmbBedStyle.Items.AddRange(new object[] { "Twin Size (1)", "Twin Size (2)", "Queen Size", "King Size" });
             cmbBedStyle.Location = new Point(427, 238);
             cmbBedStyle.Name = "cmbBedStyle";
-            cmbBedStyle.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            cmbBedStyle.ShadowDecoration.CustomizableEdges = customizableEdges12;
             cmbBedStyle.Size = new Size(256, 36);
             cmbBedStyle.TabIndex = 7;
             // 
@@ -215,7 +219,7 @@
             imgRoom.ImageRotate = 0F;
             imgRoom.Location = new Point(50, 78);
             imgRoom.Name = "imgRoom";
-            imgRoom.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            imgRoom.ShadowDecoration.CustomizableEdges = customizableEdges13;
             imgRoom.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             imgRoom.Size = new Size(129, 121);
             imgRoom.TabIndex = 9;
@@ -225,7 +229,7 @@
             // 
             btnBrowse.AutoRoundedCorners = true;
             btnBrowse.BorderRadius = 27;
-            btnBrowse.CustomizableEdges = customizableEdges29;
+            btnBrowse.CustomizableEdges = customizableEdges14;
             btnBrowse.DisabledState.BorderColor = Color.DarkGray;
             btnBrowse.DisabledState.CustomBorderColor = Color.DarkGray;
             btnBrowse.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -234,17 +238,49 @@
             btnBrowse.ForeColor = Color.White;
             btnBrowse.Location = new Point(32, 218);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            btnBrowse.ShadowDecoration.CustomizableEdges = customizableEdges15;
             btnBrowse.Size = new Size(163, 56);
             btnBrowse.TabIndex = 10;
             btnBrowse.Text = "Browse";
             btnBrowse.Click += btnBrowse_Click;
+            // 
+            // lblPrice
+            // 
+            lblPrice.BackColor = Color.Transparent;
+            lblPrice.Location = new Point(298, 293);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(38, 22);
+            lblPrice.TabIndex = 11;
+            lblPrice.Text = "Price:";
+            // 
+            // txtPrice
+            // 
+            txtPrice.CustomizableEdges = customizableEdges16;
+            txtPrice.DefaultText = "";
+            txtPrice.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPrice.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPrice.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPrice.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPrice.Font = new Font("Segoe UI", 9F);
+            txtPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPrice.Location = new Point(427, 293);
+            txtPrice.Margin = new Padding(3, 4, 3, 4);
+            txtPrice.Name = "txtPrice";
+            txtPrice.PasswordChar = '\0';
+            txtPrice.PlaceholderText = "";
+            txtPrice.SelectedText = "";
+            txtPrice.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            txtPrice.Size = new Size(256, 42);
+            txtPrice.TabIndex = 12;
             // 
             // frmAddRooms
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(719, 455);
+            Controls.Add(txtPrice);
+            Controls.Add(lblPrice);
             Controls.Add(btnBrowse);
             Controls.Add(imgRoom);
             Controls.Add(lblBedStyle);
@@ -278,5 +314,7 @@
         private Guna.UI2.WinForms.Guna2ComboBox cmbBedStyle;
         private Guna.UI2.WinForms.Guna2CirclePictureBox imgRoom;
         private Guna.UI2.WinForms.Guna2Button btnBrowse;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblPrice;
+        private Guna.UI2.WinForms.Guna2TextBox txtPrice;
     }
 }

@@ -22,7 +22,7 @@ namespace FinalProjectBaraclan.MainMenuViews
         public dbCalendar(UserAccount user)
         {
             InitializeComponent();
-
+            account = user;
             displayDays();
         }
 
@@ -50,7 +50,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             for (int i = 1; i <= days; i++)
             {
                 ucrlDay day = new ucrlDay(account);
-                day.days(i);
+                day.date(i, month, year);
                 flpCalendar.Controls.Add(day);
             }
         }
@@ -80,7 +80,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             for (int i = 1; i <= days; i++)
             {
                 ucrlDay day = new ucrlDay(account);
-                day.days(i);
+                day.date(i, month,  year);
                 day.reserved += ReserveDay;
                 day.cancelled += CancelDay;
                 flpCalendar.Controls.Add(day);
@@ -109,7 +109,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             for (int i = 1; i <= days; i++)
             {
                 ucrlDay day = new ucrlDay(account);
-                day.days(i);
+                day.date(i,month,year);
                 flpCalendar.Controls.Add(day);
             }
         }

@@ -11,6 +11,7 @@ namespace FinalProjectBaraclan.Models
         public int id { get; set; }
         public string roomStyle { get; set; }
         public string bedStyle { get; set; }
+        public double price { get; set; }
         public Byte[] imgRoom { get; set; }
 
         public Image ReturnImage()

@@ -11,6 +11,8 @@ namespace FinalProjectBaraclan.Models
         
         public string userAccountName { get; set; }
         public string userAccountId { get; set; }
+        public DateTime date {  get; set; }
+        public string type { get; set; }
         public byte[] data { get; set; }
 
 

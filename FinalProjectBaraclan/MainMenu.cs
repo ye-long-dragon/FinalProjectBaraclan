@@ -32,8 +32,7 @@ namespace FinalProjectBaraclan
                 btnInventory.Visible = true;
 
 
-                // Move other buttons
-                btnAccount.Location = new Point(0, 275);
+            
                
                 btnLogout.Location = new Point(0, 385);
                 
@@ -44,8 +43,7 @@ namespace FinalProjectBaraclan
                 btnInventory.Enabled = false;
                 btnInventory.Visible = false;
 
-                // Move other buttons
-                btnAccount.Location = new Point(0, 220);
+              
                
                 btnLogout.Location = new Point(0, 330);
             }
@@ -195,12 +193,12 @@ namespace FinalProjectBaraclan
 
         private void btnShoppingCart_Click(object sender, EventArgs e)
         {
-            dbTransactionHistory dbShoppingCart = new dbTransactionHistory();
-            dbShoppingCart.TopLevel = false;
-            pnlMain.Controls.Add(dbShoppingCart);
-            dbShoppingCart.Dock = DockStyle.Fill;
-            dbShoppingCart.BringToFront();
-            dbShoppingCart.Show();
+            dbTransactionHistory transactionHistory = new dbTransactionHistory( userAccount);
+            transactionHistory.TopLevel = false;
+            pnlMain.Controls.Add(transactionHistory);
+            transactionHistory.Dock = DockStyle.Fill;
+            transactionHistory.BringToFront();
+            transactionHistory.Show();
         }
 
         private void btnAccount_Click(object sender, EventArgs e)

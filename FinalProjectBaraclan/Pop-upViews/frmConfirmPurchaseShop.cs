@@ -113,6 +113,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             var repo = new ReceiptRepository();
             repo.StoreShopReceipt(receipt);
             MessageBox.Show("Receipt Successfully Stored");
+            this.Close();
         }
 
 

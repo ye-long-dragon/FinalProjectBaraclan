@@ -37,6 +37,7 @@ namespace FinalProjectBaraclan
             dataTable.Columns.Add("Room Number", typeof(int));
             dataTable.Columns.Add("Room Style", typeof(string));
             dataTable.Columns.Add("Bed Style", typeof(string));
+            dataTable.Columns.Add("Price",typeof(double));
 
             var repo = new RoomRepository();
             var rooms = repo.ReadRooms();
@@ -48,6 +49,7 @@ namespace FinalProjectBaraclan
                 row["Room Number"] = room.id;
                 row["Room Style"] = room.roomStyle;
                 row["Bed Style"] = room.bedStyle;
+                row["Price"] = room.price;
 
 
                 dataTable.Rows.Add(row);
@@ -68,6 +70,7 @@ namespace FinalProjectBaraclan
             dataTable.Columns.Add("Occupant", typeof(string));
             dataTable.Columns.Add("Occupant Number", typeof(string));
             dataTable.Columns.Add("Date", typeof(DateTime));
+            dataTable.Columns.Add("Price", typeof(double));
 
             var repo = new RoomHistoryRepository();
             var rooms = repo.ReadRoomsHistory();
@@ -78,9 +81,11 @@ namespace FinalProjectBaraclan
                 row["Image"] = room.ReturnImage();
                 row["Room Number"] = room.roomNumber;
                 row["Room Style"] = room.roomStyle;
+                row["Bed Style"] = room.bedStyle;
                 row["Date"] = room.date;
                 row["Occupant"] = room.occupant;
                 row["Occupant Number"] = room.occupantNumber;
+                row["Price"] = room.price;
 
 
                 dataTable.Rows.Add(row);
@@ -105,6 +110,7 @@ namespace FinalProjectBaraclan
             dataTable.Columns.Add("Room Number", typeof(int));
             dataTable.Columns.Add("Room Style", typeof(string));
             dataTable.Columns.Add("Bed Style", typeof(string));
+            dataTable.Columns.Add("Price", typeof(double));
 
             var repo = new RoomRepository();
             var rooms = repo.ReadRooms();
@@ -116,6 +122,7 @@ namespace FinalProjectBaraclan
                 row["Room Number"] = room.id;
                 row["Room Style"] = room.roomStyle;
                 row["Bed Style"] = room.bedStyle;
+                row["Price"] = room.price;
 
 
                 dataTable.Rows.Add(row);

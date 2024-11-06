@@ -35,6 +35,8 @@ namespace FinalProjectBaraclan.Repository
                             room.date = reader.GetDateTime(2);
                             room.occupantNumber = reader.GetString(3);
                             room.roomStyle = reader.GetString(4);
+                            room.bedStyle = reader.GetString(5);
+                            room.price = (float)reader.GetDouble(7);
 
                             long imageSize = reader.GetBytes(reader.GetOrdinal("image"), 0, null, 0, 0);
                             byte[] imageData = new byte[imageSize];
@@ -61,16 +63,9 @@ namespace FinalProjectBaraclan.Repository
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                string setIdentityInsertOn = "SET IDENTITY_INSERT [FinalProjectDatabase].[dbo].[dboRoomsHistory] ON";
-                using (SqlCommand cmdIdentityInsertOn = new SqlCommand(setIdentityInsertOn, connection))
-                {
-                    cmdIdentityInsertOn.ExecuteNonQuery();
-                }
-
                 string query = "INSERT INTO [FinalProjectDatabase].[dbo].[dboRoomsHistory] " +
-                               "(occupant, occupantNumber, dateOccupied, roomNumber, roomStyle, bedStyle, image) " +
-                               "VALUES (@occupant, @occupantNumber, @dateOccupied, @roomNumber, @roomStyle, @bedStyle, @image)";
+                              "(occupant, occupantNumber, dateOccupied, roomNumber, roomStyle, bedStyle, image, price) " +
+                              "VALUES (@occupant, @occupantNumber, @dateOccupied, @roomNumber, @roomStyle, @bedStyle, @image, @price)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -81,18 +76,12 @@ namespace FinalProjectBaraclan.Repository
                     command.Parameters.AddWithValue("@roomStyle", room.roomStyle);
                     command.Parameters.AddWithValue("@bedStyle", room.bedStyle);
                     command.Parameters.AddWithValue("@image", room.image);
+                    command.Parameters.AddWithValue("@price", room.price);
 
                     command.ExecuteNonQuery();
                 }
-
-                string setIdentityInsertOff = "SET IDENTITY_INSERT [FinalProjectDatabase].[dbo].[dboRoomsHistory] OFF";
-                using (SqlCommand cmdIdentityInsertOff = new SqlCommand(setIdentityInsertOff, connection))
-                {
-                    cmdIdentityInsertOff.ExecuteNonQuery();
-                }
             }
         }
-
 
 
 
