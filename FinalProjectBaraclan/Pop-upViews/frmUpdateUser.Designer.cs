@@ -59,6 +59,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnClose = new Guna.UI2.WinForms.Guna2ImageButton();
             pnlTopBar = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -86,6 +88,8 @@
             btnSave = new Guna.UI2.WinForms.Guna2Button();
             lblIdFinal = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnBrowsePic = new Guna.UI2.WinForms.Guna2Button();
+            txtBirthDate = new Guna.UI2.WinForms.Guna2TextBox();
+            lblBirthDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pnlTopBar.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgImage).BeginInit();
@@ -258,7 +262,7 @@
             // lblContactNumber
             // 
             lblContactNumber.BackColor = Color.Transparent;
-            lblContactNumber.Location = new Point(472, 346);
+            lblContactNumber.Location = new Point(472, 314);
             lblContactNumber.Name = "lblContactNumber";
             lblContactNumber.Size = new Size(115, 22);
             lblContactNumber.TabIndex = 9;
@@ -385,7 +389,7 @@
             txtNumber.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNumber.Font = new Font("Segoe UI", 9F);
             txtNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNumber.Location = new Point(593, 346);
+            txtNumber.Location = new Point(593, 314);
             txtNumber.Margin = new Padding(3, 4, 3, 4);
             txtNumber.Name = "txtNumber";
             txtNumber.PasswordChar = '\0';
@@ -503,11 +507,45 @@
             btnBrowsePic.Text = "Browse";
             btnBrowsePic.Click += btnBrowsePic_Click;
             // 
+            // txtBirthDate
+            // 
+            txtBirthDate.AutoRoundedCorners = true;
+            txtBirthDate.BorderRadius = 14;
+            txtBirthDate.CustomizableEdges = customizableEdges31;
+            txtBirthDate.DefaultText = "";
+            txtBirthDate.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBirthDate.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBirthDate.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBirthDate.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBirthDate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBirthDate.Font = new Font("Segoe UI", 9F);
+            txtBirthDate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBirthDate.Location = new Point(593, 176);
+            txtBirthDate.Margin = new Padding(3, 4, 3, 4);
+            txtBirthDate.Name = "txtBirthDate";
+            txtBirthDate.PasswordChar = '\0';
+            txtBirthDate.PlaceholderText = "";
+            txtBirthDate.SelectedText = "";
+            txtBirthDate.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            txtBirthDate.Size = new Size(216, 31);
+            txtBirthDate.TabIndex = 35;
+            // 
+            // lblBirthDate
+            // 
+            lblBirthDate.BackColor = Color.Transparent;
+            lblBirthDate.Location = new Point(472, 176);
+            lblBirthDate.Name = "lblBirthDate";
+            lblBirthDate.Size = new Size(73, 22);
+            lblBirthDate.TabIndex = 34;
+            lblBirthDate.Text = "Birth Date:";
+            // 
             // frmUpdateUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(847, 513);
+            Controls.Add(txtBirthDate);
+            Controls.Add(lblBirthDate);
             Controls.Add(btnBrowsePic);
             Controls.Add(lblIdFinal);
             Controls.Add(btnSave);
@@ -580,5 +618,7 @@
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblIdFinal;
         private Guna.UI2.WinForms.Guna2Button btnBrowsePic;
+        private Guna.UI2.WinForms.Guna2TextBox txtBirthDate;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblBirthDate;
     }
 }

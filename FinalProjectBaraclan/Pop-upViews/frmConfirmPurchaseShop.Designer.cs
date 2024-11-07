@@ -153,18 +153,20 @@
             // lblGrandTotal
             // 
             lblGrandTotal.BackColor = Color.Transparent;
+            lblGrandTotal.Font = new Font("Nirmala UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGrandTotal.Location = new Point(41, 69);
             lblGrandTotal.Name = "lblGrandTotal";
-            lblGrandTotal.Size = new Size(84, 22);
+            lblGrandTotal.Size = new Size(120, 30);
             lblGrandTotal.TabIndex = 3;
             lblGrandTotal.Text = "Grand Total:";
             // 
             // lblnoTotal
             // 
             lblnoTotal.BackColor = Color.Transparent;
-            lblnoTotal.Location = new Point(135, 71);
+            lblnoTotal.Font = new Font("Nirmala UI", 12F, FontStyle.Bold);
+            lblnoTotal.Location = new Point(177, 69);
             lblnoTotal.Name = "lblnoTotal";
-            lblnoTotal.Size = new Size(34, 22);
+            lblnoTotal.Size = new Size(48, 30);
             lblnoTotal.TabIndex = 4;
             lblnoTotal.Text = "total";
             // 

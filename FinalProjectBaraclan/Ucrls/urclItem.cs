@@ -23,7 +23,8 @@ namespace FinalProjectBaraclan.Ucrls
             InitializeComponent();
 
             lblItemName.Text = item.itemName;
-            lblQuantity.Text = Convert.ToString(item.itemQuantity);
+            lblQuantity.Text ="Quantity: "+ Convert.ToString(item.itemQuantity);
+            lblPrice.Text = "Price: "+Convert.ToString(item.itemPrice);
             imgImage.Image = item.ReturnImage();
             imgImage.SizeMode = PictureBoxSizeMode.Zoom;
 

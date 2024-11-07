@@ -72,23 +72,25 @@
             btnDownload.Size = new Size(382, 56);
             btnDownload.TabIndex = 7;
             btnDownload.Text = "Download Receipt";
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            btnDownload.Click += btnDownload_Click;
             // 
             // lblTransactionType
             // 
             lblTransactionType.BackColor = Color.Transparent;
-            lblTransactionType.Location = new Point(38, 40);
+            lblTransactionType.Font = new Font("Nirmala UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTransactionType.Location = new Point(28, 12);
             lblTransactionType.Name = "lblTransactionType";
-            lblTransactionType.Size = new Size(35, 22);
+            lblTransactionType.Size = new Size(105, 61);
             lblTransactionType.TabIndex = 6;
             lblTransactionType.Text = "User:";
             // 
             // lblTransactionDate
             // 
             lblTransactionDate.BackColor = Color.Transparent;
-            lblTransactionDate.Location = new Point(38, 89);
+            lblTransactionDate.Font = new Font("Segoe UI Symbol", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTransactionDate.Location = new Point(28, 79);
             lblTransactionDate.Name = "lblTransactionDate";
-            lblTransactionDate.Size = new Size(35, 22);
+            lblTransactionDate.Size = new Size(75, 43);
             lblTransactionDate.TabIndex = 5;
             lblTransactionDate.Text = "User:";
             // 

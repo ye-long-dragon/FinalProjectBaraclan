@@ -67,7 +67,7 @@
             guna2CustomGradientPanel1.Controls.Add(dgvRoomHistoryView);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges7;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
-            guna2CustomGradientPanel1.FillColor = Color.LawnGreen;
+            guna2CustomGradientPanel1.FillColor4 = Color.LawnGreen;
             guna2CustomGradientPanel1.Location = new Point(0, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;

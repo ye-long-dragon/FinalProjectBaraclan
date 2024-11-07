@@ -35,6 +35,7 @@ namespace FinalProjectBaraclan.Pop_upViews
             txtAddress.Text = UserAccount.address;
             txtNumber.Text = Convert.ToString(UserAccount.contactNumber);
             lblIdFinal.Text = UserAccount.finalId;
+            txtBirthDate.Text = Convert.ToString(UserAccount.birthDate);
 
             if (UserAccount.finalId[0] == 'A')
             {
@@ -114,6 +115,18 @@ namespace FinalProjectBaraclan.Pop_upViews
         {
             if (txtAddress.Enabled == false)
             {
+                if (image != null) { UserAccount.image = image; }
+                else { UserAccount.image = UserAccount.image; }
+
+                UserAccount.finalId = lblIdFinal.Text;
+                UserAccount.username = txtUsername.Text;
+                UserAccount.email = txtEmail.Text;
+                UserAccount.password = txtPassword.Text;
+                UserAccount.rePassword = UserAccount.password;
+                UserAccount.contactNumber = Convert.ToInt32(txtNumber.Text);
+                UserAccount.address = txtAddress.Text;
+                UserAccount.birthDate = Convert.ToDateTime(txtBirthDate.Text);
+
                 var repo = new AccountRepository();
                 repo.UpdateAccount(UserAccount);
                 MessageBox.Show("Account Changed");
@@ -140,6 +153,8 @@ namespace FinalProjectBaraclan.Pop_upViews
                     }
                 }
             }
+
+            UserAccount.image = image;
 
 
             using (MemoryStream ms = new MemoryStream(image))

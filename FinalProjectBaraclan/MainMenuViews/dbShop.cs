@@ -50,10 +50,13 @@ namespace FinalProjectBaraclan
 
             foreach (Product product in products)
             {
-                urclItem urclItem = new urclItem(product);
-                urclItem.addClicked += urclItem_btnAdd_Clicked;
-                urclItem.droppedClicked += urclItem_btnDropped_Clicked;
-                flpItemView.Controls.Add(urclItem);
+                if (product.itemQuantity > 0)
+                {
+                    urclItem urclItem = new urclItem(product);
+                    urclItem.addClicked += urclItem_btnAdd_Clicked;
+                    urclItem.droppedClicked += urclItem_btnDropped_Clicked;
+                    flpItemView.Controls.Add(urclItem);
+                }
             }
 
 

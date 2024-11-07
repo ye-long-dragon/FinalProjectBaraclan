@@ -239,7 +239,7 @@ namespace FinalProjectBaraclan.Repository
                 connection.Open();
                 string query = "UPDATE [FinalProjectDatabase].[dbo].[dboUserAccounts] SET finalId = @finalId, username" +
                     " = @username, password = @password,rePassword = @rePassword, email = @email, contactNumber = @contactNumber" +
-                    ",address = @address,birthDate = @birthDate WHERE initialId = @initialId,image = @image";
+                    ",address = @address,birthDate = @birthDate,image = @image WHERE initialId = @initialId";
 
 
                 using (SqlCommand update = new SqlCommand(query, connection))
@@ -254,6 +254,7 @@ namespace FinalProjectBaraclan.Repository
                     update.Parameters.AddWithValue("@birthDate", User.birthDate);
                     update.Parameters.AddWithValue("@initialId", User.ReturnInitialId());
                     update.Parameters.AddWithValue("@image", User.image);
+
                     update.ExecuteNonQuery();
                 }
             }

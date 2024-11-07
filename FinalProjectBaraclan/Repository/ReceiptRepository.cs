@@ -35,6 +35,30 @@ namespace FinalProjectBaraclan.Repository
             }
         }
 
+        public void StoreRoomReceipt(Receipt receipt)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "INSERT INTO [FinalProjectDatabase].[dbo].[dboReceiptHistory] (username,userId,transactionType,receipt, date)" +
+                    "VALUES (@username,@userId,@transactionType,@receipt,@date)";
+
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@username", receipt.userAccountName);
+                    command.Parameters.AddWithValue("@userId", receipt.userAccountId);
+                    command.Parameters.AddWithValue("@transactionType", "ROOM");
+                    command.Parameters.AddWithValue("@receipt", receipt.data);
+                    command.Parameters.AddWithValue("@date", Convert.ToDateTime(DateTime.Now.Month + " " + DateTime.Now.Day + " " + DateTime.Now.Year));
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+
         public List<Receipt> RetrieveReceipts(UserAccount user)
         {
             List<Receipt> receipts = new List<Receipt>();

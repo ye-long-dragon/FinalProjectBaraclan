@@ -77,7 +77,11 @@ namespace FinalProjectBaraclan.Pop_upViews
         private void btnSave_Click(object sender, EventArgs e)
         {
             var repo = new ItemRepository();
-            item.itemImageArray = image;
+            if (image != null)
+            {
+                item.itemImageArray = image;
+            }
+            else { item.itemImageArray = item.itemImageArray; };
             item.itemName = txtName.Text;
             item.itemCost = Convert.ToDouble(txtCost.Text);
             item.itemPrice = Convert.ToDouble(txtPrice.Text);
@@ -86,6 +90,7 @@ namespace FinalProjectBaraclan.Pop_upViews
            
             repo.UpdateItem(item);
             MessageBox.Show("Item Successfully Updated");
+            this.Close();
 
         }
 
@@ -139,7 +144,7 @@ namespace FinalProjectBaraclan.Pop_upViews
                 imgImage.Image = img; // Assign the image to the PictureBox
                 imgImage.SizeMode = PictureBoxSizeMode.Zoom;
             }
-            item.itemImageArray = image;
+           
         }
     }
 }

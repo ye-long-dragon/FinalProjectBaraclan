@@ -34,7 +34,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             btnReserve = new Guna.UI2.WinForms.Guna2Button();
-            lblReservation = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -42,7 +41,6 @@
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.Controls.Add(btnReserve);
-            guna2CustomGradientPanel1.Controls.Add(lblReservation);
             guna2CustomGradientPanel1.Controls.Add(lblNumber);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
@@ -73,21 +71,13 @@
             btnReserve.Text = "Reserve";
             btnReserve.Click += btnReserve_Click;
             // 
-            // lblReservation
-            // 
-            lblReservation.BackColor = Color.Transparent;
-            lblReservation.Location = new Point(27, 40);
-            lblReservation.Name = "lblReservation";
-            lblReservation.Size = new Size(121, 22);
-            lblReservation.TabIndex = 5;
-            lblReservation.Text = "guna2HtmlLabel2";
-            // 
             // lblNumber
             // 
             lblNumber.BackColor = Color.Transparent;
+            lblNumber.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumber.Location = new Point(59, 12);
             lblNumber.Name = "lblNumber";
-            lblNumber.Size = new Size(121, 22);
+            lblNumber.Size = new Size(147, 25);
             lblNumber.TabIndex = 4;
             lblNumber.Text = "guna2HtmlLabel1";
             // 
@@ -107,7 +97,6 @@
 
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2Button btnReserve;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblReservation;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblNumber;
     }
 }

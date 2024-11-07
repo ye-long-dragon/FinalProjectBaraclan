@@ -23,10 +23,12 @@ namespace FinalProjectBaraclan
             InitializeComponent();
 
             userAccount = user;
-            //imgImage.Image = userAccount.ReturnImage();
+            imgImage.Image = userAccount.ReturnImage();
             lblname.Text = userAccount.username;
+            lblname.TextAlignment = ContentAlignment.MiddleCenter;
             lblAuthority.Text = "Admin";
-            //imgImage.SizeMode = PictureBoxSizeMode.Zoom;
+            lblAuthority.TextAlignment = ContentAlignment.MiddleCenter;
+            imgImage.SizeMode = PictureBoxSizeMode.Zoom;
 
             // Check user role
             if (s == 'E' )
@@ -60,6 +62,13 @@ namespace FinalProjectBaraclan
 
                 btnLogout.Location = new Point(0, 432);
             }
+
+            dbAllItems allItems = new dbAllItems(userAccount);
+            allItems.TopLevel = false;
+            pnlMain.Controls.Add(allItems);
+            allItems.Dock = DockStyle.Fill;
+            allItems.BringToFront();
+            allItems.Show();
 
             // Optionally, refresh the panel
             pnlTaskbarContainer.Refresh();
@@ -196,12 +205,7 @@ namespace FinalProjectBaraclan
 
         private void btnHousekeeping_Click(object sender, EventArgs e)
         {
-            dbHousekeeping dbHousekeeping = new dbHousekeeping();
-            dbHousekeeping.TopLevel = false;
-            pnlMain.Controls.Add(dbHousekeeping);
-            dbHousekeeping.Dock = DockStyle.Fill;
-            dbHousekeeping.BringToFront();
-            dbHousekeeping.Show();
+          
         }
 
         private void btnShoppingCart_Click(object sender, EventArgs e)
@@ -216,12 +220,6 @@ namespace FinalProjectBaraclan
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            dbAccount dbAccount = new dbAccount();
-            dbAccount.TopLevel = false;
-            pnlMain.Controls.Add(dbAccount);
-            dbAccount.Dock = DockStyle.Fill;
-            dbAccount.BringToFront();
-            dbAccount.Show();
         }
 
        

@@ -23,7 +23,7 @@ namespace FinalProjectBaraclan.Repository
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@finalId", accountId);
+                    command.Parameters.AddWithValue("@finalIdItem", accountId);
                     command.ExecuteNonQuery();
                 }
             }
@@ -112,30 +112,38 @@ namespace FinalProjectBaraclan.Repository
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = @"UPDATE [FinalProjectDatabase].[dbo].[dboProducts] 
-                         SET itemName = @itemName, 
-                             itemImage = CAST(@itemImage AS image), 
-                             itemQuantity = @itemQuantity, 
-                             itemCost = @itemCost, 
-                             itemPrice = @itemPrice 
-                         WHERE finalIdItem = @finalIdItem";
+                string query = "UPDATE [FinalProjectDatabase].[dbo].[dboProducts] "+
+                         "SET itemName = @itemName, "+
+                             "itemImage =@itemImage , "+
+                             "itemQuantity = @itemQuantity, "+
+                             "itemCost = @itemCost, "+
+                             "itemPrice = @itemPrice,"+
+                            "finalIdItem = @finalIdItem "+
+                         "WHERE initialIdItem = @initialIdItem";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.Add("@finalIdItem", SqlDbType.NVarChar).Value = product.finalIdItem;
-                    cmd.Parameters.Add("@itemName", SqlDbType.NVarChar).Value = product.itemName;
-                    cmd.Parameters.Add("@itemImage", SqlDbType.Image).Value = product.itemImageArray;
-                    cmd.Parameters.Add("@itemQuantity", SqlDbType.Int).Value = product.itemQuantity;
-                    cmd.Parameters.Add("@itemCost", SqlDbType.Decimal).Value = product.itemCost;
-                    cmd.Parameters.Add("@itemPrice", SqlDbType.Decimal).Value = product.itemPrice;
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected == 0)
+                    try
                     {
-                        throw new Exception("No rows were updated. The item may not exist.");
+                        cmd.Parameters.AddWithValue("@itemName", (object)product.itemName ?? DBNull.Value);
+                        
+                            cmd.Parameters.Add("@itemImage", SqlDbType.VarBinary, -1).Value = product.itemImageArray;
+                        
+                        
+                        cmd.Parameters.AddWithValue("@itemQuantity", product.itemQuantity);
+                        cmd.Parameters.AddWithValue("@itemCost", product.itemCost);
+                        cmd.Parameters.AddWithValue("@itemPrice", product.itemPrice);
+                        cmd.Parameters.AddWithValue("@finalIdItem", (object)product.finalIdItem ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@initialIdItem", product.ReturnInitialId());
+
+                       cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception($"Database error: {ex.Message}", ex);
                     }
                 }
+            
             }
         }
 

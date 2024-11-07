@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             lblTransaction = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblInputUserId = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -48,57 +48,62 @@
             guna2CustomGradientPanel1.Controls.Add(lblInputName);
             guna2CustomGradientPanel1.Controls.Add(lblUser);
             guna2CustomGradientPanel1.Controls.Add(flpReceiptList);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges1;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
             guna2CustomGradientPanel1.FillColor4 = Color.Aqua;
             guna2CustomGradientPanel1.Location = new Point(0, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2CustomGradientPanel1.Size = new Size(1400, 850);
             guna2CustomGradientPanel1.TabIndex = 0;
             // 
             // lblTransaction
             // 
             lblTransaction.BackColor = Color.Transparent;
-            lblTransaction.Location = new Point(54, 34);
+            lblTransaction.Font = new Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTransaction.Location = new Point(42, 17);
             lblTransaction.Name = "lblTransaction";
-            lblTransaction.Size = new Size(85, 22);
+            lblTransaction.Size = new Size(359, 72);
             lblTransaction.TabIndex = 5;
             lblTransaction.Text = "Transactions";
             // 
             // lblInputUserId
             // 
             lblInputUserId.BackColor = Color.Transparent;
-            lblInputUserId.Location = new Point(122, 138);
+            lblInputUserId.Font = new Font("Malgun Gothic", 16.2F, FontStyle.Bold);
+            lblInputUserId.Location = new Point(198, 152);
             lblInputUserId.Name = "lblInputUserId";
-            lblInputUserId.Size = new Size(15, 22);
+            lblInputUserId.Size = new Size(25, 39);
             lblInputUserId.TabIndex = 4;
             lblInputUserId.Text = "--";
             // 
             // lblUserId
             // 
             lblUserId.BackColor = Color.Transparent;
-            lblUserId.Location = new Point(54, 138);
+            lblUserId.Font = new Font("Malgun Gothic", 16.2F, FontStyle.Bold);
+            lblUserId.Location = new Point(56, 152);
             lblUserId.Name = "lblUserId";
-            lblUserId.Size = new Size(52, 22);
+            lblUserId.Size = new Size(102, 39);
             lblUserId.TabIndex = 3;
             lblUserId.Text = "User Id:";
             // 
             // lblInputName
             // 
             lblInputName.BackColor = Color.Transparent;
-            lblInputName.Location = new Point(122, 95);
+            lblInputName.Font = new Font("Malgun Gothic", 16.2F, FontStyle.Bold);
+            lblInputName.Location = new Point(198, 95);
             lblInputName.Name = "lblInputName";
-            lblInputName.Size = new Size(15, 22);
+            lblInputName.Size = new Size(25, 39);
             lblInputName.TabIndex = 2;
             lblInputName.Text = "--";
             // 
             // lblUser
             // 
             lblUser.BackColor = Color.Transparent;
-            lblUser.Location = new Point(54, 95);
+            lblUser.Font = new Font("Malgun Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUser.Location = new Point(56, 95);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(35, 22);
+            lblUser.Size = new Size(68, 39);
             lblUser.TabIndex = 1;
             lblUser.Text = "User:";
             // 

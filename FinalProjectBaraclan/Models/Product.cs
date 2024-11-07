@@ -28,6 +28,16 @@ namespace FinalProjectBaraclan.Models
 
         }
 
+        public int ReturnInitialId()
+        {
+            int result;
+            string temp;
+            temp = this.finalIdItem.Substring(1);
+            temp = temp.TrimStart('0');
+            result = Convert.ToInt32(temp);
+            return result;
+        }
+
         public string GenerateId(int id)
         {
             string baseId = id.ToString();
@@ -45,7 +55,7 @@ namespace FinalProjectBaraclan.Models
             }
             else if (this.isMerchandise)
             {
-                return "U" + baseId;
+                return "M" + baseId;
             }
             return "";
         }

@@ -172,7 +172,8 @@ namespace FinalProjectBaraclan
                     }
                 }
 
-
+                frmUpdateRoom frmUpdateRoom = new frmUpdateRoom(room);
+                frmUpdateRoom.ShowDialog();
                 
 
             }
@@ -182,13 +183,30 @@ namespace FinalProjectBaraclan
             }
             else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete" && 'A' == userAccount.finalId[0])
             {
+                int rowIndex = dgvRoomView.CurrentRow.Index;
+                string id = Convert.ToString(dgvRoomView.Rows[rowIndex].Cells["Room Number"].Value);  // Replace "ID" with your actual ID column name
+                DialogResult result = MessageBox.Show("Are you sure you would like to delete the Item?", "Delete Account", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MessageBox.Show(id);
+
+                if (result == DialogResult.Yes)
+                {
+                    var repo = new RoomRepository();
+                    repo.DeleteRoom(Convert.ToInt32(id));
+                    MessageBox.Show("Account deleted successfully.");
+                }
+                else
+                {
+                    return;
+                }
 
 
             }
             else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete")
-            { 
-            
+            {
+                MessageBox.Show("You do not have the authority");
             }
         }
+    
+    
     }
 }

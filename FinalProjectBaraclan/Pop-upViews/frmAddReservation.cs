@@ -333,10 +333,23 @@ namespace FinalProjectBaraclan.Pop_upViews
 
             var invoice = new RoomReceipt();
             var document = invoice.GetRoomInvoice(roomHistory, user, Convert.ToDouble(txtPayment.Text));
+
             string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             string fileName = $"RoomInvoice_{DateTime.Now:yyyyMMddHHmmss}.pdf";
             string fullPath = Path.Combine(downloadsPath, fileName);
             document.Save(fullPath);
+
+            Receipt receipt = new Receipt
+            {
+                userAccountName = user.username,
+                userAccountId = user.finalId
+            };
+
+            receipt.data = File.ReadAllBytes(fullPath);
+
+            var receiptRepository = new ReceiptRepository();
+            receiptRepository.StoreRoomReceipt(receipt);
+
             MessageBox.Show($"Invoice saved to: {fullPath}", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             MessageBox.Show("Room Reserved!");

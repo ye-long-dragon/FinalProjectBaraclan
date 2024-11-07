@@ -27,7 +27,7 @@ namespace FinalProjectBaraclan.Ucrls
             user = userAccount;
             
             SetUpDataTable();
-            lblReservation.Visible = false;
+            
         }
 
         public void SetUpDataTable()

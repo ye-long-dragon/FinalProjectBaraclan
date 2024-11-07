@@ -77,5 +77,50 @@ namespace FinalProjectBaraclan.Repository
             }
 
         }
+
+        public void UpdateRoom(Room room1,Room room2)
+        {
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "update  [FinalProjectDatabase].[dbo].[dboRooms] set roomStyle = @roomStyle, roomNumber = @roomNumber, bedStyle = @bedStyle, image = @image, price = @price" +
+                    "where roomNumber = @roomNumber2";
+
+                using(SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@roomStyle",room1.roomStyle);
+                    cmd.Parameters.AddWithValue("@roomNumber", room1.id);
+                    cmd.Parameters.AddWithValue("@bedstyle", room1.bedStyle);
+                    cmd.Parameters.AddWithValue("@image", room1.imgRoom);
+                    cmd.Parameters.AddWithValue("@price", room1.price);
+                    cmd.Parameters.AddWithValue("@roomNumber2",room2.id);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void DeleteRoom(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "delete from [FinalProjectDatabase].[dbo].[dboRooms] where roomNumber = @roomNumber";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+
+                    cmd.Parameters.AddWithValue("@roomNumber", id);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+
     }
 }

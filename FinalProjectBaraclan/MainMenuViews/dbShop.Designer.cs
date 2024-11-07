@@ -157,18 +157,20 @@
             // lblnoTotal
             // 
             lblnoTotal.BackColor = Color.Transparent;
-            lblnoTotal.Location = new Point(193, 74);
+            lblnoTotal.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblnoTotal.Location = new Point(254, 74);
             lblnoTotal.Name = "lblnoTotal";
-            lblnoTotal.Size = new Size(34, 22);
+            lblnoTotal.Size = new Size(67, 39);
             lblnoTotal.TabIndex = 1;
             lblnoTotal.Text = "total";
             // 
             // lbltxtGrandTotal
             // 
             lbltxtGrandTotal.BackColor = Color.Transparent;
+            lbltxtGrandTotal.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbltxtGrandTotal.Location = new Point(29, 74);
             lbltxtGrandTotal.Name = "lbltxtGrandTotal";
-            lbltxtGrandTotal.Size = new Size(84, 22);
+            lbltxtGrandTotal.Size = new Size(180, 39);
             lbltxtGrandTotal.TabIndex = 0;
             lbltxtGrandTotal.Text = "Grand Total:";
             // 

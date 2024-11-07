@@ -191,6 +191,7 @@
             btnConfirm.Size = new Size(385, 44);
             btnConfirm.TabIndex = 16;
             btnConfirm.Text = "Confirm";
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // lblRoomNumber
             // 

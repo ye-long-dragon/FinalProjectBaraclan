@@ -51,6 +51,7 @@
             guna2CustomGradientPanel1.Controls.Add(dgvUsersView);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
+            guna2CustomGradientPanel1.FillColor4 = Color.Magenta;
             guna2CustomGradientPanel1.Location = new Point(0, 0);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -60,6 +61,7 @@
             // btnAddUser
             // 
             btnAddUser.AutoRoundedCorners = true;
+            btnAddUser.BackColor = Color.Transparent;
             btnAddUser.BorderRadius = 27;
             btnAddUser.CustomizableEdges = customizableEdges1;
             btnAddUser.DisabledState.BorderColor = Color.DarkGray;
