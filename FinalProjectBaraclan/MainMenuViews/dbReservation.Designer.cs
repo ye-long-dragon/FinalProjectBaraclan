@@ -53,6 +53,8 @@
             dgvRoomHistoryView = new Guna.UI2.WinForms.Guna2DataGridView();
             imgAdd = new DataGridViewImageColumn();
             imgDelete = new DataGridViewImageColumn();
+            lblRoomView = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblRoomReservationView = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRoomView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRoomHistoryView).BeginInit();
@@ -60,6 +62,8 @@
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.Controls.Add(lblRoomReservationView);
+            guna2CustomGradientPanel1.Controls.Add(lblRoomView);
             guna2CustomGradientPanel1.Controls.Add(btnReservation);
             guna2CustomGradientPanel1.Controls.Add(dgvRoomView);
             guna2CustomGradientPanel1.Controls.Add(guna2TextBox1);
@@ -238,13 +242,13 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             dgvRoomHistoryView.DefaultCellStyle = dataGridViewCellStyle6;
             dgvRoomHistoryView.GridColor = Color.FromArgb(231, 229, 255);
-            dgvRoomHistoryView.Location = new Point(46, 394);
+            dgvRoomHistoryView.Location = new Point(46, 485);
             dgvRoomHistoryView.Name = "dgvRoomHistoryView";
             dgvRoomHistoryView.RowHeadersVisible = false;
             dgvRoomHistoryView.RowHeadersWidth = 51;
             dgvRoomHistoryView.RowTemplate.Height = 50;
             dgvRoomHistoryView.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dgvRoomHistoryView.Size = new Size(1304, 444);
+            dgvRoomHistoryView.Size = new Size(1304, 353);
             dgvRoomHistoryView.TabIndex = 1;
             dgvRoomHistoryView.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvRoomHistoryView.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -267,6 +271,7 @@
             dgvRoomHistoryView.ThemeStyle.RowsStyle.Height = 50;
             dgvRoomHistoryView.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvRoomHistoryView.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvRoomHistoryView.CellClick += dgvRoomHistoryView_CellClick;
             // 
             // imgAdd
             // 
@@ -285,6 +290,26 @@
             imgDelete.MinimumWidth = 50;
             imgDelete.Name = "imgDelete";
             // 
+            // lblRoomView
+            // 
+            lblRoomView.BackColor = Color.Transparent;
+            lblRoomView.Font = new Font("Nirmala UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRoomView.Location = new Point(46, 95);
+            lblRoomView.Name = "lblRoomView";
+            lblRoomView.Size = new Size(176, 43);
+            lblRoomView.TabIndex = 10;
+            lblRoomView.Text = "Room Views";
+            // 
+            // lblRoomReservationView
+            // 
+            lblRoomReservationView.BackColor = Color.Transparent;
+            lblRoomReservationView.Font = new Font("Nirmala UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRoomReservationView.Location = new Point(46, 426);
+            lblRoomReservationView.Name = "lblRoomReservationView";
+            lblRoomReservationView.Size = new Size(350, 43);
+            lblRoomReservationView.TabIndex = 11;
+            lblRoomReservationView.Text = "Room Reservation Views";
+            // 
             // dbReservation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -295,6 +320,7 @@
             Name = "dbReservation";
             Text = "dbReservation";
             guna2CustomGradientPanel1.ResumeLayout(false);
+            guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRoomView).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvRoomHistoryView).EndInit();
             ResumeLayout(false);
@@ -312,5 +338,7 @@
         private DataGridViewImageColumn dataGridViewImageColumn1;
         private DataGridViewImageColumn dataGridViewImageColumn2;
         private Guna.UI2.WinForms.Guna2Button btnReservation;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblRoomReservationView;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblRoomView;
     }
 }

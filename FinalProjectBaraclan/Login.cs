@@ -65,31 +65,39 @@ namespace FinalProjectBaraclan
 
         private void btnFinLogin_Click(object sender, EventArgs e)
         {
-            bool validated;
-            UserAccount user = new UserAccount();
-            user.finalId = txtId.Text;
-            user.password = txtPassword.Text;
-            user.CheckAuthority(user);
-
-            UserAccount findUser = new UserAccount();
-            var repo = new AccountRepository();
-
-
-            findUser = repo.ReadAccount(user.initailId);
-            validated = findUser.ValidateLogin(user.finalId, user.password);
-
-            if (validated)
+            if (string.IsNullOrEmpty(txtId.Text) && string.IsNullOrEmpty(txtPassword.Text))
             {
-                this.Hide();
-                MainMenu mainmenu = new MainMenu(user.authority, findUser);
-                mainmenu.Show();
-            }
+                MessageBox.Show("Input Id and Password");
+                return; }
             else
             {
-                MessageBox.Show("Invalid Id or Password");
-                this.Hide();
-                Login login = new Login();
-                login.Show();
+
+                bool validated;
+                UserAccount user = new UserAccount();
+                user.finalId = txtId.Text;
+                user.password = txtPassword.Text;
+                user.CheckAuthority(user);
+
+                UserAccount findUser = new UserAccount();
+                var repo = new AccountRepository();
+
+
+                findUser = repo.ReadAccount(user.initailId);
+                validated = findUser.ValidateLogin(user.finalId, user.password);
+
+                if (validated)
+                {
+                    this.Hide();
+                    MainMenu mainmenu = new MainMenu(user.authority, findUser);
+                    mainmenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Id or Password");
+                    this.Hide();
+                    Login login = new Login();
+                    login.Show();
+                }
             }
 
         }

@@ -1,5 +1,7 @@
 ﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.Pop_upViews;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
@@ -72,40 +74,57 @@ namespace FinalProjectBaraclan
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            UserAccount newUser = new UserAccount();
-            var repo = new AccountRepository();
-
-
-            if (isEmployee == true)
+            if (string.IsNullOrEmpty(txtAddress.Text) &&
+                string.IsNullOrEmpty(txtBirthdate.Text) &&
+                string.IsNullOrEmpty(txtCoNumber.Text) &&
+                string.IsNullOrEmpty(txtEmail.Text) &&
+                string.IsNullOrEmpty(txtPassword.Text) &&
+                string.IsNullOrEmpty(txtRePassword.Text) &&
+                string.IsNullOrEmpty(txtUsername.Text) &&
+                imageByteArray.IsNullOrEmpty())
             {
-                isUser = false;
-                isAdmin = false;
-                newUser.isEmployee = true;
+                MessageBox.Show("Input all Items");
             }
+            else
+            {
+                UserAccount newUser = new UserAccount();
+                var repo = new AccountRepository();
 
 
-            newUser.image = imageByteArray;
-            newUser.isAdmin = isAdmin;
-            newUser.isEmployee = isEmployee;
-            newUser.isUser = isUser;
-            newUser.finalId = " ";
-            newUser.email = txtEmail.Text;
-            newUser.username = txtUsername.Text;
-            newUser.password = txtPassword.Text;
-            newUser.rePassword = txtRePassword.Text;
-            newUser.birthDate = Convert.ToDateTime(txtBirthdate.Text);
-            newUser.contactNumber = (int)Convert.ToInt64(txtCoNumber.Text);
-            newUser.address = txtAddress.Text;
+                if (isEmployee == true)
+                {
+                    isUser = false;
+                    isAdmin = false;
+                    newUser.isEmployee = true;
+                }
 
-            repo.createAccount(newUser);
-            newUser.initailId = repo.ReadAccountInitialId(newUser);
-            newUser.finalId = newUser.GenerateId(newUser.initailId);
-            MessageBox.Show(Convert.ToString(newUser.finalId));
-            repo.UpdateAccountId(newUser);
 
-            this.Hide();
-            Login login = new Login();
-            login.Show();
+                newUser.image = imageByteArray;
+                newUser.isAdmin = isAdmin;
+                newUser.isEmployee = isEmployee;
+                newUser.isUser = isUser;
+                newUser.finalId = " ";
+                newUser.email = txtEmail.Text;
+                newUser.username = txtUsername.Text;
+                newUser.password = txtPassword.Text;
+                newUser.rePassword = txtRePassword.Text;
+                newUser.birthDate = Convert.ToDateTime(txtBirthdate.Text);
+                newUser.contactNumber = (int)Convert.ToInt64(txtCoNumber.Text);
+                newUser.address = txtAddress.Text;
+
+                repo.createAccount(newUser);
+                newUser.initailId = repo.ReadAccountInitialId(newUser);
+                newUser.finalId = newUser.GenerateId(newUser.initailId);
+                MessageBox.Show(Convert.ToString(newUser.finalId));
+                repo.UpdateAccountId(newUser);
+
+                this.Hide();
+                frmShowInfo frmShowInfo = new frmShowInfo(newUser);
+                frmShowInfo.ShowDialog();
+                Login login = new Login();
+                login.Show();
+
+            }
 
         }
 

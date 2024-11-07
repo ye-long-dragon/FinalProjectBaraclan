@@ -1,5 +1,6 @@
 ﻿using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,6 +77,13 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (cmbProductType.SelectedIndex == -1 && string.IsNullOrEmpty(txtCost.Text)&&string.IsNullOrEmpty(txtName.Text)&&
+                string.IsNullOrEmpty(txtPrice.Text)&&string.IsNullOrEmpty(txtQuantity.Text) && imageByteArray.IsNullOrEmpty()) {
+                MessageBox.Show("Input all Items");
+                return;
+
+            }
+            else{ 
             Product product = new Product();
             var repo = new ItemRepository();
 
@@ -119,7 +127,7 @@ namespace FinalProjectBaraclan.Pop_upViews
 
             this.Close();
 
-
+        }
         }
 
         private void frmAddItem_FormClosed(object sender, FormClosedEventArgs e)

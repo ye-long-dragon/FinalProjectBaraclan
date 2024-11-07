@@ -300,79 +300,79 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            int id = 0;
-            RoomHistory roomHistory = new RoomHistory();
-            roomHistory.occupant = user.username;
-            roomHistory.occupantNumber = user.finalId;
-            roomHistory.date = Convert.ToDateTime(lblDateReserved.Text);
-
-            if (cmbBedStyle.SelectedIndex == -1)
+            if (cmbBedStyle.SelectedIndex == -1 && cmbRoomStyle.SelectedIndex == -1  && string.IsNullOrEmpty(txtPayment.Text))
             {
-                MessageBox.Show("Please select a bed style.");
+                MessageBox.Show("Input all Items");
                 return;
             }
+            
+            else {
+                int id = 0;
+                RoomHistory roomHistory = new RoomHistory();
+                roomHistory.occupant = user.username;
+                roomHistory.occupantNumber = user.finalId;
+                roomHistory.date = Convert.ToDateTime(lblDateReserved.Text);
 
-            if (cmbRoomStyle.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a room style.");
-                return;
-            }
-
-
-            id = Convert.ToInt32(lblId.Text);
-
-            for (int i = 0; i < roomNumber.Count; i++)
-            {
-                if (roomNumber[i] == id)
+                if (cmbBedStyle.SelectedIndex == -1)
                 {
-                    roomHistory.roomNumber = id;
-                    roomHistory.roomStyle = roomStyles[i];
-                    roomHistory.bedStyle = bedStyles[i];
-                    roomHistory.image = ImageBytes[i];
-                    roomHistory.price = price[i];
-                    break;
+                    MessageBox.Show("Please select a bed style.");
+                    return;
                 }
 
+                if (cmbRoomStyle.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a room style.");
+                    return;
+                }
+
+
+                id = Convert.ToInt32(lblId.Text);
+
+                for (int i = 0; i < roomNumber.Count; i++)
+                {
+                    if (roomNumber[i] == id)
+                    {
+                        roomHistory.roomNumber = id;
+                        roomHistory.roomStyle = roomStyles[i];
+                        roomHistory.bedStyle = bedStyles[i];
+                        roomHistory.image = ImageBytes[i];
+                        roomHistory.price = price[i];
+                        break;
+                    }
+
+                }
+
+
+
+
+                var repo = new RoomHistoryRepository();
+                repo.ReserveRoom(roomHistory);
+
+                var invoice = new RoomReceipt();
+                var document = invoice.GetRoomInvoice(roomHistory, user, Convert.ToDouble(txtPayment.Text));
+
+                string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
+                string fileName = $"RoomInvoice_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+                string fullPath = Path.Combine(downloadsPath, fileName);
+                document.Save(fullPath);
+
+                Receipt receipt = new Receipt
+                {
+                    userAccountName = user.username,
+                    userAccountId = user.finalId
+                };
+
+                receipt.data = File.ReadAllBytes(fullPath);
+
+                var receiptRepository = new ReceiptRepository();
+                receiptRepository.StoreRoomReceipt(receipt);
+
+                MessageBox.Show($"Invoice saved to: {fullPath}", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                MessageBox.Show("Room Reserved!");
+                this.Close();
             }
-
-
-
-            MessageBox.Show(roomHistory.occupant + "\n" +
-                            roomHistory.occupantNumber + "\n" +
-                            roomHistory.roomNumber + "\n" +
-                            roomHistory.bedStyle + "\n" +
-                            roomHistory.roomStyle + "\n" +
-                            roomHistory.image + "\n" +
-                            roomHistory.date + "\n"
-                            + roomHistory.price);
-
-            var repo = new RoomHistoryRepository();
-            repo.ReserveRoom(roomHistory);
-
-            var invoice = new RoomReceipt();
-            var document = invoice.GetRoomInvoice(roomHistory, user, Convert.ToDouble(txtPayment.Text));
-
-            string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
-            string fileName = $"RoomInvoice_{DateTime.Now:yyyyMMddHHmmss}.pdf";
-            string fullPath = Path.Combine(downloadsPath, fileName);
-            document.Save(fullPath);
-
-            Receipt receipt = new Receipt
-            {
-                userAccountName = user.username,
-                userAccountId = user.finalId
-            };
-
-            receipt.data = File.ReadAllBytes(fullPath);
-
-            var receiptRepository = new ReceiptRepository();
-            receiptRepository.StoreRoomReceipt(receipt);
-
-            MessageBox.Show($"Invoice saved to: {fullPath}", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-            MessageBox.Show("Room Reserved!");
-            this.Close();
         }
     }
 }

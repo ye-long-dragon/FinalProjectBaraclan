@@ -143,70 +143,100 @@ namespace FinalProjectBaraclan
 
         private void dgvRoomView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (((dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd") && ('A' == userAccount.finalId[0])))
+            try
             {
+                char authority = userAccount.AuthorityPass(userAccount);
+
+                if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd")
+                {
+                    if (authority == 'A')
+                    {
+                        DataGridViewRow dataGridViewRow = dgvRoomView.Rows[e.RowIndex];
+                        DataRow dataRow = ((DataRowView)dataGridViewRow.DataBoundItem).Row;
+
+                        Room room = new Room
+                        {
+                            id = Convert.ToInt32(dataRow["Room Number"]),
+                            roomStyle = Convert.ToString(dataRow["Room Style"]),
+                            bedStyle = Convert.ToString(dataRow["Bed Style"]),
+                            price = Convert.ToDouble(dataRow["Price"])
+                        };
+
+                        if (dataRow[0] is Image sourceImage)
+                        {
+                            using (var ms = new MemoryStream())
+                            using (var bitmap = new Bitmap(sourceImage))
+                            {
+                                bitmap.Save(ms, ImageFormat.Jpeg);
+                                room.imgRoom = ms.ToArray();
+                            }
+                        }
+
+                        using (frmUpdateRoom frmUpdateRoom = new frmUpdateRoom(room))
+                        {
+                            frmUpdateRoom.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("You do not have the authority to add rooms.");
+                    }
+                }
+                else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete")
+                {
+                    if (authority == 'A')
+                    {
+                        int rowIndex = dgvRoomView.CurrentRow.Index;
+                        string id = Convert.ToString(dgvRoomView.Rows[rowIndex].Cells["Room Number"].Value);
+
+                        DialogResult result = MessageBox.Show("Are you sure you would like to delete this room?", "Delete Room", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            var repo = new RoomRepository();
+                            repo.DeleteRoom(Convert.ToInt32(id));
+                            MessageBox.Show("Room deleted successfully.");
+
+                            // Refresh the DataGridView
+                            // Assuming you have a method to load the rooms data
+                            ReadRooms();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("You do not have the authority to delete rooms.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvRoomHistoryView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd")
+            {
+                MessageBox.Show("hi");
+
                 DataGridViewRow dataGridViewRow = dgvRoomView.Rows[e.RowIndex];
                 DataRow dataRow = ((DataRowView)dataGridViewRow.DataBoundItem).Row;
 
-                Room room = new Room();
-                room.roomStyle = Convert.ToString(dataRow["Room Number"]);
-                room.roomStyle = Convert.ToString(dataRow["Room Number"]);
-                
-                room.bedStyle = Convert.ToString(dataRow["Bed Style"]);
-                room.price = Convert.ToDouble(dataRow["Price"]);
-
-
-                if (dataRow[0] is Image sourceImage)
-                {
-                    using (var ms = new MemoryStream())
-                    {
-                        using (var bitmap = new Bitmap(sourceImage.Width, sourceImage.Height))
-                        {
-                            using (var graphics = Graphics.FromImage(bitmap))
-                            {
-                                graphics.DrawImage(sourceImage, 0, 0, sourceImage.Width, sourceImage.Height);
-                            }
-                            bitmap.Save(ms, ImageFormat.Jpeg);
-                            room.imgRoom = ms.ToArray();
-                        }
-                    }
-                }
-
-                frmUpdateRoom frmUpdateRoom = new frmUpdateRoom(room);
-                frmUpdateRoom.ShowDialog();
-                
-
             }
-            else if ((dgvRoomView.CurrentCell.OwningColumn.Name == "imgAdd"))
-            {
-                MessageBox.Show("You do not have the authority");
-            }
-            else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete" && 'A' == userAccount.finalId[0])
+            else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete"  )
             {
                 int rowIndex = dgvRoomView.CurrentRow.Index;
                 string id = Convert.ToString(dgvRoomView.Rows[rowIndex].Cells["Room Number"].Value);  // Replace "ID" with your actual ID column name
                 DialogResult result = MessageBox.Show("Are you sure you would like to delete the Item?", "Delete Account", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 MessageBox.Show(id);
-
-                if (result == DialogResult.Yes)
-                {
-                    var repo = new RoomRepository();
-                    repo.DeleteRoom(Convert.ToInt32(id));
-                    MessageBox.Show("Account deleted successfully.");
-                }
-                else
-                {
-                    return;
-                }
-
-
             }
-            else if (dgvRoomView.CurrentCell.OwningColumn.Name == "imgDelete")
-            {
-                MessageBox.Show("You do not have the authority");
-            }
+
         }
-    
-    
+
+
+
+           
     }
 }

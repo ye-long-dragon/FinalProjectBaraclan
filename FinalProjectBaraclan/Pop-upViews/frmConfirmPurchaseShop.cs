@@ -84,36 +84,43 @@ namespace FinalProjectBaraclan.MainMenuViews
 
         private void btnConfirmTransaction_Click(object sender, EventArgs e)
         {
-            Receipt receipt = new Receipt();
-            receipt.userAccountName = user.username;
-            receipt.userAccountId = user.finalId;
-
-            double payment = Convert.ToDouble(txtPayment.Text);
-            var invoice = new ShopReceipt();
-            var document = invoice.GetShopInvoice(finaldataTable, user, payment);
-
-            string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            string fileName = $"{user.username}_Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
-            string fullPath = Path.Combine(downloadsPath, fileName);
-
-            byte[] pdfBytes;
-            using (MemoryStream stream = new MemoryStream())
+            if (Convert.ToDouble(txtPayment.Text) < Convert.ToDouble(lblnoTotal.Text))
             {
-                document.Save(stream);
-                pdfBytes = stream.ToArray();
-
-                File.WriteAllBytes(fullPath, pdfBytes);
+                MessageBox.Show("Payment is less than Total");
             }
+            else
+            {
+                Receipt receipt = new Receipt();
+                receipt.userAccountName = user.username;
+                receipt.userAccountId = user.finalId;
 
-            receipt.data = pdfBytes;
+                double payment = Convert.ToDouble(txtPayment.Text);
+                var invoice = new ShopReceipt();
+                var document = invoice.GetShopInvoice(finaldataTable, user, payment);
 
-            MessageBox.Show($"PDF Receipt saved successfully to:\n{fullPath}", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+                string fileName = $"{user.username}_Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                string fullPath = Path.Combine(downloadsPath, fileName);
 
-            var repo = new ReceiptRepository();
-            repo.StoreShopReceipt(receipt);
-            MessageBox.Show("Receipt Successfully Stored");
-            this.Close();
+                byte[] pdfBytes;
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    document.Save(stream);
+                    pdfBytes = stream.ToArray();
+
+                    File.WriteAllBytes(fullPath, pdfBytes);
+                }
+
+                receipt.data = pdfBytes;
+
+                MessageBox.Show($"PDF Receipt saved successfully to:\n{fullPath}", "Success",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var repo = new ReceiptRepository();
+                repo.StoreShopReceipt(receipt);
+                MessageBox.Show("Receipt Successfully Stored");
+                this.Close();
+            }
         }
 
 

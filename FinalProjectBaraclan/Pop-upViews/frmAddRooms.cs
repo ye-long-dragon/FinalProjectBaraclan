@@ -1,5 +1,6 @@
 ﻿using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,7 +50,14 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            List<string> roomStyle = new List<string>
+            if(cmbRoomStyle.SelectedIndex == -1&&cmbBedStyle.SelectedIndex == -1&&string.IsNullOrEmpty(txtPrice.Text)&&string.IsNullOrEmpty(txtRoomId.Text)&&imageByteArray.IsNullOrEmpty())
+             {
+                MessageBox.Show("Input all Items");
+                return;
+            }
+
+            else {
+                List<string> roomStyle = new List<string>
             {
                 "Standard Room",
                 "Deluxe Room",
@@ -60,7 +68,7 @@ namespace FinalProjectBaraclan.Pop_upViews
 
 
                 };
-            List<string> bedStyle = new List<string>
+                List<string> bedStyle = new List<string>
             {
                 "Twin Size (1)",
                 "Twin Size (2)",
@@ -68,65 +76,65 @@ namespace FinalProjectBaraclan.Pop_upViews
                 "King Size",
             };
 
-            Room room = new Room();
-            var repo = new RoomRepository();
+                Room room = new Room();
+                var repo = new RoomRepository();
 
-            room.roomStyle = "";
-            room.bedStyle = "";
+                room.roomStyle = "";
+                room.bedStyle = "";
 
-            //if else roomstyle
-            switch (cmbRoomStyle.SelectedIndex)
-            {
-                case 0:
-                    room.roomStyle =Convert.ToString(roomStyle[0]);
-                    break;
-                case 1:
-                    room.roomStyle = Convert.ToString(roomStyle[1]);
-                    break;
-                case 2:
-                    room.roomStyle = Convert.ToString(roomStyle[2]);
-                    break;
-                case 3:
-                    room.roomStyle = Convert.ToString(roomStyle[3]);
-                    break;
-                case 4:
-                    room.roomStyle = Convert.ToString(roomStyle[4]);
-                    break;
-                case 5:
-                    room.roomStyle = Convert.ToString(roomStyle[5]);
-                    break;
+                //if else roomstyle
+                switch (cmbRoomStyle.SelectedIndex)
+                {
+                    case 0:
+                        room.roomStyle = Convert.ToString(roomStyle[0]);
+                        break;
+                    case 1:
+                        room.roomStyle = Convert.ToString(roomStyle[1]);
+                        break;
+                    case 2:
+                        room.roomStyle = Convert.ToString(roomStyle[2]);
+                        break;
+                    case 3:
+                        room.roomStyle = Convert.ToString(roomStyle[3]);
+                        break;
+                    case 4:
+                        room.roomStyle = Convert.ToString(roomStyle[4]);
+                        break;
+                    case 5:
+                        room.roomStyle = Convert.ToString(roomStyle[5]);
+                        break;
+                }
+
+
+                //if else bed style
+                switch (cmbBedStyle.SelectedIndex)
+                {
+                    case 0:
+                        room.bedStyle = Convert.ToString(bedStyle[0]);
+                        break;
+                    case 1:
+                        room.bedStyle = Convert.ToString(bedStyle[1]);
+                        break;
+                    case 2:
+                        room.bedStyle = Convert.ToString(bedStyle[2]);
+                        break;
+                    case 3:
+                        room.bedStyle = Convert.ToString(bedStyle[3]);
+                        break;
+
+                }
+
+
+                room.id = Convert.ToInt32(txtRoomId.Text);
+                room.imgRoom = imageByteArray;
+                room.price = Convert.ToDouble(txtPrice.Text);
+                repo.AddRoom(room);
+                MessageBox.Show("Room Added");
+
+                this.Close();
+
+
             }
-
-
-            //if else bed style
-            switch (cmbBedStyle.SelectedIndex)
-            {
-                case 0:
-                    room.bedStyle = Convert.ToString(bedStyle[0]);
-                    break;
-                case 1:
-                    room.bedStyle = Convert.ToString(bedStyle[1]);
-                    break;
-                case 2:
-                    room.bedStyle = Convert.ToString(bedStyle[2]);
-                    break;
-                case 3:
-                    room.bedStyle = Convert.ToString(bedStyle[3]);
-                    break;
-                
-            }
-
-
-            room.id = Convert.ToInt32(txtRoomId.Text);
-            room.imgRoom = imageByteArray;
-            room.price = Convert.ToDouble(txtPrice.Text);
-            repo.AddRoom(room);
-            MessageBox.Show("Room Added");
-
-            this.Close();
-
-
-
 
 
         }

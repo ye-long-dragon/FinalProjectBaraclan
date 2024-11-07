@@ -1,5 +1,6 @@
 ﻿using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -91,13 +92,28 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            txtAddress.Enabled = false;
-            txtPassword.Enabled = false;
-            txtNumber.Enabled = false;
-            txtUsername.Enabled = false;
-            txtEmail.Enabled = false;
-            cmbAuthority.Enabled = false;
 
+            if (string.IsNullOrEmpty(txtAddress.Text) &&
+                string.IsNullOrEmpty(txtPassword.Text) &&
+                string.IsNullOrEmpty(txtNumber.Text) &&
+                string.IsNullOrEmpty(txtUsername.Text) &&
+                string.IsNullOrEmpty(txtEmail.Text) &&
+                cmbAuthority.SelectedIndex == -1 &&
+                string.IsNullOrEmpty(txtBirthDate.Text) &&
+                image.IsNullOrEmpty())
+            {
+                MessageBox.Show("Input all Items");
+                return;
+            }
+            else
+            {
+                txtAddress.Enabled = false;
+                txtPassword.Enabled = false;
+                txtNumber.Enabled = false;
+                txtUsername.Enabled = false;
+                txtEmail.Enabled = false;
+                cmbAuthority.Enabled = false;
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

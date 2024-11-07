@@ -1,5 +1,6 @@
 ﻿using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,6 +77,7 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (txtQuantity.Enabled == false) { 
             var repo = new ItemRepository();
             if (image != null)
             {
@@ -87,20 +89,36 @@ namespace FinalProjectBaraclan.Pop_upViews
             item.itemPrice = Convert.ToDouble(txtPrice.Text);
             item.itemQuantity = Convert.ToInt32(txtQuantity.Text);
             item.finalIdItem = lblInputId.Text;
-           
+
             repo.UpdateItem(item);
             MessageBox.Show("Item Successfully Updated");
             this.Close();
-
+            }
         }
 
         private void btnConfirm_Click_1(object sender, EventArgs e)
         {
-            txtCost.Enabled = false;
-            txtName.Enabled = false;
-            txtPrice.Enabled = false;
-            txtQuantity.Enabled = false;
-            cmbCategory.Enabled = false;
+
+            if (string.IsNullOrEmpty(txtCost.Text) &&
+                string.IsNullOrEmpty(txtName.Text) &&
+                string.IsNullOrEmpty(txtPrice.Text) &&
+                string.IsNullOrEmpty(txtQuantity.Text) &&
+
+                cmbCategory.SelectedIndex == -1 &&
+
+                image.IsNullOrEmpty())
+            {
+                MessageBox.Show("Input all Items");
+                return;
+            }
+            else
+            {
+                txtCost.Enabled = false;
+                txtName.Enabled = false;
+                txtPrice.Enabled = false;
+                txtQuantity.Enabled = false;
+                cmbCategory.Enabled = false;
+            }
         }
 
         private void btnEdit_Click_1(object sender, EventArgs e)

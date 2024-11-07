@@ -62,11 +62,13 @@ namespace FinalProjectBaraclan.MainMenuViews
             month++;
             if (month > 12)
             {
-                year++;
+                month = 1;  // Reset month to January
+                year++;     // Increment year
             }
-            string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
 
+            string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
             lblMonthYear.Text = monthName + " " + year;
+
             DateTime startOfTheMonth = new DateTime(year, month, 1);
             int days = DateTime.DaysInMonth(year, month);
             int dayOfTheWeek = Convert.ToInt32(startOfTheMonth.DayOfWeek.ToString("d")) + 1;
@@ -80,7 +82,7 @@ namespace FinalProjectBaraclan.MainMenuViews
             for (int i = 1; i <= days; i++)
             {
                 ucrlDay day = new ucrlDay(account);
-                day.date(i, month,  year);
+                day.date(i, month, year);
                 day.reserved += ReserveDay;
                 day.cancelled += CancelDay;
                 flpCalendar.Controls.Add(day);
@@ -92,10 +94,15 @@ namespace FinalProjectBaraclan.MainMenuViews
             flpCalendar.Controls.Clear();
 
             month--;
-            if (month <1) { year--; }
-            string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            if (month < 1)
+            {
+                month = 12;  // Set month to December
+                year--;      // Decrement year
+            }
 
+            string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
             lblMonthYear.Text = monthName + " " + year;
+
             DateTime startOfTheMonth = new DateTime(year, month, 1);
             int days = DateTime.DaysInMonth(year, month);
             int dayOfTheWeek = Convert.ToInt32(startOfTheMonth.DayOfWeek.ToString("d")) + 1;
@@ -109,7 +116,9 @@ namespace FinalProjectBaraclan.MainMenuViews
             for (int i = 1; i <= days; i++)
             {
                 ucrlDay day = new ucrlDay(account);
-                day.date(i,month,year);
+                day.date(i, month, year);
+                day.reserved += ReserveDay;
+                day.cancelled += CancelDay;
                 flpCalendar.Controls.Add(day);
             }
         }

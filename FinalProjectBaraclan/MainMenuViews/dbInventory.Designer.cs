@@ -192,19 +192,19 @@
             // 
             // imgAdd
             // 
-            imgAdd.FillWeight = 50F;
-            imgAdd.HeaderText = "";
+            imgAdd.FillWeight = 12.8342285F;
+            imgAdd.HeaderText = "Edit";
             imgAdd.Image = (Image)resources.GetObject("imgAdd.Image");
-            imgAdd.MinimumWidth = 50;
+            imgAdd.MinimumWidth = 24;
             imgAdd.Name = "imgAdd";
             imgAdd.Resizable = DataGridViewTriState.False;
             // 
             // imgDelete
             // 
-            imgDelete.FillWeight = 50F;
-            imgDelete.HeaderText = "";
+            imgDelete.FillWeight = 87.16576F;
+            imgDelete.HeaderText = "Delete";
             imgDelete.Image = (Image)resources.GetObject("imgDelete.Image");
-            imgDelete.MinimumWidth = 50;
+            imgDelete.MinimumWidth = 24;
             imgDelete.Name = "imgDelete";
             // 
             // dbInventory
@@ -228,7 +228,7 @@
         private Guna.UI2.WinForms.Guna2Button btnAddInventory;
         private Guna.UI2.WinForms.Guna2ComboBox cmbCategoryType;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
-        private DataGridViewImageColumn imgAdd;
         private DataGridViewImageColumn imgDelete;
+        private DataGridViewImageColumn imgAdd;
     }
 }

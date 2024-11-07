@@ -1,5 +1,6 @@
 ﻿using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,12 +73,26 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            txtAddress.Enabled = false;
-            txtPassword.Enabled = false;
-            txtNumber.Enabled = false;
-            txtUsername.Enabled = false;
-            txtEmail.Enabled = false;
-            cmbAuthority.Enabled = false;
+            if (string.IsNullOrEmpty(txtAddress.Text) &&
+                string.IsNullOrEmpty(txtPassword.Text) &&
+                string.IsNullOrEmpty(txtNumber.Text) &&
+                string.IsNullOrEmpty(txtUsername.Text) &&
+                string.IsNullOrEmpty(txtEmail.Text) &&
+                cmbAuthority.SelectedIndex == -1 &&
+                string.IsNullOrEmpty(txtBirthDate.Text) &&
+                image.IsNullOrEmpty())
+            {
+                MessageBox.Show("Input all Items");
+                return; }
+            else
+            {
+                txtAddress.Enabled = false;
+                txtPassword.Enabled = false;
+                txtNumber.Enabled = false;
+                txtUsername.Enabled = false;
+                txtEmail.Enabled = false;
+                cmbAuthority.Enabled = false;
+            }
 
         }
 
@@ -93,28 +108,29 @@ namespace FinalProjectBaraclan.Pop_upViews
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (txtAddress.Enabled)
+            {
+                userAccount.birthDate = Convert.ToDateTime(txtBirthDate.Text);
+                userAccount.username = txtUsername.Text;
+                userAccount.password = txtPassword.Text;
+                userAccount.rePassword = txtPassword.Text;
+                userAccount.email = txtEmail.Text;
+                userAccount.address = txtAddress.Text;
+                userAccount.contactNumber = Convert.ToInt32(txtNumber.Text);
+                userAccount.image = image;
+                userAccount.finalId = " ";
 
-            userAccount.birthDate = Convert.ToDateTime(txtBirthDate.Text);
-            userAccount.username = txtUsername.Text;
-            userAccount.password = txtPassword.Text;
-            userAccount.rePassword = txtPassword.Text;
-            userAccount.email = txtEmail.Text;
-            userAccount.address = txtAddress.Text;
-            userAccount.contactNumber = Convert.ToInt32(txtNumber.Text);
-            userAccount.image = image;
-            userAccount.finalId = " ";
+                var repo = new AccountRepository();
+                repo.createAccount(userAccount);
+                userAccount.initailId = repo.ReadAccountInitialId(userAccount);
+                userAccount.finalId = userAccount.GenerateId(userAccount.initailId);
+                repo.UpdateAccountId(userAccount);
 
-            var repo = new AccountRepository();
-            repo.createAccount(userAccount);
-            userAccount.initailId = repo.ReadAccountInitialId(userAccount);
-            userAccount.finalId = userAccount.GenerateId(userAccount.initailId);
-            repo.UpdateAccountId(userAccount);
+                MessageBox.Show("Account Successfully Added");
 
-            MessageBox.Show("Account Successfully Added");
+                this.Hide();
 
-            this.Hide();
-
-
+            }
 
         }
 
