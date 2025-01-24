@@ -122,7 +122,7 @@
             btnRoomStyle.Size = new Size(79, 22);
             btnRoomStyle.TabIndex = 3;
             btnRoomStyle.Text = "Room Style";
-            btnRoomStyle.Click += this.btnRoomStyle_Click;
+            
             // 
             // lblRoomNumber
             // 
