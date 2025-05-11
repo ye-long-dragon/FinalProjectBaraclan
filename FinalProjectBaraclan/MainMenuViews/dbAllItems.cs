@@ -25,12 +25,15 @@ namespace FinalProjectBaraclan
             InitializeComponent();
             //flow layout size 1269, 616
             pnlInvoice.BringToFront();
-
-           
-            TakeAndReturnUCData();
             
 
         }
+
+        List<Product> items = new List<Product>();
+        double grandTotal;
+        int itemLength = 0;
+        bool itemLengthPass = false;
+
 
 
         private void dbAllItems_Load(object sender, EventArgs e)
@@ -38,6 +41,7 @@ namespace FinalProjectBaraclan
             var repo = new ItemRepository();
 
             LoadItems(repo.GetItemDataView());
+            TakeandReturnUCData();
 
 
         }
@@ -83,54 +87,44 @@ namespace FinalProjectBaraclan
             {
                 Product item = urclItem.ReturnItem();
 
-                // Only process if the item is added or dropped
-                if (item.isAdded > 0 && item.isDropped == 0)
+                foreach (Product item in items)
                 {
-                    item.CheckStatus();
 
-                    DataRow row = dataTable.NewRow();
-                    row["Name"] = item.itemName;
-                    row["Quantity"] = item.quantitySubracted;
-                    row["Price"] = item.itemPrice;
-                    row["Total Price"] = item.itemPrice * item.quantitySubracted;
-                    dataTable.Rows.Add(row);
-                }
-            }
-
-            // Set the DataSource of the DataGridView after adding all rows
-            dgvInvoicing.DataSource = dataTable;
-        }
-
-        public void ReadandReturnTablePrices()
-        {
-            // Reset grand total before calculation
-            grandTotal = 0;
-
-            if (dgvInvoicing.DataSource is DataTable dataSource)
-            {
-                int priceLength = dataSource.Rows.Count;
-
-                // Iterate through each row in the DataTable
-                for (int i = 0; i < priceLength; i++)
-                {
-                    DataRow row = dataSource.Rows[i];
-
-                    // Check if the "Total Price" column is not DBNull
-                    if (row["Total Price"] != DBNull.Value)
+                    if (item.isAdded > 0 || item.isDropped > 0)
                     {
-                        grandTotal += Convert.ToDouble(row["Total Price"]); // Accumulate grand total
-                    }
-                }
+                        // Create a new DataRow for the DataTable
+                        DataRow row = dataTable.NewRow();
+                        row["Name"] = item.itemName;
+                        row["Quantity"] = item.quantitySubracted;
+                        row["Price"] = item.itemPrice;
+                        row["Total Price"] = item.quantitySubracted * item.itemPrice;
 
-                // Update the label with the grand total
-                lblnoTotal.Text = Convert.ToString(grandTotal);
+                        // Add the row to the DataTable
+                        dataTable.Rows.Add(row);
+
+                        // Update grand total
+                        grandTotal += item.quantitySubracted * item.itemPrice;
+                    }
+
+
+                    // Bind the DataTable to the table view (replace 'YourTableControl' with your control name)
+                    dgvInvoicing.DataSource = dataTable;
+
+                    // Update the Grand Total label
+                    lblnoTotal.Text = $"Grand Total: {grandTotal.ToString()}";
+
+
+                    
+
+                
+
             }
-            
         }
 
 
-
-
-
+        private void refreshTable_Tick(object sender, EventArgs e)
+        {
+               TakeandReturnUCData();
+        }
     }
 }

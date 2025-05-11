@@ -92,7 +92,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvInvoicing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvInvoicing.ColumnHeadersHeight = 4;
+            dgvInvoicing.ColumnHeadersHeight = 50;
             dgvInvoicing.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
@@ -121,7 +121,7 @@
             dgvInvoicing.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgvInvoicing.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvInvoicing.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvInvoicing.ThemeStyle.HeaderStyle.Height = 4;
+            dgvInvoicing.ThemeStyle.HeaderStyle.Height = 50;
             dgvInvoicing.ThemeStyle.ReadOnly = false;
             dgvInvoicing.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvInvoicing.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -174,5 +174,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lbltxtGrandTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblnoTotal;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInvoicing;
+<<<<<<< Updated upstream
     }
+=======
+            }
+>>>>>>> Stashed changes
 }
