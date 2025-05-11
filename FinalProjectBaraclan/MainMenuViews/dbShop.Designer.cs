@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -38,6 +40,7 @@
             pnlAllItems = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             flpItemView = new FlowLayoutPanel();
             pnlInvoice = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btnConfirmPurchase = new Guna.UI2.WinForms.Guna2Button();
             dgvInvoicing = new Guna.UI2.WinForms.Guna2DataGridView();
             lblnoTotal = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lbltxtGrandTotal = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -50,11 +53,11 @@
             // 
             pnlAllItems.Controls.Add(flpItemView);
             pnlAllItems.Controls.Add(pnlInvoice);
-            pnlAllItems.CustomizableEdges = customizableEdges3;
+            pnlAllItems.CustomizableEdges = customizableEdges5;
             pnlAllItems.Dock = DockStyle.Fill;
             pnlAllItems.Location = new Point(0, 0);
             pnlAllItems.Name = "pnlAllItems";
-            pnlAllItems.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            pnlAllItems.ShadowDecoration.CustomizableEdges = customizableEdges6;
             pnlAllItems.Size = new Size(1400, 850);
             pnlAllItems.TabIndex = 0;
             // 
@@ -68,17 +71,38 @@
             // 
             // pnlInvoice
             // 
+            pnlInvoice.Controls.Add(btnConfirmPurchase);
             pnlInvoice.Controls.Add(dgvInvoicing);
             pnlInvoice.Controls.Add(lblnoTotal);
             pnlInvoice.Controls.Add(lbltxtGrandTotal);
-            pnlInvoice.CustomizableEdges = customizableEdges1;
+            pnlInvoice.CustomizableEdges = customizableEdges3;
             pnlInvoice.Dock = DockStyle.Right;
             pnlInvoice.FillColor = Color.Blue;
             pnlInvoice.Location = new Point(992, 0);
             pnlInvoice.Name = "pnlInvoice";
-            pnlInvoice.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            pnlInvoice.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pnlInvoice.Size = new Size(408, 850);
             pnlInvoice.TabIndex = 0;
+            // 
+            // btnConfirmPurchase
+            // 
+            btnConfirmPurchase.AutoRoundedCorners = true;
+            btnConfirmPurchase.BackColor = Color.Transparent;
+            btnConfirmPurchase.BorderRadius = 27;
+            btnConfirmPurchase.CustomizableEdges = customizableEdges1;
+            btnConfirmPurchase.DisabledState.BorderColor = Color.DarkGray;
+            btnConfirmPurchase.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnConfirmPurchase.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnConfirmPurchase.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnConfirmPurchase.Font = new Font("Segoe UI", 9F);
+            btnConfirmPurchase.ForeColor = Color.White;
+            btnConfirmPurchase.Location = new Point(60, 717);
+            btnConfirmPurchase.Name = "btnConfirmPurchase";
+            btnConfirmPurchase.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnConfirmPurchase.Size = new Size(300, 56);
+            btnConfirmPurchase.TabIndex = 3;
+            btnConfirmPurchase.Text = "Confirm Purchase";
+            btnConfirmPurchase.Click += btnConfirmPurchase_Click;
             // 
             // dgvInvoicing
             // 
@@ -92,8 +116,12 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvInvoicing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.Designer.cs
             dgvInvoicing.ColumnHeadersHeight = 50;
             dgvInvoicing.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+=======
+            dgvInvoicing.ColumnHeadersHeight = 40;
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.Designer.cs
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -107,7 +135,7 @@
             dgvInvoicing.Name = "dgvInvoicing";
             dgvInvoicing.RowHeadersVisible = false;
             dgvInvoicing.RowHeadersWidth = 51;
-            dgvInvoicing.Size = new Size(300, 680);
+            dgvInvoicing.Size = new Size(300, 489);
             dgvInvoicing.TabIndex = 2;
             dgvInvoicing.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvInvoicing.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -120,8 +148,13 @@
             dgvInvoicing.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvInvoicing.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgvInvoicing.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.Designer.cs
             dgvInvoicing.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvInvoicing.ThemeStyle.HeaderStyle.Height = 50;
+=======
+            dgvInvoicing.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvInvoicing.ThemeStyle.HeaderStyle.Height = 40;
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.Designer.cs
             dgvInvoicing.ThemeStyle.ReadOnly = false;
             dgvInvoicing.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvInvoicing.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -134,18 +167,20 @@
             // lblnoTotal
             // 
             lblnoTotal.BackColor = Color.Transparent;
-            lblnoTotal.Location = new Point(193, 74);
+            lblnoTotal.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblnoTotal.Location = new Point(254, 74);
             lblnoTotal.Name = "lblnoTotal";
-            lblnoTotal.Size = new Size(34, 22);
+            lblnoTotal.Size = new Size(67, 39);
             lblnoTotal.TabIndex = 1;
             lblnoTotal.Text = "total";
             // 
             // lbltxtGrandTotal
             // 
             lbltxtGrandTotal.BackColor = Color.Transparent;
+            lbltxtGrandTotal.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbltxtGrandTotal.Location = new Point(29, 74);
             lbltxtGrandTotal.Name = "lbltxtGrandTotal";
-            lbltxtGrandTotal.Size = new Size(84, 22);
+            lbltxtGrandTotal.Size = new Size(180, 39);
             lbltxtGrandTotal.TabIndex = 0;
             lbltxtGrandTotal.Text = "Grand Total:";
             // 
@@ -174,7 +209,11 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lbltxtGrandTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblnoTotal;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInvoicing;
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.Designer.cs
 <<<<<<< Updated upstream
+=======
+        private Guna.UI2.WinForms.Guna2Button btnConfirmPurchase;
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.Designer.cs
     }
 =======
             }

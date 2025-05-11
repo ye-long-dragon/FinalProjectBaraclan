@@ -20,16 +20,10 @@ namespace FinalProjectBaraclan
         {
             InitializeComponent();
 
-            ReadAccounts();
+            txtPassword.UseSystemPasswordChar = true;
         }
 
-        public void ReadAccounts()
-        {
-            var repo = new AccountRepository();
-            repo.ReadAccounts();
 
-
-        }
 
         //drag topbar
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -46,6 +40,7 @@ namespace FinalProjectBaraclan
             lblPassword.Visible = true;
             btnReturn.Visible = true;
             btnFinLogin.Visible = true;
+            cbxVisible.Visible = true;
 
 
             //hide
@@ -70,31 +65,39 @@ namespace FinalProjectBaraclan
 
         private void btnFinLogin_Click(object sender, EventArgs e)
         {
-            bool validated;
-            UserAccount user = new UserAccount();
-            user.finalId = txtId.Text;
-            user.password = txtPassword.Text;
-            user.CheckAuthority(user);
-
-            UserAccount findUser = new UserAccount();
-            var repo = new AccountRepository();
-
-
-            findUser = repo.ReadAccount(user.initailId);
-            validated = findUser.ValidateLogin(user.finalId,user.password);
-
-            if (validated)
+            if (string.IsNullOrEmpty(txtId.Text) && string.IsNullOrEmpty(txtPassword.Text))
             {
-                this.Hide();
-                MainMenu mainmenu = new MainMenu(user.authority);
-                mainmenu.Show();
-            }
+                MessageBox.Show("Input Id and Password");
+                return; }
             else
             {
-                MessageBox.Show("Invalid Id or Password");
-                this.Hide();
-                Login login = new Login();
-                login.Show();
+
+                bool validated;
+                UserAccount user = new UserAccount();
+                user.finalId = txtId.Text;
+                user.password = txtPassword.Text;
+                user.CheckAuthority(user);
+
+                UserAccount findUser = new UserAccount();
+                var repo = new AccountRepository();
+
+
+                findUser = repo.ReadAccount(user.initailId);
+                validated = findUser.ValidateLogin(user.finalId, user.password);
+
+                if (validated)
+                {
+                    this.Hide();
+                    MainMenu mainmenu = new MainMenu(user.authority, findUser);
+                    mainmenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Id or Password");
+                    this.Hide();
+                    Login login = new Login();
+                    login.Show();
+                }
             }
 
         }
@@ -131,6 +134,7 @@ namespace FinalProjectBaraclan
             txtPassword.Visible = false;
             btnFinLogin.Visible = false;
             btnReturn.Visible = false;
+            cbxVisible.Visible = false;
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -145,5 +149,15 @@ namespace FinalProjectBaraclan
         }
 
         
+
+        private void cbxVisible_CheckedChanged(object sender, EventArgs e)
+        {
+           
+                
+                txtPassword.UseSystemPasswordChar = !cbxVisible.Checked;
+                MessageBox.Show(cbxVisible.Checked + " " + txtPassword.UseSystemPasswordChar);
+            
+            
+        }
     }
 }

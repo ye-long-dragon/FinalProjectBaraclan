@@ -1,6 +1,7 @@
 ﻿using FinalProjectBaraclan.MainMenuViews;
 using FinalProjectBaraclan.Models;
 using FinalProjectBaraclan.Repository;
+using FinalProjectBaraclan.Ucrls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,18 +16,27 @@ namespace FinalProjectBaraclan
 {
     public partial class dbAllItems : Form
     {
-
+        DataTable temp = new DataTable();
         List<Product> items = new List<Product>();
         double grandTotal;
         int itemLength = 0;
         bool itemLengthPass = false;
-        public dbAllItems()
+
+        UserAccount userAccount;
+        public dbAllItems(UserAccount user)
         {
             InitializeComponent();
             //flow layout size 1269, 616
             pnlInvoice.BringToFront();
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.cs
             
+=======
 
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.cs
+
+            TakeAndReturnUCData();
+
+            userAccount = user;
         }
 
         List<Product> items = new List<Product>();
@@ -51,10 +61,13 @@ namespace FinalProjectBaraclan
 
             foreach (Product product in products)
             {
-                urclItem urclItem = new urclItem(product);
-                urclItem.addClicked += urclItem_btnAdd_Clicked;
-                urclItem.droppedClicked += urclItem_btnDropped_Clicked;
-                flpItemView.Controls.Add(urclItem);
+                if (product.itemQuantity > 0)
+                {
+                    urclItem urclItem = new urclItem(product);
+                    urclItem.addClicked += urclItem_btnAdd_Clicked;
+                    urclItem.droppedClicked += urclItem_btnDropped_Clicked;
+                    flpItemView.Controls.Add(urclItem);
+                }
             }
 
 
@@ -90,7 +103,42 @@ namespace FinalProjectBaraclan
                 foreach (Product item in items)
                 {
 
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.cs
                     if (item.isAdded > 0 || item.isDropped > 0)
+=======
+                    DataRow row = dataTable.NewRow();
+                    row["Name"] = item.itemName;
+                    row["Quantity"] = item.quantitySubracted;
+                    row["Price"] = item.itemPrice;
+                    row["Total Price"] = item.itemPrice * item.quantitySubracted;
+                    dataTable.Rows.Add(row);
+                }
+            }
+
+            // Set the DataSource of the DataGridView after adding all rows
+            dgvInvoicing.DataSource = dataTable;
+            temp = dataTable.Copy();
+        }
+
+        
+
+        public void ReadandReturnTablePrices()
+        {
+            // Reset grand total before calculation
+            grandTotal = 0;
+
+            if (dgvInvoicing.DataSource is DataTable dataSource)
+            {
+                int priceLength = dataSource.Rows.Count;
+
+                // Iterate through each row in the DataTable
+                for (int i = 0; i < priceLength; i++)
+                {
+                    DataRow row = dataSource.Rows[i];
+
+                    // Check if the "Total Price" column is not DBNull
+                    if (row["Total Price"] != DBNull.Value)
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.cs
                     {
                         // Create a new DataRow for the DataTable
                         DataRow row = dataTable.NewRow();
@@ -118,13 +166,32 @@ namespace FinalProjectBaraclan
 
                 
 
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.cs
             }
+=======
+                // Update the label with the grand total
+                lblnoTotal.Text = Convert.ToString(grandTotal);
+
+                
+            }
+
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.cs
         }
 
+        private void btnConfirmPurchase_Click(object sender, EventArgs e)
+        {
+            frmConfirmPurchaseShop frmConfirmPurchaseShop = new frmConfirmPurchaseShop(temp,userAccount);
+            frmConfirmPurchaseShop.ShowDialog();
 
+<<<<<<< HEAD:FinalProjectBaraclan/MainMenuViews/dbAllItems.cs
         private void refreshTable_Tick(object sender, EventArgs e)
         {
                TakeandReturnUCData();
         }
+=======
+        }
+
+
+>>>>>>> ccb3649618f40194428c4667620a5b5c483bbe18:FinalProjectBaraclan/MainMenuViews/dbShop.cs
     }
 }

@@ -9,20 +9,38 @@ namespace FinalProjectBaraclan.Models
 {
     public class UserAccount
     {
-        public int initailId, contactNumber;
-        public string finalId, username, password, rePassword, email, address;
-        public DateTime birthDate;
-        public bool isAdmin, isEmployee, isUser;
-        public char authority;
+        public Byte[] image {  get; set; }
+        public int initailId { get; set; }
+        public int contactNumber {  get; set; }
+        public string finalId { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string rePassword { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
+        public DateTime birthDate { get; set; }
+        public bool isAdmin { get; set; }
+        public bool isEmployee { get; set; }
+        public bool isUser { get; set; }
+        public char authority { get; set; }
 
 
 
+        public Image ReturnImage()
+        {
+            using (MemoryStream ms = new MemoryStream(this.image))
+            {
+                Image img = Image.FromStream(ms);
+                return img;
+            }
 
-        
+        }
+
         public void CheckAuthority(UserAccount user)
         {
 
             char[] chars = user.finalId.ToCharArray();
+            
             if (chars[0] == 'A')
             {
                 this.isAdmin = true;
@@ -44,6 +62,7 @@ namespace FinalProjectBaraclan.Models
             
             user.authority = chars[0];
             user.initailId = Convert.ToInt32(user.finalId.Remove(0, 1));
+            MessageBox.Show(Convert.ToString(this.authority));
         }
 
         public char AuthorityPass(UserAccount user)
@@ -104,7 +123,15 @@ namespace FinalProjectBaraclan.Models
             return false;
         }
 
-        
+        public int ReturnInitialId()
+        {
+            int result;
+            string temp;
+            temp = this.finalId.Substring(1);
+            temp = temp.TrimStart('0');
+            result = Convert.ToInt32(temp);
+            return result;
+        }
 
         public class Admin : UserAccount
         {

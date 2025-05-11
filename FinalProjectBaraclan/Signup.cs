@@ -1,5 +1,7 @@
 ﻿using FinalProjectBaraclan.Models;
+using FinalProjectBaraclan.Pop_upViews;
 using FinalProjectBaraclan.Repository;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,8 @@ namespace FinalProjectBaraclan
 {
     public partial class Signup : Form
     {
-
+        public string filePath = "";
+        Byte[] imageByteArray;
         bool isAdmin = false, isEmployee = false, isUser;
         String s;
         public Signup(string s)
@@ -30,17 +33,18 @@ namespace FinalProjectBaraclan
 
             if ("User" == s)
             {
-                pnlStaff.Visible = false;
+
                 account.isUser = true;
 
 
             }
             else if ("Employee" == s)
             {
-                pnlStaff.Visible = true;
 
-
+                isEmployee = true;
+                account.isEmployee = true;
             }
+            isAdmin = false;
         }
 
         //drag topbar
@@ -70,46 +74,58 @@ namespace FinalProjectBaraclan
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            UserAccount newUser = new UserAccount();
-            var repo = new AccountRepository();
-
-            if (isAdmin == true)
+            if (string.IsNullOrEmpty(txtAddress.Text) &&
+                string.IsNullOrEmpty(txtBirthdate.Text) &&
+                string.IsNullOrEmpty(txtCoNumber.Text) &&
+                string.IsNullOrEmpty(txtEmail.Text) &&
+                string.IsNullOrEmpty(txtPassword.Text) &&
+                string.IsNullOrEmpty(txtRePassword.Text) &&
+                string.IsNullOrEmpty(txtUsername.Text) &&
+                imageByteArray.IsNullOrEmpty())
             {
-                isUser = false;
-                isEmployee = false;
-                newUser.isAdmin = true;
+                MessageBox.Show("Input all Items");
             }
-            else if (isEmployee == true)
+            else
             {
-                isUser = false;
-                isAdmin = false;
-                newUser.isEmployee = true;
-            }
-            
+                UserAccount newUser = new UserAccount();
+                var repo = new AccountRepository();
 
-            
-            newUser.isAdmin = isAdmin;
-            newUser.isEmployee = isEmployee;
-            newUser.isUser = isUser;
-            newUser.finalId = " ";
-            newUser.email = txtEmail.Text;
-            newUser.username = txtUsername.Text;
-            newUser.password = txtPassword.Text;
-            newUser.rePassword = txtRePassword.Text;
-            newUser.birthDate = Convert.ToDateTime(txtBirthdate.Text);
-            newUser.contactNumber = (int)Convert.ToInt64(txtCoNumber.Text);
-            newUser.address = txtAddress.Text;
-            
-            repo.createAccount(newUser);
-            newUser.initailId = repo.ReadAccountInitialId(newUser);
-            newUser.finalId = newUser.GenerateId(newUser.initailId);
-            MessageBox.Show(Convert.ToString(newUser.finalId));
-            repo.UpdateAccountId(newUser);
+
+                if (isEmployee == true)
+                {
+                    isUser = false;
+                    isAdmin = false;
+                    newUser.isEmployee = true;
+                }
+
+
+                newUser.image = imageByteArray;
+                newUser.isAdmin = isAdmin;
+                newUser.isEmployee = isEmployee;
+                newUser.isUser = isUser;
+                newUser.finalId = " ";
+                newUser.email = txtEmail.Text;
+                newUser.username = txtUsername.Text;
+                newUser.password = txtPassword.Text;
+                newUser.rePassword = txtRePassword.Text;
+                newUser.birthDate = Convert.ToDateTime(txtBirthdate.Text);
+                newUser.contactNumber = (int)Convert.ToInt64(txtCoNumber.Text);
+                newUser.address = txtAddress.Text;
+
+                repo.createAccount(newUser);
+                newUser.initailId = repo.ReadAccountInitialId(newUser);
+                newUser.finalId = newUser.GenerateId(newUser.initailId);
+                MessageBox.Show(Convert.ToString(newUser.finalId));
+                repo.UpdateAccountId(newUser);
 
                 this.Hide();
+                frmShowInfo frmShowInfo = new frmShowInfo(newUser);
+                frmShowInfo.ShowDialog();
                 Login login = new Login();
                 login.Show();
-            
+
+            }
+
         }
 
         private void pnlTopBar_MouseDown(object sender, MouseEventArgs e)
@@ -118,14 +134,34 @@ namespace FinalProjectBaraclan
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
-        private void radbtnAdmin_CheckedChanged(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            isAdmin = true;
-        }
+            OpenFileDialog ofd = new OpenFileDialog();
 
-        private void radbtnEmployee_CheckedChanged_1(object sender, EventArgs e)
-        {
-            isEmployee = true;
+            ofd.Filter = "Images(.jpg,.png)|*.jpg;*.png ";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+                filePath = ofd.FileName;
+                imgProfilePicture.Image = new Bitmap(filePath);
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                    {
+                        imageByteArray = binaryReader.ReadBytes((int)fileStream.Length);
+                    }
+                }
+            }
+
+
+            using (MemoryStream ms = new MemoryStream(imageByteArray))
+            {
+                Image img = Image.FromStream(ms);
+                imgProfilePicture.Image = img; // Assign the image to the PictureBox
+                imgProfilePicture.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+
         }
     }
 }

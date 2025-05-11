@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FinalProjectBaraclan
+namespace FinalProjectBaraclan.Ucrls
 {
-    public partial class dbHousekeeping : Form
+    public partial class ucrlDayOff : UserControl
     {
-        public dbHousekeeping()
+        public ucrlDayOff()
         {
             InitializeComponent();
+            lblReserve.Visible = false;
         }
     }
 }

@@ -3,6 +3,7 @@ using FinalProjectBaraclan.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,21 @@ namespace FinalProjectBaraclan.Repository
     public class ItemRepository
     {
         private readonly string connectionString = "Data Source=LAPTOP-8DI59A6C\\SQLEXPRESS;Initial Catalog=FinalProjectDatabase;Persist Security Info=True;User ID=sa;Password=vinice2004;Encrypt=True;Trust Server Certificate=True";
+
+        public void DeleteAccount(string accountId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "delete from [FinalProjectDatabase].[dbo].[dboProducts] where finalIdItem = @finalIdItem";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@finalIdItem", accountId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public List<Product> ReadItems()
         {
@@ -91,6 +107,45 @@ namespace FinalProjectBaraclan.Repository
             }
         }
 
+        public void UpdateItem(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE [FinalProjectDatabase].[dbo].[dboProducts] "+
+                         "SET itemName = @itemName, "+
+                             "itemImage =@itemImage , "+
+                             "itemQuantity = @itemQuantity, "+
+                             "itemCost = @itemCost, "+
+                             "itemPrice = @itemPrice,"+
+                            "finalIdItem = @finalIdItem "+
+                         "WHERE initialIdItem = @initialIdItem";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@itemName", (object)product.itemName ?? DBNull.Value);
+                        
+                            cmd.Parameters.Add("@itemImage", SqlDbType.VarBinary, -1).Value = product.itemImageArray;
+                        
+                        
+                        cmd.Parameters.AddWithValue("@itemQuantity", product.itemQuantity);
+                        cmd.Parameters.AddWithValue("@itemCost", product.itemCost);
+                        cmd.Parameters.AddWithValue("@itemPrice", product.itemPrice);
+                        cmd.Parameters.AddWithValue("@finalIdItem", (object)product.finalIdItem ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@initialIdItem", product.ReturnInitialId());
+
+                       cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception($"Database error: {ex.Message}", ex);
+                    }
+                }
+            
+            }
+        }
 
         public void UpdateProductId(Product product)
         {
@@ -193,6 +248,35 @@ namespace FinalProjectBaraclan.Repository
             }
 
         }
+
+        public void ShopUpdateItemQuantity (Product product)
+        {
+            using(SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                string query = "UPDATE [FinalProjectDatabase].[dbo].[dboProducts] SET itemQuantity = @itemQuantity WHERE itemName = @itemName";
+
+                using(SqlCommand update = new SqlCommand(query,sqlConnection))
+                {
+                    update.Parameters.AddWithValue("@itemQuantity", product.quantitySubracted);
+                    update.Parameters.AddWithValue("@itemName", product.itemName);
+
+                    update.ExecuteNonQuery();
+
+
+                }              
+            }    
+        }
+
+
+
+
+
+
+
+
+
+
 
        
 

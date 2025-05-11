@@ -8,8 +8,8 @@ namespace FinalProjectBaraclan.Models
 {
     public class Product
     {
-        public int initialIdItem, itemQuantity, isAdded,isDropped;
-        public double itemCost, itemPrice,quantitySubracted;
+        public int initialIdItem, itemQuantity, isAdded,isDropped, quantitySubracted;
+        public double itemCost, itemPrice;
         public string finalIdItem, itemName;
         public Byte[] itemImageArray;
         public bool isGrocery, isRestaurant, isMerchandise;
@@ -26,6 +26,16 @@ namespace FinalProjectBaraclan.Models
                 this.quantitySubracted = -this.quantitySubracted;
             }
 
+        }
+
+        public int ReturnInitialId()
+        {
+            int result;
+            string temp;
+            temp = this.finalIdItem.Substring(1);
+            temp = temp.TrimStart('0');
+            result = Convert.ToInt32(temp);
+            return result;
         }
 
         public string GenerateId(int id)
@@ -45,7 +55,7 @@ namespace FinalProjectBaraclan.Models
             }
             else if (this.isMerchandise)
             {
-                return "U" + baseId;
+                return "M" + baseId;
             }
             return "";
         }
